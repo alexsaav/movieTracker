@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 //TMDB API
-const tmdbKey = '539fce852ca8a629fa1befc64f16d988';
+const tmdbKey = process.env.REACT_APP_TMDB_API_KEY;
 // API’s base URL
 const tmdbBaseUrl = 'https://api.themoviedb.org/3';
 //Search Movie endpoint
@@ -13,7 +13,6 @@ export const searchMoviesAsync = createAsyncThunk(
     'movies/searchMoviesAsync',
 
     async (payload) => {
-        const page = (page = 1) => `${page}`;
         //query params
         const requestParams = `?api_key=${tmdbKey}&language=en-US&query=${payload}&page=1&include_adult=false`;
         
@@ -38,11 +37,6 @@ export const moviesSlice = createSlice({
         movies: {
             results: [] 
         } 
-    },
-    reducers: {
-        setSearchMovies: (state, action) => {
-            return action.payload;
-        },
     },
     extraReducers: {
         [searchMoviesAsync.fulfilled]: (state, action) => {

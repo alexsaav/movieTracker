@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux'
 import { selectSearchMovies } from './moviesSlice';
 import "./movies.css"
@@ -6,7 +7,6 @@ import SearchBar from '../SearchBar/SearchBar';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 import MovieCard from '../MovieCard/MovieCard';
-
 
 const Movies = () => {
     const moviesResult = useSelector(selectSearchMovies)
@@ -26,7 +26,6 @@ const Movies = () => {
                     ))}
                 </Grid>
             </Container>
-
         </Container>
     )
 }
