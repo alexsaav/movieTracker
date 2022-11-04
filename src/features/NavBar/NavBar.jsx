@@ -14,11 +14,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
-
-
 const drawerWidth = 240;
-
-
 
 const NavBar = (props) => {
     const { window } = props;
@@ -30,27 +26,27 @@ const NavBar = (props) => {
 
     const drawer = (
         <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-          <Typography variant="h6" sx={{ my: 2 }}>
-            MovieTracker
-          </Typography>
-          <Divider />
-          <List>
-            <ListItem disablePadding>
-                <ListItemButton sx={{ textAlign: 'center' }}>
-                    <ListItemText primary='Home' />
-                </ListItemButton>
-            </ListItem>
-            <ListItem>
-                <ListItemButton sx={{ textAlign: 'center' }}>
-                    <ListItemText primary='Movies' />
-                </ListItemButton>
-            </ListItem>
-            <ListItem>
-                <ListItemButton sx={{ textAlign: 'center' }}>
-                    <ListItemText primary='Series' />
-                </ListItemButton>
-            </ListItem>
-          </List>
+            <Typography variant="h6" sx={{ my: 2 }}>
+                MovieTracker
+            </Typography>
+            <Divider />
+            <List>
+                <ListItem disablePadding>
+                    <ListItemButton sx={{ textAlign: 'center' }}>
+                        <ListItemText primary='Home' />
+                    </ListItemButton>
+                </ListItem>
+                <ListItem>
+                    <ListItemButton sx={{ textAlign: 'center' }}>
+                        <ListItemText primary='Movies' />
+                    </ListItemButton>
+                </ListItem>
+                <ListItem>
+                    <ListItemButton sx={{ textAlign: 'center' }}>
+                        <ListItemText primary='Series' />
+                    </ListItemButton>
+                </ListItem>
+            </List>
         </Box>
     );
     
@@ -58,7 +54,6 @@ const NavBar = (props) => {
 
     return (
         <>
-
             <AppBar component="nav">
                 <Toolbar>
                     <IconButton
@@ -84,6 +79,7 @@ const NavBar = (props) => {
                     </Box>
                 </Toolbar>
             </AppBar>
+
             <Box component="nav">
                 <Drawer
                     container={container}
@@ -98,7 +94,7 @@ const NavBar = (props) => {
                         '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
                     }}
                 >
-                {drawer}
+                    {drawer}
                 </Drawer>
             </Box>
         </>

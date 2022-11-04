@@ -19,7 +19,7 @@ const MovieCard = ({ movie }) => {
                         alt={title}
                     />
                 </Card>
-            </ Link>
+            </Link>
         </Grid>
     )
 }
