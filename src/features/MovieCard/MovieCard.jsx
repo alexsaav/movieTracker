@@ -9,6 +9,7 @@ const MovieCard = ({ movie }) => {
     const { id, title, poster_path } = movie;
     const moviePosterUrl = `https://image.tmdb.org/t/p/original/${poster_path}`;
 
+
     return (
         <Grid item key={movie.id} xs={8} sm={4} md={2}>
             <Link to='home' >
@@ -18,6 +19,7 @@ const MovieCard = ({ movie }) => {
                         image={moviePosterUrl}
                         alt={title}
                     />
+                    
                 </Card>
             </Link>
         </Grid>

@@ -18,14 +18,20 @@ const Movies = () => {
     const totalPages = moviesResult.movies.total_pages-1;
 
     useEffect(() => {
+        if(searchInput === '') return;
         dispatch(searchMoviesAsync({title: searchInput, page}))
     }, [dispatch, page, searchInput])
+
+    const handlePageReset = (input) => {
+        setSearchInput(input);
+        setPage(1);
+    }
 
 
     return (
         <Container>
             <h1>Movies</h1>
-            <SearchBar setSearchInput={setSearchInput} />
+            <SearchBar setSearchInput={handlePageReset} />
 
             <Container sx={{ py: 5 }} maxWidth="lg">
                 <Grid container spacing={4} columns={{ xs: 10, sm: 12, md: 10 }}>
@@ -38,7 +44,7 @@ const Movies = () => {
             <PaginationComponent 
                 totalPages={totalPages} 
                 setPage={setPage} 
-                currentPage={page} 
+                page={page} 
             />
         </Container>
     )

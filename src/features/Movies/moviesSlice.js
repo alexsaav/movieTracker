@@ -15,20 +15,26 @@ export const searchMoviesAsync = createAsyncThunk(
 
     //ask about payload
     async ({title, page = 1}) => {
+        const urlToFetch = new URL(`${tmdbBaseUrl}${searchMovieEndpoint}`)
+
         //query params
-        const requestParams = `?api_key=${tmdbKey}&language=en-US&query=${title}&page=${page}&include_adult=false`;
+        urlToFetch.searchParams.append("api_key", tmdbKey)
+        urlToFetch.searchParams.append("language", "en-US")
+        if (title !== "") {
+            urlToFetch.searchParams.append("query", title)
+        }
         
-        //this is the URL where we’ll send our fetch request
-        const urlToFetch = `${tmdbBaseUrl}${searchMovieEndpoint}${requestParams}`;
+        urlToFetch.searchParams.append("page", page)
+        urlToFetch.searchParams.append("include_adult", "false")
 
         const response = await fetch(urlToFetch);
 
         if(response.ok) {
             const movies = await response.json();
-            //console.log(movies)
             return { movies };
             
         }
+        
     }
 );
 

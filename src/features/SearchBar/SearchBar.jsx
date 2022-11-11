@@ -8,15 +8,13 @@ const SearchBar = ({searchInput, setSearchInput}) => {
     return (
         <>
             <div>
-                <div>
-                    <input 
-                        className='search-input'
-                        placeholder='Search'
-                        type="search" 
-                        value={searchInput}
-                        onChange={(e) => searchMovies(e.target.value)}
-                    />
-                </div>
+                <input 
+                    className='search-input'
+                    placeholder='Search'
+                    type="search" 
+                    value={searchInput}
+                    onChange={(e) => {searchMovies(e.target.value)}}
+                />
             </div>
         </>
     )

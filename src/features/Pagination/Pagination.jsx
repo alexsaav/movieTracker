@@ -3,7 +3,7 @@ import Stack from '@mui/material/Stack';
 
 
 
-const PaginationComponent = ({totalPages, setPage, currentPage}) => {
+const PaginationComponent = ({totalPages, setPage, page}) => {
 
     const handlePageChange = (page) => {
         setPage(page)
@@ -15,7 +15,7 @@ const PaginationComponent = ({totalPages, setPage, currentPage}) => {
         <>
             <Stack spacing={2}>
                 <Pagination 
-                    defaultPage={currentPage}
+                    page={page}
                     onChange={(e, pageNumber) => handlePageChange(pageNumber)}
                     count={totalPages} 
                     showFirstButton
