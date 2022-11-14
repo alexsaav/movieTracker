@@ -12,14 +12,13 @@ const MovieCard = ({ movie }) => {
 
     return (
         <Grid item key={movie.id} xs={8} sm={4} md={2}>
-            <Link to='home' >
+            <Link to={`/movies/${id}`}>
                 <Card>
                     <CardMedia 
                         component="img"
                         image={moviePosterUrl}
                         alt={title}
-                    />
-                    
+                    />    
                 </Card>
             </Link>
         </Grid>

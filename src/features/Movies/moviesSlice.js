@@ -13,7 +13,6 @@ const searchMovieEndpoint = '/search/movie';
 export const searchMoviesAsync = createAsyncThunk(
     'movies/searchMoviesAsync',
 
-    //ask about payload
     async ({title, page = 1}) => {
         const urlToFetch = new URL(`${tmdbBaseUrl}${searchMovieEndpoint}`)
 
@@ -38,7 +37,6 @@ export const searchMoviesAsync = createAsyncThunk(
     }
 );
 
-
 // SLICE
 export const moviesSlice = createSlice({
     name: 'movies',
@@ -56,7 +54,6 @@ export const moviesSlice = createSlice({
     }
 });
 
-export const { setSearchMovies } = moviesSlice.actions;
 
 export const selectSearchMovies = state => state.movies;
 export default moviesSlice.reducer;

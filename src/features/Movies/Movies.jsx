@@ -13,7 +13,6 @@ const Movies = () => {
     const [page, setPage] = useState(1);
     const dispatch = useDispatch();
     const moviesResult = useSelector(selectSearchMovies);
-    
     const movieResultList = moviesResult.movies.results;
     const totalPages = moviesResult.movies.total_pages-1;
 
@@ -26,7 +25,6 @@ const Movies = () => {
         setSearchInput(input);
         setPage(1);
     }
-
 
     return (
         <Container>
