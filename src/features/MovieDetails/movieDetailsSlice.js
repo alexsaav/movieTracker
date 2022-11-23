@@ -14,6 +14,7 @@ export const getMovieDetailsAsync = createAsyncThunk(
     async({id}) => {
         //Get Movie Details Endpoint
         const movieDetailsEndpoint = `/movie/${id}`;
+        
         const urlToFetch = new URL(`${tmdbBaseUrl}${movieDetailsEndpoint}`);
 
         //query params
@@ -33,7 +34,10 @@ export const getMovieDetailsAsync = createAsyncThunk(
 export const movieDetails = createSlice({
     name: 'movieDetails',
     initialState: {
-        movieDetails: {},
+        movieDetails: {
+            genres: [],
+            vote_average: 0
+        },
     },
     extraReducers: {
         [getMovieDetailsAsync.fulfilled]: (state, action) => {

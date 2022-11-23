@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { selectSearchMovies, searchMoviesAsync } from './moviesSlice';
 import "./movies.css"
-import SearchBar from '../SearchBar/SearchBar';
+import SearchBar from '../../components/SearchBar/SearchBar';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 import MovieCard from '../MovieCard/MovieCard';
-import PaginationComponent from '../Pagination/Pagination';
+import PaginationComponent from '../../components/Pagination/Pagination';
 
 const Movies = () => {
     const [searchInput, setSearchInput] = useState('');
