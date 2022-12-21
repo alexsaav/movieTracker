@@ -10,8 +10,8 @@ const searchMovieEndpoint = '/search/movie';
 
 
 // SEARCH MOVIES
-export const searchMoviesAsync = createAsyncThunk(
-    'movies/searchMoviesAsync',
+export const searchMovies = createAsyncThunk(
+    'movies/searchMovies',
 
     async ({title, page = 1}) => {
         const urlToFetch = new URL(`${tmdbBaseUrl}${searchMovieEndpoint}`)
@@ -37,6 +37,14 @@ export const searchMoviesAsync = createAsyncThunk(
     }
 );
 
+//GET LATEST MOVIES
+//GET TOP RATED MOVIES
+//GET UPCOMING MOVIES
+//GET NOW PLAYING MOVIES
+//GET RELEASE DATES 
+//GET RECOMMENDATIONS
+// 
+
 // SLICE
 export const moviesSlice = createSlice({
     name: 'movies',
@@ -48,7 +56,7 @@ export const moviesSlice = createSlice({
         } 
     },
     extraReducers: {
-        [searchMoviesAsync.fulfilled]: (state, action) => {
+        [searchMovies.fulfilled]: (state, action) => {
             return action.payload;
         }
     }

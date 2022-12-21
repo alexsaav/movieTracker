@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { selectSearchMovies, searchMoviesAsync } from './moviesSlice';
-import "./movies.css"
+import { selectSearchMovies, searchMovies } from './moviesSlice';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 import MovieCard from '../MovieCard/MovieCard';
 import PaginationComponent from '../../components/Pagination/Pagination';
+import Typography from '@mui/material/Typography';
+
+
 
 const Movies = () => {
     const [searchInput, setSearchInput] = useState('');
@@ -18,7 +20,7 @@ const Movies = () => {
 
     useEffect(() => {
         if(searchInput === '') return;
-        dispatch(searchMoviesAsync({title: searchInput, page}))
+        dispatch(searchMovies({title: searchInput, page}))
     }, [dispatch, page, searchInput])
 
     const handlePageReset = (input) => {
@@ -28,7 +30,7 @@ const Movies = () => {
 
     return (
         <Container>
-            <h1>Movies</h1>
+            <Typography variant='h4'>Movies</Typography>
             <SearchBar setSearchInput={handlePageReset} />
 
             <Container sx={{ py: 5 }} maxWidth="lg">

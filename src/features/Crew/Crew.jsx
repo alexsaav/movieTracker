@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Container from '@mui/material/Container';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -12,7 +14,7 @@ import { Box } from '@mui/system';
 
 
 const Crew = ({movieCrew}) => {
-
+    const navigate = useNavigate();
     let departments = {};
 
     movieCrew.forEach(crewMember => {
@@ -24,7 +26,6 @@ const Crew = ({movieCrew}) => {
         departments[departmentGroup].push(crewMember);
    });
    console.log(departments);
-    //console.log(departments(movieCrew, 'department'))
 
     return (
         <Container>
@@ -37,8 +38,8 @@ const Crew = ({movieCrew}) => {
                             {departments[department].map(crewMember => {
                                 const { name, id, profile_path, credit_id, job } = crewMember;
                                 return (
-                                    <ListItem alignItems="flex-start" credit_id={credit_id}>
-                                        <ListItemButton>
+                                    <ListItem alignItems="flex-start" credit_id={credit_id} >
+                                        <ListItemButton onClick={() => navigate(`person/${id}-${name}`)} >
                                             <ListItemAvatar>
                                                 <Avatar alt={name} src={`https://image.tmdb.org/t/p/original/${profile_path}`} />
                                             </ListItemAvatar>
@@ -63,4 +64,4 @@ const Crew = ({movieCrew}) => {
     )
 }
 
-export default Crew
+export default Crew;

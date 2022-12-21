@@ -15,6 +15,24 @@ const color = grey[500];
 
 const Layout = () => {
     return (
+        <>
+            <ThemeProvider theme={darkTheme}>
+                <NavBar />
+            </ThemeProvider>
+            <Box component='main'>
+                <Toolbar />
+                <Toolbar />
+                <Outlet />
+            </Box>
+            <Footer />
+        </>
+    )
+}
+
+export default Layout
+
+/* const Layout = () => {
+    return (
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <ThemeProvider theme={darkTheme}>
                 <NavBar />
@@ -28,6 +46,4 @@ const Layout = () => {
             <Footer />
         </Box>
     )
-}
-
-export default Layout
+} */

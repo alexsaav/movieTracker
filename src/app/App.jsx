@@ -3,8 +3,9 @@ import Layout from '../components/Layout/Layout';
 import Movies from '../features/Movies/Movies';
 import { Home } from '../components/Home/Home';
 import './App.css';
-import MovieDetails from '../features/MovieDetails/MovieDetails';
+import Movie from '../features/Movie/Movie';
 import MovieCredits from '../features/MovieCredits/MovieCredits';
+import PersonDetails from '../features/People/PersonDetails';
 
 
 function App() {
@@ -14,8 +15,9 @@ function App() {
                 <Route path='/' element={<Layout />}>
                     <Route index element={<Home />} />
                     <Route path='/movies' element={<Movies />} />
-                    <Route path='/movie/:id' element={ <MovieDetails /> } />
+                    <Route path='/movie/:id' element={ <Movie /> } />
                     <Route path='movie/:id/cast' element={ <MovieCredits /> } />
+                    <Route path='person/:id-name' element={ <PersonDetails /> } />
                 </Route>
             </Routes>
         </Router>

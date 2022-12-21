@@ -7,30 +7,47 @@ import Cast from "../Cast/Cast";
 import Crew from "../Crew/Crew";
 
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Unstable_Grid2';
 import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
+import { Typography } from "@mui/material";
 
 
-const MovieCredits = ({ topCast }) => {
+const MovieCredits = ({ topCast, moviePosterUrl, title }) => {
     const dispatch = useDispatch();
     const { id } = useParams();
     const movieCredits = useSelector(selectMovieCredits);
     let movieCast = movieCredits.cast;
-    const movieCrew = movieCredits.crew;
-    
+    const movieCrew = movieCredits.crew;    
 
     useEffect(() => {
         dispatch(getMovieCreditsAsync({id}));
     }, [dispatch, id]);
-
-
     
     return (
-        <Container sx={{display: 'flex'}}>
-            <Cast movieCast={movieCast} topCast={topCast}/>
+        <>
+            <Box>
+                <Toolbar sx={{backgroundColor: "black", height: '150px', width: '100%'}}>
+                        <Card sx={{height: '100%'}}>
+                            <Link to={`/movie/${id}`}>
+                                    <CardMedia 
+                                        component="img"
+                                        image={moviePosterUrl}
+                                        alt={title}
+                                        primary={title}
+                                    /> 
+                            </Link>
+                        </Card>
+                        <Typography sx={{color: 'white'}}> <Link to={`/movie/${id}`}> {title}</Link></Typography>
+                </Toolbar>   
+            </Box>
             <Toolbar />
-            {!topCast && <Crew movieCrew={movieCrew} />}
-        </Container>
+            <Container sx={{display: 'flex'}}>
+                <Cast movieCast={movieCast} />
+                <Toolbar />
+                <Crew movieCrew={movieCrew} />
+            </Container>
+        </>
     )
 }
 
