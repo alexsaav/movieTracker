@@ -65,22 +65,70 @@ export const getMovieVideos = createAsyncThunk(
 
         //query params
         urlToFetch.searchParams.append("api_key", tmdbKey);
-        //urlToFetch.searchParams.append("language", "en-US");
+        urlToFetch.searchParams.append("language", "en-US");
+        urlToFetch.searchParams.append("include_image_language", "en,null")
 
         const response = await fetch(urlToFetch);
 
         if(response.ok) {
             const videos = await response.json();
-            console.log(videos)
             return { videos };
         }
 
     }
 );
 
-// GET REVIEWS
+//GET RECOMMENDATIONS
+export const getRecommendations = createAsyncThunk(
+    "movie/getRecommendations",
+
+    async({movieId, page = 1}) => {
+        //Get Recommendations Endpoint
+        const recommendationsEndpoint = `/movie/${movieId}/recommendations`;
+
+        const urlToFetch= new URL(`${tmdbBaseUrl}${recommendationsEndpoint}`);
+
+        //query params
+        urlToFetch.searchParams.append("api_key", tmdbKey);
+        urlToFetch.searchParams.append("language", "en-US");
+        urlToFetch.searchParams.append("page", page);
+
+        const response = await fetch(urlToFetch);
+
+        if(response.ok) {
+            const recommendations = await response.json();
+            console.log(recommendations)
+            return { recommendations };
+        }
+    }
+);
+
 
 // GET SIMILAR MOVIES
+export const getSimilarMovies = createAsyncThunk(
+    "movie/getSimilarMovies",
+
+    async({movieId, page = 1}) => {
+        //Get Similar Movies Endpoint
+        const similarMoviesEndpoint = `/movie/${movieId}/similar`;
+
+        const urlToFetch = new URL(`${tmdbBaseUrl}${similarMoviesEndpoint}`);
+
+        //query params
+        urlToFetch.searchParams.append("api_key", tmdbKey);
+        urlToFetch.searchParams.append("language", "en-US");
+        urlToFetch.searchParams.append("page", page);
+
+
+        const response = await fetch(urlToFetch);
+
+        if(response.ok) {
+            const similarMovies = await response.json();
+            //console.log(similarMovies)
+            return { similarMovies };
+        }
+    }
+);
 
 
 // SLICE details, images, videos
@@ -99,6 +147,12 @@ export const movie = createSlice({
         },
         videos: {
             results: []
+        },
+        similarMovies: {
+            results: []
+        },
+        recommendations: {
+            results: []
         }
     },
     extraReducers: {
@@ -110,12 +164,23 @@ export const movie = createSlice({
         },
         [getMovieVideos.fulfilled]: (state, action) => {
             state.videos = action.payload.videos;
+        },
+        [getSimilarMovies.fulfilled]: (state, action) => {
+            state.similarMovies = action.payload.similarMovies;
+        }, 
+        [getRecommendations.fulfilled]: (state, action) => {
+            state.recommendations = action.payload.recommendations;
         }
     }
 });
 
+
+//SELECTORS
 export const selectDetails = state => state.movie.details;
 export const selectImages = state => state.movie.images;
 export const selectVideos = state => state.movie.videos;
+export const selectSimilarMovies = state => state.movie.similarMovies;
+export const selectRecommendations = state => state.movie.recommendations;
 
+//REDUCER
 export default movie.reducer;

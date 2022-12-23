@@ -43,7 +43,7 @@ export const searchMovies = createAsyncThunk(
 //GET NOW PLAYING MOVIES
 //GET RELEASE DATES 
 //GET RECOMMENDATIONS
-// 
+
 
 // SLICE
 export const moviesSlice = createSlice({

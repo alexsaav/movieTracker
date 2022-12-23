@@ -28,7 +28,9 @@ const TopCast = ({id}) => {
     return (
         <Box container='main'>
             <Typography variant='h5' sx={{fontWeight: 'bold'}}>Top Cast</Typography>
-            <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }} sx={{margin: '20px 0px'}}>
+            <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }} 
+            sx={{overflowX: "scroll", overflowY: "hidden", margin: '20px 0px'}}
+            >
                 {movieCast.map(cast => {
                     const { name, character, id, profile_path } = cast;
                 

@@ -10,7 +10,7 @@ const MovieImages = ({movieId}) => {
     const dispatch = useDispatch();
     const movieImages = useSelector(selectImages);
 
-    //const backdrops = movieImages.backdrops;
+    const backdrops = movieImages.backdrops;
     //const logos = movieImages.logos; 
     const posters = movieImages.posters;
 
@@ -20,13 +20,13 @@ const MovieImages = ({movieId}) => {
 
     return (
         <Box>
-            <Typography>Images</Typography>
-            <ImageList cols={6} rowHeight={150} variant="standard">
-                {posters.map(poster => {
+            <Typography variant="h4">Images</Typography>
+            <ImageList cols={6} rowHeight={150} variant="standard" sx={{overflowX: "scroll", overflowY: "hidden", height: "300px"}}>
+                {backdrops.map(poster => {
                     const { file_path } = poster;
                     const movieImagesUrl = `https://image.tmdb.org/t/p/original${file_path}`;
                     return (
-                        <ImageListItem rows={2}>
+                        <ImageListItem cols={2} rows={2} sx={{width: "1"}}>
                             <img
                                 src={movieImagesUrl}
                                 srcSet={movieImagesUrl}
