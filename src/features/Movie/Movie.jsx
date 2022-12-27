@@ -5,7 +5,6 @@ import { getMovieDetails, selectDetails } from './movieSlice';
 import TopCast from '../Cast/TopCast';
 import MovieImages from '../MovieMedia/MovieImages';
 import MovieVideos from '../MovieMedia/MovieVideos';
-import SimilarMovies from '../MovieMedia/SimilarMovies';
 import Recommendations from './Recommendations';
 
 import Box from '@mui/material/Box';
@@ -103,11 +102,9 @@ const Movie = () => {
                     <Divider />
                 </Box>
                 <Box>
-                    {/* <MovieImages movieId={id} /> */}
+                    <MovieImages title={title} movieId={id} />
                     <Divider />
-                    {/* <MovieVideos movieId={id} /> */}
-                    <Divider />
-                    {/* <SimilarMovies movieId={id} /> */}
+                    <MovieVideos title={title} movieId={id} />
                     <Divider />
                     <Recommendations movieId={id} />
                 </Box>

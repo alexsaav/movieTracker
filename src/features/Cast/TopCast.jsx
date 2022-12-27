@@ -37,8 +37,7 @@ const TopCast = ({id}) => {
                     return (
                         <Card 
                             sx={{ 
-                                maxWidth: 140, 
-                                height: '100%', 
+                                maxWidth: 140,  
                                 paddingBottom: '3px', 
                                 margin: '5px' 
                             }} 

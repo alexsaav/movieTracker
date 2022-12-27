@@ -1,6 +1,8 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getMovieVideos, selectVideos } from "../Movie/movieSlice"
+import { Link } from "react-router-dom"
+import Grid from "@mui/material/Unstable_Grid2/Grid2"
 import { Box } from "@mui/system"
 import { Typography } from "@mui/material"
 
@@ -11,10 +13,11 @@ import IconButton from '@mui/material/IconButton';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 
 
-const MovieVideos = ({movieId}) => {
+const MovieVideos = ({movieId, title}) => {
     const dispatch = useDispatch();
     const movieVideos = useSelector(selectVideos);
     const videos = movieVideos.results;
+    console.log(videos)
 
     useEffect(() => {
         dispatch(getMovieVideos({movieId}))
@@ -22,7 +25,46 @@ const MovieVideos = ({movieId}) => {
 
 
     return (
-        <Box>
+        <Box sx={{padding: "30px 0", display: "block"}}>
+            <Typography variant="h5">Videos</Typography>
+                <Box sx={{ margin: "30px 0", overflowY: "hidden", overflowX: "scroll"}}>
+                    <Grid container wrap="nowrap" spacing={33} sx={{ overflowX: 'auto'}} columns={6} >
+                        {videos.map((video) => {
+                            const { id, key, name, site } = video;
+                            const videoUrl = `https://www.themoviedb.org/video/play?key=${key}`;
+
+                            return (
+                                <Grid item xs={4} key={id}>
+                                    <Link to={`/video/${id}`}>
+                                        <Card 
+                                            sx={{width: 250, height: '100%'}}
+                                        >
+                                            <CardMedia 
+                                                component="video"
+                                                image={videoUrl}
+                                                alt={name}
+                                            />
+                                        </Card>
+                                    </Link>
+                                </Grid>
+                            )
+                        })}
+                    </Grid>
+                    <Box sx={{mt: 4, mb: 4}}>
+                        <Link to={`/movie/${title}-${movieId}/video`} style={{textDecoration: 'none', color: '#1D1F20'}}>
+                            <Typography variant="button">View More</Typography>
+                        </Link>
+                    </Box>
+                </Box>
+        </Box> 
+    )
+}
+
+export default MovieVideos
+
+
+/* 
+ <Box>
             <Typography variant="h4">Videos</Typography>
             <Box 
                 sx={{display: "flex", flexWrap: "wrap", flexDirection: "row", margin: "5px", overflowX: "scroll", overflowY: "hidden", height: "300px"}}> 
@@ -51,7 +93,5 @@ const MovieVideos = ({movieId}) => {
                 })}
             </Box>
         </Box>
-    )
-}
 
-export default MovieVideos
+*/

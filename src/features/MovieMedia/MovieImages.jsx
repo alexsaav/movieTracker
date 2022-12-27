@@ -1,42 +1,55 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getMovieImages, selectImages } from "../Movie/movieSlice"
+import { Link } from "react-router-dom"
+import Grid from "@mui/material/Unstable_Grid2/Grid2"
 import { Box } from "@mui/system"
-import { Typography } from "@mui/material"
-import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
+import { Button, Typography } from "@mui/material"
+import { Card } from '@mui/material';
+import {CardMedia} from "@mui/material"
 
-const MovieImages = ({movieId}) => {
+const MovieImages = ({movieId, title}) => {
     const dispatch = useDispatch();
     const movieImages = useSelector(selectImages);
 
-    const backdrops = movieImages.backdrops;
+    let backdrops = movieImages.backdrops;
+    backdrops = backdrops.slice(0, 9)
     //const logos = movieImages.logos; 
-    const posters = movieImages.posters;
+    //const posters = movieImages.posters;
 
     useEffect(() => {
         dispatch(getMovieImages({movieId}))
     }, [dispatch, movieId])
 
     return (
-        <Box>
-            <Typography variant="h4">Images</Typography>
-            <ImageList cols={6} rowHeight={150} variant="standard" sx={{overflowX: "scroll", overflowY: "hidden", height: "300px"}}>
-                {backdrops.map(poster => {
-                    const { file_path } = poster;
-                    const movieImagesUrl = `https://image.tmdb.org/t/p/original${file_path}`;
-                    return (
-                        <ImageListItem cols={2} rows={2} sx={{width: "1"}}>
-                            <img
-                                src={movieImagesUrl}
-                                srcSet={movieImagesUrl}
-                                alt=""
-                                style={{height: "100%"}}                                
-                            />
-                        </ImageListItem>
-                    )
-                })}
-            </ImageList>
+        <Box sx={{padding: "30px 0"}}>
+            <Typography variant="h5">Images</Typography>
+            <Box sx={{ margin: "30px 0", overflowY: "hidden", overflowX: "scroll"}}>
+                <Grid container wrap="nowrap" spacing={63} sx={{ overflowX: 'auto'}} columns={6} >
+                        {backdrops.map((poster) => {
+                            const { file_path } = poster;
+                            const imageUrl = `https://image.tmdb.org/t/p/original${file_path}`;
+
+                        return (
+                            <Grid item xs={4}>
+                                <Card 
+                                    sx={{width: 500, height: '100%'}}
+                                >
+                                    <CardMedia 
+                                        component="img"
+                                        image={imageUrl}
+                                    />
+                                </Card>
+                            </Grid>
+                        )
+                        })}
+                </Grid>
+                <Box sx={{mt: 4, mb: 4}}>
+                    <Link to={`/movie/${title}-${movieId}/images`} style={{textDecoration: 'none', color: '#1D1F20'}}>
+                        <Typography variant="button">View More</Typography>
+                    </Link>
+                </Box>
+            </Box>
         </Box>
     )
 }
