@@ -13,13 +13,13 @@ const MovieCard = ({ movie }) => {
     return (
         <Grid item key={movie.id} xs={8} sm={4} md={2}>
             <Link to={`/movie/${id}`}>
-                <ImageListItem key={id} sx={{height: "100%"}}>
+                <ImageListItem key={id}>
                     <img
                         src={moviePosterUrl}
                         srcSet={`${moviePosterUrl}?w=248&fit=crop&auto=format&dpr=2 2x`}
                         alt={title}
                         loading="lazy"
-                        style={{borderRadius: '15px'}}
+                        style={{borderRadius: '15px', height: "300px"}}
                     />
                     <ImageListItemBar
                         title={title}

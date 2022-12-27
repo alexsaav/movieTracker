@@ -50,7 +50,7 @@ const MovieVideos = ({movieId, title}) => {
                             )
                         })}
                     </Grid>
-                    <Box sx={{mt: 4, mb: 4}}>
+                    <Box sx={{mt: 4}}>
                         <Link to={`/movie/${title}-${movieId}/video`} style={{textDecoration: 'none', color: '#1D1F20'}}>
                             <Typography variant="button">View More</Typography>
                         </Link>

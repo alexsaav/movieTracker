@@ -44,7 +44,7 @@ const MovieImages = ({movieId, title}) => {
                         )
                         })}
                 </Grid>
-                <Box sx={{mt: 4, mb: 4}}>
+                <Box sx={{mt: 4}}>
                     <Link to={`/movie/${title}-${movieId}/images`} style={{textDecoration: 'none', color: '#1D1F20'}}>
                         <Typography variant="button">View More</Typography>
                     </Link>
