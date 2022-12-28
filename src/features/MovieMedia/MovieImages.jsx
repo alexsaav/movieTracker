@@ -13,7 +13,7 @@ const MovieImages = ({movieId, title}) => {
     const movieImages = useSelector(selectImages);
 
     let backdrops = movieImages.backdrops;
-    backdrops = backdrops.slice(0, 9)
+    backdrops = backdrops.slice(0, 9);
     //const logos = movieImages.logos; 
     //const posters = movieImages.posters;
 

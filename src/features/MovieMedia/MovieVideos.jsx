@@ -6,17 +6,11 @@ import Grid from "@mui/material/Unstable_Grid2/Grid2"
 import { Box } from "@mui/system"
 import { Typography } from "@mui/material"
 
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import IconButton from '@mui/material/IconButton';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-
-
 const MovieVideos = ({movieId, title}) => {
     const dispatch = useDispatch();
     const movieVideos = useSelector(selectVideos);
-    const videos = movieVideos.results;
+    let videos = movieVideos.results;
+    videos = videos.slice(0, 9);
     console.log(videos)
 
     useEffect(() => {
@@ -28,30 +22,31 @@ const MovieVideos = ({movieId, title}) => {
         <Box sx={{padding: "30px 0", display: "block"}}>
             <Typography variant="h5">Videos</Typography>
                 <Box sx={{ margin: "30px 0", overflowY: "hidden", overflowX: "scroll"}}>
-                    <Grid container wrap="nowrap" spacing={33} sx={{ overflowX: 'auto'}} columns={6} >
+                    <Grid container wrap="nowrap" spacing={71} sx={{ overflowX: 'auto'}} columns={6} >
                         {videos.map((video) => {
                             const { id, key, name, site } = video;
-                            const videoUrl = `https://www.themoviedb.org/video/play?key=${key}`;
+                            const videoUrl = `https://www.youtube.com/embed/${key}`;
 
                             return (
                                 <Grid item xs={4} key={id}>
-                                    <Link to={`/video/${id}`}>
-                                        <Card 
-                                            sx={{width: 250, height: '100%'}}
+                                    <Link to={`/video/${id}`} style={{textDecoration: 'none', color: '#1D1F20'}}>
+                                        <iframe 
+                                            width="560" 
+                                            height="315" 
+                                            src={videoUrl} 
+                                            title={name} 
+                                            frameborder="0" 
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                            allowfullscreen
                                         >
-                                            <CardMedia 
-                                                component="video"
-                                                image={videoUrl}
-                                                alt={name}
-                                            />
-                                        </Card>
+                                        </iframe>
                                     </Link>
                                 </Grid>
                             )
                         })}
                     </Grid>
                     <Box sx={{mt: 4}}>
-                        <Link to={`/movie/${title}-${movieId}/video`} style={{textDecoration: 'none', color: '#1D1F20'}}>
+                        <Link to={`/movie/${title}-${movieId}/videos`} style={{textDecoration: 'none', color: '#1D1F20'}}>
                             <Typography variant="button">View More</Typography>
                         </Link>
                     </Box>
@@ -63,35 +58,3 @@ const MovieVideos = ({movieId, title}) => {
 export default MovieVideos
 
 
-/* 
- <Box>
-            <Typography variant="h4">Videos</Typography>
-            <Box 
-                sx={{display: "flex", flexWrap: "wrap", flexDirection: "row", margin: "5px", overflowX: "scroll", overflowY: "hidden", height: "300px"}}> 
-                {videos.map(video => {
-                    const { id, key, name, site } = video;
-                    const movieVideoUrl = `https://www.themoviedb.org/video/play?key=${key}`;
-
-                    return (
-                        <Card key={id} sx={{mb: 5}}>
-                            <CardContent>
-                                <Typography>{name}</Typography>
-                            </CardContent>
-
-                            <IconButton aria-label="play/pause">
-                                <PlayArrowIcon sx={{ height: 38, width: 38 }} />
-                            </IconButton>
-                            
-                            <CardMedia
-                                component="video"
-                                image={movieVideoUrl}
-                                alt={name}
-                                site={site}
-                            />
-                        </Card>
-                    );
-                })}
-            </Box>
-        </Box>
-
-*/

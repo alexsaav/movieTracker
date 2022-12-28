@@ -4,10 +4,8 @@ import { getRecommendations, selectRecommendations } from './movieSlice';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/system';
-import {ImageListItem,  ImageListItemBar } from '@mui/material';
 import { Card } from '@mui/material';
 import {CardMedia} from '@mui/material';
-import CardContent from '@mui/material/CardContent';
 import { Link } from 'react-router-dom';
 
 const Recommendations = ({movieId}) => {
