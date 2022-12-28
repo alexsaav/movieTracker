@@ -47,7 +47,6 @@ export const getMovieImages = createAsyncThunk(
 
         if(response.ok) {
             const images = await response.json();
-            console.log(images)
             return { images };
         }
     }
@@ -136,6 +135,8 @@ export const movie = createSlice({
     name: "movie",
     initialState: {
         details: {
+            poster_path: "",
+            release_date: "",
             genres: [],
             vote_average: 0
         },

@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { getMovieDetails, selectDetails } from './movieSlice';
 import TopCast from '../Cast/TopCast';
-import MovieImages from '../MovieMedia/MovieImages';
-import MovieVideos from '../MovieMedia/MovieVideos';
+import TopImages from '../MovieMedia/TopImages';
+import TopVideos from '../MovieMedia/TopVideos';
 import Recommendations from './Recommendations';
 
 import Box from '@mui/material/Box';
@@ -102,9 +102,9 @@ const Movie = () => {
                     <Divider />
                 </Box>
                 <Box>
-                    <MovieImages title={title} movieId={id} />
+                    <TopImages title={title} movieId={id} />
                     <Divider />
-                    <MovieVideos title={title} movieId={id} />
+                    <TopVideos title={title} movieId={id} />
                     <Divider />
                     <Recommendations movieId={id} />
                 </Box>

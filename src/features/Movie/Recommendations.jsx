@@ -44,15 +44,18 @@ const Recommendations = ({movieId}) => {
                                                 />
                                                 <Box sx={{padding: "0 7px", background: 'rgba(0, 0, 0, 0.5)',
                                                     position: "absolute",
-                                                    color: "white",
+                                                    color: "#F7F7F8",
                                                     textDecoration: "none",
                                                     bottom: 0,
                                                     left: 0,
                                                     right: 0,
                                                     paddingBottom: 1
                                                 }}>
-                                                    <Typography variant="subtitle1" display="block" gutterBottom
-                                                    sx={{mb: 0, textDecoration: "none", paddingBottom: 0}}
+                                                    <Typography 
+                                                        variant="subtitle1" 
+                                                        display="block" 
+                                                        gutterBottom
+                                                        sx={{mb: 0, textDecoration: "none", paddingBottom: 0}}
                                                     >
                                                         {title}
                                                     </Typography>

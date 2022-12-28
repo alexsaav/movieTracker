@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from "react-redux"
 import { getMovieImages, selectImages } from "../Movie/movieSlice"
 import { Link } from "react-router-dom"
 import Grid from "@mui/material/Unstable_Grid2/Grid2"
+import {Typography} from "@mui/material"
 import { Box } from "@mui/system"
-import { Button, Typography } from "@mui/material"
 import { Card } from '@mui/material';
 import {CardMedia} from "@mui/material"
 
-const MovieImages = ({movieId, title}) => {
+const TopImages = ({movieId, title}) => {
     const dispatch = useDispatch();
     const movieImages = useSelector(selectImages);
 
@@ -16,6 +16,7 @@ const MovieImages = ({movieId, title}) => {
     backdrops = backdrops.slice(0, 9);
     //const logos = movieImages.logos; 
     //const posters = movieImages.posters;
+    console.log(backdrops)
 
     useEffect(() => {
         dispatch(getMovieImages({movieId}))
@@ -24,14 +25,14 @@ const MovieImages = ({movieId, title}) => {
     return (
         <Box sx={{padding: "30px 0"}}>
             <Typography variant="h5">Images</Typography>
-            <Box sx={{ margin: "30px 0", overflowY: "hidden", overflowX: "scroll"}}>
+            <Box sx={{margin: "30px 0", overflowY: "hidden", overflowX: "scroll"}}>
                 <Grid container wrap="nowrap" spacing={63} sx={{ overflowX: 'auto'}} columns={6} >
                         {backdrops.map((poster) => {
                             const { file_path } = poster;
                             const imageUrl = `https://image.tmdb.org/t/p/original${file_path}`;
 
                         return (
-                            <Grid item xs={4}>
+                            <Grid item xs={4} key={file_path} >
                                 <Card 
                                     sx={{width: 500, height: '100%'}}
                                 >
@@ -54,4 +55,4 @@ const MovieImages = ({movieId, title}) => {
     )
 }
 
-export default MovieImages
+export default TopImages
