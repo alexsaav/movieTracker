@@ -8,7 +8,7 @@ const SimilarMovies = ({movieId}) => {
     console.log(similarMovies)
 
     useEffect(() => {
-        dispatch(getSimilarMovies({movieId}))
+        dispatch(getSimilarMovies(movieId))
     }, [dispatch, movieId])
 
     return (

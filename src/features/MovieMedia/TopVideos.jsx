@@ -13,12 +13,14 @@ const TopVideos = ({movieId, title}) => {
     const movieVideos = useSelector(selectVideos);
     let videos = movieVideos.results;
     videos = videos.slice(0, 9);
-    console.log(videos)
 
     useEffect(() => {
-        dispatch(getMovieVideos({movieId}))
+        dispatch(getMovieVideos(movieId))
     }, [dispatch, movieId])
 
+    const scrollTopWin = () => {
+        window.scrollTo(200, 0);
+    }
 
     return (
         <Box sx={{padding: "30px 0", display: "block"}}>
@@ -32,7 +34,7 @@ const TopVideos = ({movieId, title}) => {
 
                             return (
                                 <Grid item xs={4} key={key}>
-                                    <Link to={`/movie/${title}-${movieId}/video-${id}`} style={{textDecoration: 'none', color: '#1D1F20'}}>
+                                    <Link to={`/movie/${title}-${movieId}/video-${id}`} onClick={scrollTopWin} style={{textDecoration: 'none', color: '#1D1F20'}}>
                                         <Card sx={{minWidth: "360px", position: "relative" }}> 
                                             <CardMedia
                                                 component="img"

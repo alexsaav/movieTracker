@@ -10,7 +10,7 @@ const tmdbBaseUrl = 'https://api.themoviedb.org/3';
 export const getMovieDetails = createAsyncThunk(
     "movie/getMovieDetails",
 
-    async({id}) => {
+    async(id) => {
         //Get Movie Details Endpoint
         const movieDetailsEndpoint = `/movie/${id}`;
         
@@ -33,9 +33,9 @@ export const getMovieDetails = createAsyncThunk(
 export const getMovieImages = createAsyncThunk(
     "movieMedia/getMovieImages",
 
-    async({movieId}) => {
+    async(idMovie) => {
         //Get Movie Images Endpoint
-        const movieImagesEndpoint = `/movie/${movieId}/images`;
+        const movieImagesEndpoint = `/movie/${idMovie}/images`;
 
         const urlToFetch = new URL(`${tmdbBaseUrl}${movieImagesEndpoint}`);
 
@@ -56,7 +56,7 @@ export const getMovieImages = createAsyncThunk(
 export const getMovieVideos = createAsyncThunk(
     "movie/getMovieVideos",
 
-    async ({movieId}) => {
+    async (movieId) => {
         //Get Movie Videos Endpoint
         const movieVideosEndpoint = `/movie/${movieId}/videos`;
 
@@ -96,7 +96,6 @@ export const getRecommendations = createAsyncThunk(
 
         if(response.ok) {
             const recommendations = await response.json();
-            console.log(recommendations)
             return { recommendations };
         }
     }

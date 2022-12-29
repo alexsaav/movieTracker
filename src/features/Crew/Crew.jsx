@@ -25,7 +25,6 @@ const Crew = ({movieCrew}) => {
 
         departments[departmentGroup].push(crewMember);
    });
-   console.log(departments);
 
     return (
         <Container>

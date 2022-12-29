@@ -18,7 +18,7 @@ const Cast = ({ movieCast }) => {
     const navigate = useNavigate();
 
     return (
-        <Container sx={{}}>
+        <Container>
             <Typography variant='h5'>Cast ({movieCast.length-1})</Typography>
             <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }} >
                 {movieCast.map(cast => {

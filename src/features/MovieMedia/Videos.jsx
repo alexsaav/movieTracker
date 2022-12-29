@@ -17,7 +17,7 @@ const Videos = () => {
     console.log(videos)
 
     useEffect(() => {
-        dispatch(getMovieVideos({id}))
+        dispatch(getMovieVideos(id))
     }, [dispatch, id])
 
 

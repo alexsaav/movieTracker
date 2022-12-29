@@ -12,7 +12,7 @@ const PersonDetails = () =>  {
     console.log(personDetails)
 
     useEffect(() => {
-        dispatch(getPersonDetailsAsync({id}))
+        dispatch(getPersonDetailsAsync(id))
     }, [dispatch, id])
 
     return (

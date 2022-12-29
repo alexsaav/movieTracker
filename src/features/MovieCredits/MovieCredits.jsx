@@ -9,15 +9,15 @@ import Crew from "../Crew/Crew";
 import Container from '@mui/material/Container';
 
 
-const MovieCredits = ({ topCast, moviePosterUrl, title }) => {
+const MovieCredits = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
     const movieCredits = useSelector(selectMovieCredits);
-    let movieCast = movieCredits.cast;
+    const movieCast = movieCredits.cast;
     const movieCrew = movieCredits.crew;    
 
     useEffect(() => {
-        dispatch(getMovieCreditsAsync({id}));
+        dispatch(getMovieCreditsAsync(id));
     }, [dispatch, id]);
     
     return (

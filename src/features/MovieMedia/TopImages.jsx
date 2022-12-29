@@ -16,11 +16,14 @@ const TopImages = ({movieId, title}) => {
     backdrops = backdrops.slice(0, 9);
     //const logos = movieImages.logos; 
     //const posters = movieImages.posters;
-    console.log(backdrops)
 
     useEffect(() => {
-        dispatch(getMovieImages({movieId}))
+        dispatch(getMovieImages(movieId))
     }, [dispatch, movieId])
+
+    const scrollTopWin = () => {
+        window.scrollTo(200, 0);
+    }
 
     return (
         <Box sx={{padding: "30px 0"}}>
@@ -31,22 +34,26 @@ const TopImages = ({movieId, title}) => {
                             const { file_path } = poster;
                             const imageUrl = `https://image.tmdb.org/t/p/original${file_path}`;
 
-                        return (
-                            <Grid item xs={4} key={file_path} >
-                                <Card 
-                                    sx={{width: 500, height: '100%'}}
-                                >
-                                    <CardMedia 
-                                        component="img"
-                                        image={imageUrl}
-                                    />
-                                </Card>
-                            </Grid>
-                        )
+                            return (
+                                <Grid item xs={4} key={file_path} >
+                                    <Card 
+                                        sx={{width: 500, height: '100%'}}
+                                    >
+                                        <CardMedia 
+                                            component="img"
+                                            image={imageUrl}
+                                        />
+                                    </Card>
+                                </Grid>
+                            )
                         })}
                 </Grid>
                 <Box sx={{mt: 4}}>
-                    <Link to={`/movie/${title}-${movieId}/images`} style={{textDecoration: 'none', color: '#1D1F20'}}>
+                    <Link 
+                        to={`/movie/${movieId}/images`} 
+                        onClick={scrollTopWin} 
+                        style={{textDecoration: 'none', color: '#1D1F20'}}
+                    >
                         <Typography variant="button">View More</Typography>
                     </Link>
                 </Box>

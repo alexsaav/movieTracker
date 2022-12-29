@@ -7,6 +7,7 @@ import Movie from '../features/Movie/Movie';
 import MovieCredits from '../features/MovieCredits/MovieCredits';
 import PersonDetails from '../features/People/PersonDetails';
 import Images from '../features/MovieMedia/Images';
+import Image from '../features/MovieMedia/Image';
 import Videos from '../features/MovieMedia/Videos';
 
 function App() {
@@ -19,8 +20,9 @@ function App() {
                     <Route path='/movie/:id' element={ <Movie /> } />
                     <Route path='movie/:id/cast' element={ <MovieCredits /> } />
                     <Route path='person/:id-name' element={ <PersonDetails /> } />
-                    <Route path='movie/:name-:id/images' element={ <Images />} />
-                    <Route path='/movie/:title-:id/video-:id' element={ <Videos />} />
+                    <Route path='movie/:id/images' element={ <Images /> } />
+                    <Route path='image/:id' element={ <Image /> } />
+                    <Route path='movie/:title-:id/video-:id' element={ <Videos /> } />
                 </Route>
             </Routes>
         </Router>

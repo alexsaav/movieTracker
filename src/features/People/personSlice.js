@@ -9,7 +9,7 @@ const tmdbBaseUrl = 'https://api.themoviedb.org/3';
 export const getPersonDetailsAsync = createAsyncThunk(
     'person/getPersonDetailsAsync',
 
-    async({id}) => {
+    async(id) => {
         const personDetailsEndpoint = `/person/${id}`;
         
         const urlToFetch = new URL(`${tmdbBaseUrl}${personDetailsEndpoint}`);

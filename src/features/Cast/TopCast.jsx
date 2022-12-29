@@ -21,7 +21,7 @@ const TopCast = ({id}) => {
     movieCast = movieCast.slice(0, 9)
 
     useEffect(() => {
-        dispatch(getMovieCreditsAsync({id}));
+        dispatch(getMovieCreditsAsync(id));
     }, [dispatch, id]);
 
 

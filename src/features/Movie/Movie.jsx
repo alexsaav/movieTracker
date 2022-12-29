@@ -39,7 +39,7 @@ const Movie = () => {
     
     
     useEffect(() => {
-        dispatch(getMovieDetails({id}))
+        dispatch(getMovieDetails(id))
     }, [dispatch, id])
 
     const toHoursAndMinutes = (totalMinutes) => {

@@ -10,7 +10,7 @@ const tmdbBaseUrl = 'https://api.themoviedb.org/3';
 export const getMovieCreditsAsync = createAsyncThunk(
     'movieCast/getMovieCreditsAsync',
     
-    async({id}) => {
+    async(id) => {
         const movieCreditsEndpoint = `/movie/${id}/credits`;
 
         const urlToFetch = new URL(`${tmdbBaseUrl}${movieCreditsEndpoint}`);

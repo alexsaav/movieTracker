@@ -21,7 +21,7 @@ const MovieHeader = () => {
     const date = release_date.slice(0,4);
 
     useEffect(() => {
-        dispatch(getMovieDetails({id}))
+        dispatch(getMovieDetails(id))
     }, [dispatch, id])
 
     return (

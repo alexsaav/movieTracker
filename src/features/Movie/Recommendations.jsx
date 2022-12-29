@@ -20,7 +20,7 @@ const Recommendations = ({movieId}) => {
 
     const scrollTopWin = () => {
         window.scrollTo(200, 0);
-      }
+    }
     
     return (
         <Box sx={{padding: "30px 0", display: "block"}}>
