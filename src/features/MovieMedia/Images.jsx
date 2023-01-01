@@ -1,26 +1,20 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getMovieImages, selectImages } from "../Movie/movieSlice"
-import { Link, useNavigate, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { v4 as uuidv4 } from 'uuid';
 import MovieHeader from "../Movie/MovieHeader"
 import Grid from "@mui/material/Unstable_Grid2/Grid2"
-import {Typography} from "@mui/material"
-import { Box } from "@mui/system"
-import { Card } from '@mui/material';
-import {CardMedia} from "@mui/material"
-import {Container} from "@mui/system"
-
-
+import Typography from "@mui/material/Typography"
+import Box from "@mui/system/Box"
+import Card from '@mui/material/Card';
+import CardMedia from "@mui/material/CardMedia"
+import Container from "@mui/system/Container"
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-
-
-
-
 
 const buttonStyle = {
     position: "absolute",
@@ -38,15 +32,8 @@ const style = {
     position: 'fixed',
     top: '0',
     left: '0',
-    width: "100%",
-    height: "100%",
-    backgroundColor: 'rgba(0,0,0,0.9)',
-    boxShadow: 24,
-    paddingTop: "100px",
-    paddingBottom: "100px",
-    zIndex: 1,
-    overflow: "scroll",
-  };
+    
+};
   
 
 const Images = () => {
@@ -121,7 +108,6 @@ const Images = () => {
                     <ArrowForwardIosIcon />
                 </Button>
             </Box>
-            <Box sx={{color: "white"}}>hello</Box>
         </Box>
     );
 
@@ -151,7 +137,7 @@ const Images = () => {
                     </Grid>
                 </Box>
             </Container>
-            <div className="HOLIIIII">
+            <div>
                 <Modal open={open}>   
                     {modalBody}
                 </Modal>

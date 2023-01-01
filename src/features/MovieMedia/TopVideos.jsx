@@ -4,9 +4,8 @@ import { getMovieVideos, selectVideos } from "../Movie/movieSlice"
 import { Link } from "react-router-dom"
 import Grid from "@mui/material/Unstable_Grid2/Grid2"
 import { Box } from "@mui/system"
-import { Card, CardContent, CardMedia, Typography } from "@mui/material"
+import { Card, CardMedia, Typography } from "@mui/material"
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import {IconButton} from "@mui/material"
 
 const TopVideos = ({movieId, title}) => {
     const dispatch = useDispatch();
@@ -29,12 +28,12 @@ const TopVideos = ({movieId, title}) => {
                     <Grid container wrap="nowrap" spacing={46} sx={{ overflowX: 'auto'}} columns={6} >
                         {videos.map((video) => {
                             const { id, key, name, site } = video;
-                            const videoUrl = `https://www.youtube.com/embed/${key}`;
+                            //const videoUrl = `https://www.youtube.com/embed/${key}`;
                             const videoImgUrl = `https://img.youtube.com/vi/${key}/sddefault.jpg`
 
                             return (
                                 <Grid item xs={4} key={key}>
-                                    <Link to={`/movie/${title}-${movieId}/video-${id}`} onClick={scrollTopWin} style={{textDecoration: 'none', color: '#1D1F20'}}>
+                                    <Link to={`/movie/${title}/${movieId}/videos`} onClick={scrollTopWin} style={{textDecoration: 'none', color: '#1D1F20'}}>
                                         <Card sx={{minWidth: "360px", position: "relative" }}> 
                                             <CardMedia
                                                 component="img"
@@ -61,7 +60,7 @@ const TopVideos = ({movieId, title}) => {
                         })}
                     </Grid>
                     <Box sx={{mt: 4}}>
-                        <Link to={`/movie/${title}-${movieId}/video`} style={{textDecoration: 'none', color: '#1D1F20'}}>
+                        <Link to={`/movie/${title}/${movieId}/videos`} style={{textDecoration: 'none', color: '#1D1F20'}}>
                             <Typography variant="button">View More</Typography>
                         </Link>
                     </Box>

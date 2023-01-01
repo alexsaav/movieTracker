@@ -20,7 +20,7 @@ function App() {
                     <Route path='movie/:id/cast' element={ <MovieCredits /> } />
                     <Route path='person/:id-name' element={ <PersonDetails /> } />
                     <Route path='movie/:id/images' element={ <Images /> } />
-                    <Route path='movie/:title-:id/video-:id' element={ <Videos /> } />
+                    <Route path='movie/:title/:id/videos' element={ <Videos /> } />
                 </Route>
             </Routes>
         </Router>
