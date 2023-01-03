@@ -26,7 +26,7 @@ const Cast = ({ movieCast }) => {
                         return (
                             <List dense sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', display: 'flex', flexDirection: 'column' }}>
                                 <ListItem alignItems="flex-start">
-                                    <ListItemButton onClick={() => navigate(`person/${id}-${name}`)}>
+                                    <ListItemButton onClick={() => navigate(`/person/${id}/${name}`)}>
                                         <ListItemAvatar>
                                             <Avatar alt={name} src={`https://image.tmdb.org/t/p/original/${profile_path}`} />
                                         </ListItemAvatar>

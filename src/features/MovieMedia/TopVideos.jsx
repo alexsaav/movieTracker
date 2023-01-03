@@ -59,34 +59,14 @@ const TopVideos = ({movieId, title}) => {
                             )
                         })}
                     </Grid>
-                    <Box sx={{mt: 4}}>
-                        <Link to={`/movie/${title}/${movieId}/videos`} style={{textDecoration: 'none', color: '#1D1F20'}}>
-                            <Typography variant="button">View More</Typography>
-                        </Link>
-                    </Box>
+                </Box>
+                <Box sx={{mt: 4}}>
+                    <Link to={`/movie/${title}/${movieId}/videos`} style={{textDecoration: 'none', color: '#1D1F20'}}>
+                        <Typography variant="button">View More</Typography>
+                    </Link>
                 </Box>
         </Box> 
     )
 }
 
 export default TopVideos
-
-
-/* 
-                                    <Link to={`/video/${id}`} style={{textDecoration: 'none', color: '#1D1F20'}}>
-
-                                        <iframe 
-                                            width="560" 
-                                            height="315" 
-                                            src={videoUrl} 
-                                            title={name} 
-                                            frameborder="0" 
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                            allowFullScreen="false"
-                                            autoplay="false"
-                                        >
-                                        </iframe>
-
-                                        sx={{ overflowX: 'auto'}} columns={6} 
-
-*/

@@ -28,7 +28,7 @@ const TopImages = ({movieId, title}) => {
     return (
         <Box sx={{padding: "30px 0"}}>
             <Typography variant="h5">Images</Typography>
-            <Box sx={{margin: "30px 0", overflowY: "hidden", overflowX: "scroll"}}>
+            <Box sx={{margin: "30px 0", overflowY: "hidden"}}>
                 <Grid container wrap="nowrap" spacing={63} sx={{ overflowX: 'auto'}} columns={6} >
                         {backdrops.map((poster) => {
                             const { file_path } = poster;
@@ -48,15 +48,15 @@ const TopImages = ({movieId, title}) => {
                             )
                         })}
                 </Grid>
-                <Box sx={{mt: 4}}>
-                    <Link 
-                        to={`/movie/${movieId}/images`} 
-                        onClick={scrollTopWin} 
-                        style={{textDecoration: 'none', color: '#1D1F20'}}
-                    >
-                        <Typography variant="button">View More</Typography>
-                    </Link>
-                </Box>
+            </Box>
+            <Box sx={{mt: 4}}>
+                <Link 
+                    to={`/movie/${movieId}/images`} 
+                    onClick={scrollTopWin} 
+                    style={{textDecoration: 'none', color: '#1D1F20'}}
+                >
+                    <Typography variant="button">View More</Typography>
+                </Link>
             </Box>
         </Box>
     )

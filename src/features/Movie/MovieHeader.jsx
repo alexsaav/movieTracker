@@ -26,7 +26,6 @@ const MovieHeader = () => {
 
     return (
         <Box sx={{background: 'rgba(0, 0, 0, 0.7)', padding: "15px 40px", display: "flex"}}>
-            
             <Box> 
                 <Link to={`/movie/${id}`}>
                     <img 

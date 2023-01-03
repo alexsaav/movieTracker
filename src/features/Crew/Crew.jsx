@@ -38,7 +38,7 @@ const Crew = ({movieCrew}) => {
                                 const { name, id, profile_path, credit_id, job } = crewMember;
                                 return (
                                     <ListItem alignItems="flex-start" credit_id={credit_id} >
-                                        <ListItemButton onClick={() => navigate(`person/${id}-${name}`)} >
+                                        <ListItemButton onClick={() => navigate(`/person/${id}/${name}`)} >
                                             <ListItemAvatar>
                                                 <Avatar alt={name} src={`https://image.tmdb.org/t/p/original/${profile_path}`} />
                                             </ListItemAvatar>

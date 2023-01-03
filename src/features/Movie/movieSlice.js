@@ -122,7 +122,6 @@ export const getSimilarMovies = createAsyncThunk(
 
         if(response.ok) {
             const similarMovies = await response.json();
-            //console.log(similarMovies)
             return { similarMovies };
         }
     }

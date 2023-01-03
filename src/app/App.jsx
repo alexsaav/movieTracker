@@ -5,7 +5,7 @@ import { Home } from '../components/Home/Home';
 import './App.css';
 import Movie from '../features/Movie/Movie';
 import MovieCredits from '../features/MovieCredits/MovieCredits';
-import PersonDetails from '../features/People/PersonDetails';
+import Person from '../features/People/Person';
 import Images from '../features/MovieMedia/Images';
 import Videos from '../features/MovieMedia/Videos';
 
@@ -18,7 +18,7 @@ function App() {
                     <Route path='/movies' element={<Movies />} />
                     <Route path='/movie/:id' element={ <Movie /> } />
                     <Route path='movie/:id/cast' element={ <MovieCredits /> } />
-                    <Route path='person/:id-name' element={ <PersonDetails /> } />
+                    <Route path='/person/:id/:name' element={ <Person /> } />
                     <Route path='movie/:id/images' element={ <Images /> } />
                     <Route path='movie/:title/:id/videos' element={ <Videos /> } />
                 </Route>

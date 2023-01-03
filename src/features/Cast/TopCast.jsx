@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { getMovieCreditsAsync, selectMovieCredits } from '../MovieCredits/movieCreditsSlice';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Unstable_Grid2';
@@ -28,8 +28,9 @@ const TopCast = ({id}) => {
     return (
         <Box container='main'>
             <Typography variant='h5' sx={{fontWeight: 'bold'}}>Top Cast</Typography>
-            <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }} 
-            sx={{overflowX: "scroll", overflowY: "hidden", margin: '20px 0px'}}
+            <Grid container rowSpacing={2} 
+                columnSpacing={{ xs: 1, sm: 2, md: 3 }} 
+                sx={{overflowX: "scroll", overflowY: "hidden", margin: '20px 0px'}}
             >
                 {movieCast.map(cast => {
                     const { name, character, id, profile_path } = cast;
@@ -43,7 +44,7 @@ const TopCast = ({id}) => {
                             }} 
                             key={id} 
                         >
-                            <CardActionArea onClick={() => navigate(`person/${id}-${name}`)}>
+                            <CardActionArea onClick={() => navigate(`/person/${id}/${name}`)}>
                                 <CardMedia
                                     component="img"
                                     height="140"
@@ -69,6 +70,11 @@ const TopCast = ({id}) => {
                     )
                 })}
             </Grid>
+            <Box sx={{mt: 4, mb: 4}}>
+                <Link to={`/movie/${id}/cast`} style={{textDecoration: 'none', color: '#1D1F20'}}>
+                    <Typography variant="button">Full Cast and Crew</Typography>
+                </Link>
+            </Box>
         </Box>
     )
 }

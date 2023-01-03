@@ -32,7 +32,7 @@ const Recommendations = ({movieId}) => {
                             const posterUrl = `https://image.tmdb.org/t/p/original${backdrop_path}`;
 
                             return (
-                                <Grid item xs={4}>
+                                <Grid item xs={4} key={id}>
                                     <Link to={`/movie/${id}`} onClick={scrollTopWin}>
                                         <Card 
                                                 sx={{width: 260, borderRadius: 3, position: "relative"}}

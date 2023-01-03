@@ -92,22 +92,13 @@ const Movie = () => {
             </Grid>
             
             <Box sx={{margin: '50px 50px'}}>
-                <Box>
-                    <TopCast id={id} />
-                    <Box sx={{mt: 4, mb: 4}}>
-                        <Link to={`/movie/${id}/cast`} style={{textDecoration: 'none', color: '#1D1F20'}}>
-                            <Typography variant="button">Full Cast and Crew</Typography>
-                        </Link>
-                    </Box>
-                    <Divider />
-                </Box>
-                <Box>
-                    <TopImages title={title} movieId={id} />
-                    <Divider />
-                    <TopVideos title={title} movieId={id} />
-                    <Divider />
-                    <Recommendations movieId={id} />
-                </Box>
+                <TopCast id={id} />
+                <Divider />
+                <TopImages title={title} movieId={id} />
+                <Divider />
+                <TopVideos title={title} movieId={id} />
+                <Divider />
+                <Recommendations movieId={id} />
             </Box>
         </>
     )
