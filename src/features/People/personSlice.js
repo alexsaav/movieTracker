@@ -72,6 +72,60 @@ export const getPersonTaggedImages = createAsyncThunk(
 );
 
 // GET MOVIE AND SERIES CREDITS
+export const getCombinedCredits = createAsyncThunk(
+    "person/getCombinedCredits",
+
+    async(personId) => {
+        const getCombinedCreditsEndpoint = `/person/${personId}/combined_credits`;
+
+        const urlToFetch = new URL(`${tmdbBaseUrl}${getCombinedCreditsEndpoint}`);
+
+        //query params
+        urlToFetch.searchParams.append("api_key", tmdbKey)
+        urlToFetch.searchParams.append("language", "en-US")
+
+        const response = await fetch(urlToFetch);
+
+        if(response.ok) {
+            const combinedCredits = await response.json();
+            combinedCredits.crew.sort((a, b) => {
+                var dateA = new Date(a.release_date ?? a.first_air_date);
+                var dateB = new Date(b.release_date ?? a.first_air_date);
+                return dateB - dateA;  
+            })
+            combinedCredits.cast.sort((a, b) => {
+                var dateA = new Date(a.release_date ?? a.first_air_date);
+                var dateB = new Date(b.release_date ?? a.first_air_date);
+                return dateB - dateA;  
+            })
+
+            return combinedCredits;
+        }
+    }
+);
+
+// GET POPULAR PEOPLE (ALSO GETS WHAT THAT PEOPLE IS KNOWN FOR)
+export const getPopularPeople = createAsyncThunk(
+    "people/getPopularPeople",
+
+    async(page) => {
+        const getPopularPeopleEndpoint = "/person/popular";
+
+        const urlToFetch = new URL(`${tmdbBaseUrl}${getPopularPeopleEndpoint}`);
+
+        //query params
+        urlToFetch.searchParams.append("api_key", tmdbKey)
+        urlToFetch.searchParams.append("language", "en-US")
+        urlToFetch.searchParams.append("page", page)
+
+        const response = await fetch(urlToFetch);
+
+        if(response.ok) {
+            const popularPeople = await response.json();
+            return popularPeople;
+        }
+    }
+);
 
 
 // SLICE
@@ -87,7 +141,16 @@ export const person = createSlice({
         },
         personTaggedImages: {
             results: []
-        }
+        },
+        combinedCredits: {
+            cast: [],
+            crew: [
+                {
+                    release_date: ""
+                }
+            ]
+        },
+        popularPeople: {}
     },
     extraReducers: {
         [getPersonDetailsAsync.fulfilled]: (state, action) => {
@@ -98,7 +161,13 @@ export const person = createSlice({
         },
         [getPersonTaggedImages.fulfilled]: (state, action) => {
             state.personTaggedImages = action.payload;
-        }
+        },
+        [getCombinedCredits.fulfilled]: (state, action) => {
+            state.combinedCredits = action.payload;
+        },
+        [getPopularPeople.fulfilled]: (state, action) => {
+            state.popularPeople = action.payload;
+        },
     }
 });
 
@@ -106,6 +175,8 @@ export const person = createSlice({
 export const selectPersonDetails = state => state.person.personDetails;
 export const selectPersonImages = state => state.person.personImages;
 export const selectPersonTaggedImages = state => state.person.personTaggedImages;
+export const selectCombinedCredits = state => state.person.combinedCredits;
+export const selectPopularPeople = state => state.person.popularPeople;
 
 //REDUCER
 export default person.reducer;

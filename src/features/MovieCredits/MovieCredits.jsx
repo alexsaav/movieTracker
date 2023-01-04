@@ -16,6 +16,9 @@ const MovieCredits = () => {
     const movieCast = movieCredits.cast;
     const movieCrew = movieCredits.crew;    
 
+    console.log(movieCast)
+    console.log(movieCrew)
+
     useEffect(() => {
         dispatch(getMovieCreditsAsync(id));
     }, [dispatch, id]);

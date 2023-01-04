@@ -2,10 +2,12 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { getPersonDetailsAsync, selectPersonDetails } from "./personSlice"
+import CombinedCredits from "./CombinedCredits";
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
-import PersonImages from "./PersonImages";
+import PersonTopImages from "./PersonTopImages";
+import { Divider } from "@mui/material";
 
 
 const Person = () =>  {
@@ -25,12 +27,12 @@ const Person = () =>  {
     } = personDetails;
 
     const profilePhoto = `https://image.tmdb.org/t/p/original${profile_path}`;
-    //const dateOfBirth = new Date(birthday);
 
 
     useEffect(() => {
         dispatch(getPersonDetailsAsync(id))
     }, [dispatch, id])
+
 
     return (
         <>
@@ -45,22 +47,32 @@ const Person = () =>  {
                 </Box>
                 <Grid sx={{display: 'flex', flexDirection: 'column', pr: '50px', pt: "50px", color: '#F7F7F8'}}>
                         <Typography variant="h1" sx={{fontSize: "2.5rem", fontWeight: "bold"}}>{name}</Typography>
-                        <Box sx={{pr: "40px", pt: "30px"}}>
+                        <Box sx={{pr: "40px", pt: "30px", pb: "10px"}}>
                             <Typography sx={{fontWeight: "bold"}}>Biography</Typography>
-                            <Typography paragraph={true} >{biography}</Typography>
+                            {biography ? <Typography paragraph={true}>{biography}</Typography> :
+                                         <Typography>There is no biography available.</Typography>
+                            }
                         </Box>
                         <Box sx={{pb: "10px"}}>
                             <Typography sx={{fontWeight: "bold"}}>Born</Typography>
-                            <Typography variant="body1">{birthday}</Typography>
+                            {birthday ? <Typography variant="body1">{birthday}</Typography> : "-"}
                         </Box>
                         <Box sx={{pb: "10px"}}>
                             <Typography sx={{fontWeight: "bold"}}>Place of Birth </Typography>
-                            <Typography variant="body1">{place_of_birth}</Typography>
+                            {place_of_birth ? <Typography variant="body1">{place_of_birth}</Typography> : "-"}
                         </Box>
+                        {deathday  && 
+                                <Box sx={{pb: "10px"}}>
+                                    <Typography sx={{fontWeight: "bold"}}>Date of Death </Typography>
+                                    <Typography variant="body1">{deathday}</Typography>
+                                </Box>
+                        }
                 </Grid>
             </Grid>
-            <Box>
-                <PersonImages personId={id} name={name} />
+            <Box sx={{margin: '50px 50px'}}>
+                <PersonTopImages personId={id} name={name} />
+                <Divider />
+                <CombinedCredits />
             </Box>
         </>
     )

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { scrollTopWin } from '../util/helperFunctions';
 import Container from '@mui/material/Container';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -32,15 +33,19 @@ const Crew = ({movieCrew}) => {
             <Box>
                 {Object.keys(departments).map(department => {
                     return (
-                        <List dense sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', display: 'flex', flexDirection: 'column' }}>
-                            <Typography variant='h6' >{department}</Typography>
+                        <List dense sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', display: 'flex', flexDirection: 'column'}}>
+                            <Typography variant='h6'>{department}</Typography>
                             {departments[department].map(crewMember => {
                                 const { name, id, profile_path, credit_id, job } = crewMember;
                                 return (
-                                    <ListItem alignItems="flex-start" credit_id={credit_id} >
-                                        <ListItemButton onClick={() => navigate(`/person/${id}/${name}`)} >
+                                    <ListItem alignItems="flex-start" credit_id={credit_id} onClick={scrollTopWin} >
+                                        <ListItemButton onClick={() => navigate(`/person/${id}/${name}`)} sx={{pl: 0}}>
                                             <ListItemAvatar>
-                                                <Avatar alt={name} src={`https://image.tmdb.org/t/p/original/${profile_path}`} />
+                                                <Avatar 
+                                                    alt={name} 
+                                                    src={`https://image.tmdb.org/t/p/original/${profile_path}`}
+                                                    sx={{ width: 56, height: 56}}
+                                                />
                                             </ListItemAvatar>
                                             <ListItemText id={id} 
                                                 primary={name}
@@ -49,6 +54,7 @@ const Crew = ({movieCrew}) => {
                                                         {job}
                                                     </React.Fragment>
                                                 }
+                                                sx={{pl: "25px"}}
                                             />
                                         </ListItemButton>
                                     </ListItem>

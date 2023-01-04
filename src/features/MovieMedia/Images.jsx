@@ -96,7 +96,7 @@ const Images = () => {
             </Button>
             <Box sx={{
                     display: "flex",
-                    justifyContent: "center",
+                    justifyContent: "space-between",
                     alignItems: "center",
                     padding: "40px",
                 }}

@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, Link } from 'react-router-dom';
 import { getMovieCreditsAsync, selectMovieCredits } from '../MovieCredits/movieCreditsSlice';
+import { scrollTopWin } from '../util/helperFunctions';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography'
@@ -24,7 +25,6 @@ const TopCast = ({id}) => {
         dispatch(getMovieCreditsAsync(id));
     }, [dispatch, id]);
 
-
     return (
         <Box container='main'>
             <Typography variant='h5' sx={{fontWeight: 'bold'}}>Top Cast</Typography>
@@ -43,6 +43,7 @@ const TopCast = ({id}) => {
                                 margin: '5px' 
                             }} 
                             key={id} 
+                            onClick={scrollTopWin}
                         >
                             <CardActionArea onClick={() => navigate(`/person/${id}/${name}`)}>
                                 <CardMedia
