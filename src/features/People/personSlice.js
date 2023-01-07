@@ -88,14 +88,14 @@ export const getCombinedCredits = createAsyncThunk(
 
         if(response.ok) {
             const combinedCredits = await response.json();
-            combinedCredits.crew.sort((a, b) => {
-                var dateA = new Date(a.release_date ?? a.first_air_date);
-                var dateB = new Date(b.release_date ?? a.first_air_date);
-                return dateB - dateA;  
-            })
             combinedCredits.cast.sort((a, b) => {
-                var dateA = new Date(a.release_date ?? a.first_air_date);
-                var dateB = new Date(b.release_date ?? a.first_air_date);
+                const aDate = a.release_date ?? a.first_air_date;
+                const bDate = b.release_date ?? b.first_air_date;
+                if (!aDate) return 1;
+                if (!bDate) return -1
+               
+                var dateA = new Date(aDate);
+                var dateB = new Date(bDate);
                 return dateB - dateA;  
             })
 
@@ -150,7 +150,13 @@ export const person = createSlice({
                 }
             ]
         },
-        popularPeople: {}
+        popularPeople: {
+            page: 1,
+            results: [{
+                known_for: []
+            }],
+            total_pages: 1
+        }
     },
     extraReducers: {
         [getPersonDetailsAsync.fulfilled]: (state, action) => {

@@ -47,7 +47,6 @@ const CombinedCredits = () => {
                     {castJob.map(cast => {
                         const { id, character, media_type, title, name, release_date, first_air_date, poster_path, backdrop_path } = cast;
                         const date = new Date(release_date ?? first_air_date);
-                        //if(date === "") return <>-</>
 
                         return (
                             <>
@@ -76,6 +75,7 @@ const CombinedCredits = () => {
                                             <ListItemText secondary={media_type}/>
                                         </Box>
                                             <Box>
+                                                {/* <ListItemText secondary={(release_date ?? first_air_date) ? <>{date.getFullYear()}</> : "-"} /> */}
                                                 <ListItemText secondary={(release_date ?? first_air_date) ? <>{date.getFullYear()}</> : "-"} />
                                             </Box>
                                     </Box>
@@ -89,7 +89,7 @@ const CombinedCredits = () => {
                 {Object.keys(departments).map(department => {
                     return (
                         <List dense sx={{ width: '100%', bgcolor: 'background.paper', display: 'flex', flexDirection: 'column'}}>
-                            <Typography variant='h6'>{department}</Typography>
+                            <Typography variant="h2" sx={{fontSize: "1.5rem", fontWeight: "bold"}}>{department}</Typography>
                             {departments[department].map(crewJob => {
                                 const { title, id, job, poster_path, backdrop_path, department, media_type, release_date, first_air_date, episode_count } = crewJob;
                                 const date = new Date(release_date ?? first_air_date);

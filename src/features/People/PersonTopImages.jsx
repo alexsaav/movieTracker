@@ -32,7 +32,7 @@ const PersonTopImages = ({personId, name}) => {
 
     return (
         <Box sx={{padding: "30px 0"}}>
-            <Typography variant="h5">Photos</Typography>
+            <Typography variant="h2" sx={{fontSize: "2rem", fontWeight: "bold"}}>Photos</Typography>
             <Box sx={{margin: "30px 0", overflowY: "hidden"}}>
                 <Grid container wrap="nowrap" spacing={38} sx={{ overflowX: 'auto'}} columns={6} >
                     <>

@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { getPersonDetailsAsync, selectPersonDetails } from "./personSlice"
+import KnownFor from "./KnownFor";
 import CombinedCredits from "./CombinedCredits";
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Unstable_Grid2';
@@ -71,6 +72,8 @@ const Person = () =>  {
             </Grid>
             <Box sx={{margin: '50px 50px'}}>
                 <PersonTopImages personId={id} name={name} />
+                <Divider />
+                <KnownFor personId={id} />
                 <Divider />
                 <CombinedCredits />
             </Box>
