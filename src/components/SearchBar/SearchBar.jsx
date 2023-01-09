@@ -1,7 +1,13 @@
 import { Box } from "@mui/material"
 import { Input } from '@mui/material'
+import { Form } from "react-router-dom"
+import TextField from "@mui/material/TextField"
+import IconButton from "@mui/material/IconButton"
+import SearchIcon from '@mui/icons-material/Search';
+import InputBase from "@mui/material/InputBase"
 
-const SearchBar = ({searchInput, setSearchInput}) => {
+
+const SearchBar = ({searchInput, setSearchInput, onSubmit}) => {
     
     const searchMovies = (searchValue) => {
         setSearchInput(searchValue)
@@ -9,19 +15,29 @@ const SearchBar = ({searchInput, setSearchInput}) => {
 
     return (
         <>
-            <Box sx={{mt: 5, border: "1px solid #1D1F20"}}>
-                <Input 
-                    margin="dense" 
+            <Box 
+                component="form" 
+                onSubmit={onSubmit}
+                noValidate
+                autoComplete="off" 
+                sx={{mt: 5, display: "flex", justifyContent: "flex-end", alignItems: "center"}}
+            >
+                <TextField
+                    id="outlined-basic" 
+                    label="Search" 
+                    variant="outlined"
+
                     color="secondary"
-                    fullWidth="true" 
-                    type="search" 
+                    fullWidth
                     placeholder="Search"
-                    name="search-input"
-                    value={searchInput}
+                    name="query"
+                    defaultValue={searchInput}
                     onChange={(e) => {searchMovies(e.target.value)}}
                     sx={{pl: 1, pr: 1}}
-                    disableUnderline="true"
                 />
+                <IconButton type="button" sx={{ p: '10px', mr: "20px", position: "absolute"}} aria-label="search">
+                    <SearchIcon />
+                </IconButton>
             </Box>
         </>
     )

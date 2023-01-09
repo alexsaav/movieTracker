@@ -42,10 +42,11 @@ const CombinedCredits = () => {
     return (
         <>
             <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }} sx={{flexDirection: "column", margin: '50px 50px'}}>
+                <Typography variant="h2" sx={{fontSize: "2rem", fontWeight: "bold", pb: "30px"}}>Filmography</Typography>
                 <Typography variant="h2" sx={{fontSize: "1.5rem", fontWeight: "bold"}}>Acting</Typography>
                 <List dense sx={{ width: '100%', bgcolor: 'background.paper', display: 'flex', flexDirection: 'column', pt: "30px" }}>
                     {castJob.map(cast => {
-                        const { id, character, media_type, title, name, release_date, first_air_date, poster_path, backdrop_path } = cast;
+                        const { id, character, media_type, title, name, release_date, first_air_date, poster_path, backdrop_path, episode_count } = cast;
                         const date = new Date(release_date ?? first_air_date);
 
                         return (
@@ -74,10 +75,10 @@ const CombinedCredits = () => {
                                             <ListItemText secondary={character}/>
                                             <ListItemText secondary={media_type}/>
                                         </Box>
-                                            <Box>
-                                                {/* <ListItemText secondary={(release_date ?? first_air_date) ? <>{date.getFullYear()}</> : "-"} /> */}
-                                                <ListItemText secondary={(release_date ?? first_air_date) ? <>{date.getFullYear()}</> : "-"} />
-                                            </Box>
+                                        <Box sx={{display: "flex", flexDirection: "column", alignItems: "flex-end"}}>
+                                            <ListItemText secondary={(release_date ?? first_air_date) ? <>{date.getFullYear()}</> : "-"} />
+                                            {episode_count && <ListItemText secondary={`${episode_count} ${episode_count > 1 ? "episodes" : "episode"}`} />}
+                                        </Box>
                                     </Box>
                                 </ListItem>
                                 <Divider />
@@ -117,10 +118,10 @@ const CombinedCredits = () => {
                                                     <ListItemText secondary={job}/>
                                                     <ListItemText secondary={media_type}/>
                                                 </Box>
-                                                    <Box>
-                                                        <ListItemText secondary={(release_date ?? first_air_date) ? <>{date.getFullYear()}</> : "-"} />
-                                                        {episode_count && <Typography>{episode_count} episodes</Typography>}
-                                                    </Box>
+                                                <Box sx={{display: "flex", flexDirection: "column", alignItems: "flex-end"}}>
+                                                    <ListItemText secondary={(release_date ?? first_air_date) ? <>{date.getFullYear()}</> : "-"} />
+                                                    {episode_count && <ListItemText secondary={`${episode_count} ${episode_count > 1 ? "episodes" : "episode"}`} />}
+                                                </Box>
                                             </Box>
                                         </ListItem>
                                         <Divider />

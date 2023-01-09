@@ -48,6 +48,7 @@ const Movie = () => {
         return `${hours}h${minutes}m`;
     }
 
+
     return (
         <>
             <Grid container rowSpacing={2} sx={{flexWrap: "nowrap", background: 'rgba(0, 0, 0, 0.8)', padding: '0' }} >

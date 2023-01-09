@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
+import { useSearchParams } from 'react-router-dom';
 import { selectSearchMovies, searchMovies } from './moviesSlice';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import Container from '@mui/material/Container';
@@ -11,7 +12,8 @@ import Typography from '@mui/material/Typography';
 
 
 const Movies = () => {
-    const [searchInput, setSearchInput] = useState('');
+    let [searchParams, setSearchParams] = useSearchParams();
+    const [searchInput, setSearchInput] = useState(searchParams.get("query"));
     const [page, setPage] = useState(1);
     const dispatch = useDispatch();
     const moviesResult = useSelector(selectSearchMovies);
@@ -31,7 +33,7 @@ const Movies = () => {
     return (
         <Container>
             <Typography variant='h4'>Movies</Typography>
-            <SearchBar setSearchInput={handlePageReset} />
+            <SearchBar searchInput={searchInput} setSearchInput={handlePageReset}/>
 
             <Container sx={{ py: 5 }} maxWidth="lg">
                 <Grid container spacing={4} columns={{ xs: 10, sm: 12, md: 10 }}>

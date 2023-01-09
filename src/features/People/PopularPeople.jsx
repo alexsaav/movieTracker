@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 
-const KnownFor = (personId) => {
+const PopularPeople = (personId) => {
     const [page, setPage] = useState(1);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -30,15 +30,11 @@ const KnownFor = (personId) => {
             <Typography variant="h2" sx={{fontSize: "1.5rem", fontWeight: "bold"}}>Known For</Typography>
             <Box>
                 {popularPeopleResult.map(people => {
-                    const { id, known_for } = people;
-                    console.log(personId === id)
+                    const { id, known_for, backdrop_path, name } = people;
+                    const imageUrl = `https://image.tmdb.org/t/p/original/${backdrop_path}`;
                     return (
-                        <>{personId === id ?? 
+                        <>
                             <Box>
-                            {people.known_for.map(media => {
-                                const { backdrop_path, id, name } = media;
-                                const imageUrl = `https://image.tmdb.org/t/p/original/${backdrop_path}`
-                                
                                 return (
                                     <Grid item xs={4} key={id}>
                                     <Link to={`/movie/${id}`}>
@@ -72,10 +68,8 @@ const KnownFor = (personId) => {
                                     </Link>
                                 </Grid>
                                 )
-                            })} 
                             </Box>
-
-                        }</>
+                        </>
                     )
                 })}
             </Box>
@@ -83,4 +77,4 @@ const KnownFor = (personId) => {
     )
 }
 
-export default KnownFor
+export default PopularPeople

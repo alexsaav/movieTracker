@@ -99,12 +99,13 @@ const PersonImages = () => {
                     justifyContent: "space-between",
                     alignItems: "center",
                     padding: "40px",
+                    height: "60%"
                 }}
             >
                 <Button onClick={() => handleBackForwardButton(currentIndex)} sx={{color: "#f1f1f1"}}>
                     <ArrowBackIosIcon />
                 </Button>
-                <Box sx={{display: "flex", justifyContent: "center", height: "100%", width: "40%"}}>
+                <Box sx={{display: "flex", justifyContent: "center", height: "100%"}}>
                     {images[currentIndex] && (
                         <img src={`https://image.tmdb.org/t/p/original${images[currentIndex].file_path}`} 
                             alt={images[currentIndex].file_path} 
