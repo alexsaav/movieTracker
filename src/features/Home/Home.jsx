@@ -3,39 +3,38 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { searchMovies } from '../Movies/moviesSlice';
 import SearchBar from '../../components/SearchBar/SearchBar';
+import { Box, Container } from '@mui/material';
+import Toolbar from '@mui/material/Toolbar';
+import PopularMovies from '../Movies/PopularMovies';
+
 
  const Home = () => {
-    const [searchInput, setSearchInput] = useState('');
+    const [searchText, setSearchText] = useState('');
     const [page, setPage] = useState(1);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if(searchInput === '') return;
-        dispatch(searchMovies({title: searchInput, page}))
-    }, [dispatch, page, searchInput])
+        if(searchText === '') return;
+        dispatch(searchMovies({title: searchText, page}))
+    }, [dispatch, page, searchText])
 
     const handlePageReset = (input) => {
-        setSearchInput(input);
+        setSearchText(input);
         setPage(1);
     }
 
-
-
     const handleSearch = (event) => {
         event.preventDefault();
-        if (searchInput) {
-          navigate(`/search?query=${searchInput}`);
-        }
+        if (searchText) navigate(`/search?query=${searchText}`);
       };
 
     return (
-        <main>
-           <SearchBar 
-                onSubmit={handleSearch}
-                setSearchInput={handlePageReset}
-            /> 
-        </main>
+        <Box sx={{margin: '50px 50px'}}>
+            <SearchBar onSubmit={handleSearch} setSearchText={handlePageReset}/> 
+            <Toolbar />
+            <PopularMovies />
+        </Box>
     )
 }
 

@@ -74,7 +74,7 @@ const NavBar = (props) => {
                     </Typography>
                     <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
                         <NavLink to="/"><Button style={{ color: '#fff' }}>Home</Button></NavLink>
-                        <NavLink to="/movies"><Button sx={{ color: '#fff' }}>Movies</Button></NavLink>
+                        <NavLink to="/"><Button sx={{ color: '#fff' }}>Movies</Button></NavLink>
                         <NavLink to="/series"><Button sx={{ color: '#fff' }}>Series</Button></NavLink>
                     </Box>
                 </Toolbar>

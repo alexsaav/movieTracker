@@ -7,10 +7,10 @@ import SearchIcon from '@mui/icons-material/Search';
 import InputBase from "@mui/material/InputBase"
 
 
-const SearchBar = ({searchInput, setSearchInput, onSubmit}) => {
+const SearchBar = ({searchText, setSearchText, onSubmit}) => {
     
     const searchMovies = (searchValue) => {
-        setSearchInput(searchValue)
+        setSearchText(searchValue)
     }
 
     return (
@@ -31,7 +31,7 @@ const SearchBar = ({searchInput, setSearchInput, onSubmit}) => {
                     fullWidth
                     placeholder="Search"
                     name="query"
-                    defaultValue={searchInput}
+                    defaultValue={searchText}
                     onChange={(e) => {searchMovies(e.target.value)}}
                     sx={{pl: 1, pr: 1}}
                 />

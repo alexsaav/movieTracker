@@ -13,31 +13,32 @@ import Typography from '@mui/material/Typography';
 
 const Movies = () => {
     let [searchParams, setSearchParams] = useSearchParams();
-    const [searchInput, setSearchInput] = useState(searchParams.get("query"));
+    const [searchText, setSearchText] = useState(searchParams.get("query"));
     const [page, setPage] = useState(1);
     const dispatch = useDispatch();
-    const moviesResult = useSelector(selectSearchMovies);
-    const movieResultList = moviesResult.movies.results;
-    const totalPages = moviesResult.movies.total_pages-1;
+    const movies = useSelector(selectSearchMovies);
+    const movieResult = movies.results;
+    const totalPages = movies.total_pages-1;
+
 
     useEffect(() => {
-        if(searchInput === '') return;
-        dispatch(searchMovies({title: searchInput, page}))
-    }, [dispatch, page, searchInput])
+        if(searchText === '') return;
+        dispatch(searchMovies({title: searchText, page}))
+    }, [dispatch, page, searchText])
 
     const handlePageReset = (input) => {
-        setSearchInput(input);
+        setSearchText(input);
         setPage(1);
     }
 
     return (
         <Container>
             <Typography variant='h4'>Movies</Typography>
-            <SearchBar searchInput={searchInput} setSearchInput={handlePageReset}/>
+            <SearchBar searchText={searchText} setSearchText={handlePageReset}/>
 
             <Container sx={{ py: 5 }} maxWidth="lg">
                 <Grid container spacing={4} columns={{ xs: 10, sm: 12, md: 10 }}>
-                    {movieResultList.map((movie) => (
+                    {movieResult.map((movie) => (
                         <MovieCard movie={movie} key={movie.id} />
                     ))}
                 </Grid>

@@ -127,6 +127,8 @@ export const getPopularPeople = createAsyncThunk(
     }
 );
 
+//GET /search/person
+
 
 // SLICE
 export const person = createSlice({

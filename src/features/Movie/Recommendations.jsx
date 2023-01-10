@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { getRecommendations, selectRecommendations } from './movieSlice';
+import { scrollTopWin } from '../util/helperFunctions';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/system';
@@ -17,16 +18,12 @@ const Recommendations = ({movieId}) => {
     useEffect(() => {
         dispatch(getRecommendations({movieId, page}))
     }, [dispatch, movieId, page])
-
-    const scrollTopWin = () => {
-        window.scrollTo(200, 0);
-    }
     
     return (
         <Box sx={{padding: "30px 0", display: "block"}}>
             <Typography variant="h5">Recommendations</Typography>
                 <Box sx={{ margin: "30px 0", overflowY: "hidden", overflowX: "scroll", borderRadius: "10px"}}>
-                    <Grid container wrap="nowrap" spacing={33} sx={{ overflowX: 'auto'}} columns={6} >
+                    <Grid container wrap="nowrap" spacing={33} sx={{ overflowX: 'auto'}} columns={6}>
                         {recommendationsResults.map((movie) => {
                             const { backdrop_path, title, release_date, vote_average, id } = movie;
                             const posterUrl = `https://image.tmdb.org/t/p/original${backdrop_path}`;

@@ -7,8 +7,8 @@ import ImageListItemBar from '@mui/material/ImageListItemBar';
 
 
 const MovieCard = ({ movie }) => {
-    const { id, title, poster_path, backdrop_path } = movie;
-    const moviePosterUrl = `https://image.tmdb.org/t/p/original/${poster_path ?? backdrop_path}`;
+    const { id, title, poster_path, backdrop_path, vote_average, release_date } = movie;
+    const moviePosterUrl = `https://image.tmdb.org/t/p/original${poster_path ?? backdrop_path}`;
 
     return (
         <Grid item key={movie.id} xs={8} sm={4} md={2}>

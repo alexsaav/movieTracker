@@ -128,6 +128,10 @@ export const getSimilarMovies = createAsyncThunk(
 );
 
 
+//Get Reviews
+
+
+
 // SLICE details, images, videos
 export const movie = createSlice({
     name: "movie",
