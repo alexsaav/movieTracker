@@ -3,10 +3,12 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { searchMovies } from '../Movies/moviesSlice';
 import SearchBar from '../../components/SearchBar/SearchBar';
-import { Box, Container } from '@mui/material';
-import Toolbar from '@mui/material/Toolbar';
 import PopularMovies from '../Movies/PopularMovies';
 import TopRatedMovies from '../Movies/TopRatedMovies';
+import UpcomingMovies from '../Movies/UpcomingMovies';
+import { Box } from '@mui/material';
+import Toolbar from '@mui/material/Toolbar';
+import MoviesInTheatres from '../Movies/MoviesInTheatres';
 
 
  const Home = () => {
@@ -37,6 +39,10 @@ import TopRatedMovies from '../Movies/TopRatedMovies';
             <PopularMovies />
             <Toolbar />
             <TopRatedMovies />
+            <Toolbar />
+            <UpcomingMovies />
+            <Toolbar />
+            <MoviesInTheatres />
         </Box>
     )
 }

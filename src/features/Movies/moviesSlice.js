@@ -54,6 +54,16 @@ export const getLatestMovies = createAsyncThunk(
 
         if(response.ok) {
             const latestMovies = await response.json();
+            latestMovies.results.sort((a, b) => {
+                const aDate = a.release_date ?? a.first_air_date;
+                const bDate = b.release_date ?? b.first_air_date;
+                if (!aDate) return 1;
+                if (!bDate) return -1
+               
+                var dateA = new Date(aDate);
+                var dateB = new Date(bDate);
+                return dateB - dateA;  
+            })
             return latestMovies;
         }
 
@@ -78,6 +88,16 @@ export const getPopularMovies = createAsyncThunk(
 
         if(response.ok) {
             const popularMovies = await response.json();
+            popularMovies.results.sort((a, b) => {
+                const aDate = a.release_date ?? a.first_air_date;
+                const bDate = b.release_date ?? b.first_air_date;
+                if (!aDate) return 1;
+                if (!bDate) return -1
+               
+                var dateA = new Date(aDate);
+                var dateB = new Date(bDate);
+                return dateB - dateA;  
+            })
             return popularMovies;
         }
 
@@ -108,11 +128,78 @@ export const getTopRatedMovies = createAsyncThunk(
     }
 );
 
+//GET UPCOMING MOVIES
+export const getUpcomingMovies = createAsyncThunk(
+    "movies/getUpcomingMovies",
+
+    async(page = 1) => {
+        const upcomingMoviesEndpoint = "/movie/upcoming";
+
+        const urlToFetch = new URL(`${tmdbBaseUrl}${upcomingMoviesEndpoint}`);
+
+        //query params
+        urlToFetch.searchParams.append("api_key", tmdbKey)
+        urlToFetch.searchParams.append("language", "en-US")
+        urlToFetch.searchParams.append("page", page);
+
+        const response = await fetch(urlToFetch);
+
+        if(response.ok) {
+            const upcomingMovies = await response.json();
+
+            upcomingMovies.results.sort((a, b) => {
+                const aDate = a.release_date ?? a.first_air_date;
+                const bDate = b.release_date ?? b.first_air_date;
+                if (!aDate) return 1;
+                if (!bDate) return -1
+               
+                var dateA = new Date(aDate);
+                var dateB = new Date(bDate);
+                return dateB - dateA;  
+            })
+
+            return upcomingMovies;
+        }
+
+    }
+);
 
 //GET NOW PLAYING MOVIES
+export const getMoviesInTheatres = createAsyncThunk(
+    "movies/getMoviesInTheatres",
 
+    async(page = 1) => {
+        const moviesInTheatresEndpoint = "/movie/now_playing";
 
-//GET UPCOMING MOVIES
+        const urlToFetch = new URL(`${tmdbBaseUrl}${moviesInTheatresEndpoint}`);
+
+        //query params
+        urlToFetch.searchParams.append("api_key", tmdbKey)
+        urlToFetch.searchParams.append("language", "en-US")
+        urlToFetch.searchParams.append("page", page);
+
+        const response = await fetch(urlToFetch);
+
+        if(response.ok) {
+            const moviesInTheatres = await response.json();
+
+            moviesInTheatres.results.sort((a, b) => {
+                const aDate = a.release_date ?? a.first_air_date;
+                const bDate = b.release_date ?? b.first_air_date;
+                if (!aDate) return 1;
+                if (!bDate) return -1
+               
+                var dateA = new Date(aDate);
+                var dateB = new Date(bDate);
+                return dateB - dateA;  
+            })
+
+            return moviesInTheatres;
+        }
+
+    }
+);
+
 //GET RELEASE DATES 
 //GET RECOMMENDATIONS
 //Get Changes
@@ -137,6 +224,14 @@ export const moviesSlice = createSlice({
         topRatedMovies: {
             page: 1,
             results: []
+        },
+        upcomingMovies: {
+            page: 1,
+            results: []
+        },
+        moviesInTheatres: {
+            page: 1,
+            results: []
         }
     },
     extraReducers: {
@@ -148,6 +243,12 @@ export const moviesSlice = createSlice({
         },
         [getTopRatedMovies.fulfilled]: (state, action) => {
             state.topRatedMovies = action.payload;
+        },
+        [getUpcomingMovies.fulfilled]: (state, action) => {
+            state.upcomingMovies = action.payload;
+        },
+        [getMoviesInTheatres.fulfilled]: (state, action) => {
+            state.moviesInTheatres = action.payload;
         }
     }
 });
@@ -157,6 +258,8 @@ export const selectSearchMovies = state => state.movies.movies;
 //export const selectLatestMovies = state => state.movies.latestMovies;
 export const selectPopularMovies = state => state.movies.popularMovies;
 export const selectTopRatedMovies = state => state.movies.topRatedMovies;
+export const selectUpcomingMovies = state => state.movies.upcomingMovies;
+export const selectMoviesInTheatres = state => state.movies.moviesInTheatres;
 
 //REDUCER
 export default moviesSlice.reducer;
