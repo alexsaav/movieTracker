@@ -1,33 +1,36 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
-import { getPopularMovies, selectPopularMovies } from "./moviesSlice"
+import { getTopRatedMovies, selectTopRatedMovies } from "./moviesSlice"
 import { scrollTopWin } from '../util/helperFunctions';
 import Grid from "@mui/material/Unstable_Grid2/Grid2"
 import Box from "@mui/material/Box"
 import Card from "@mui/material/Card"
 import CardContent from '@mui/material/CardContent';
-import { CardActionArea } from '@mui/material';
 import { CardMedia, Typography } from "@mui/material"
+import { CardActionArea } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 
-const PopularMovies = () => {
+
+const TopRatedMovies = () => {
+    const [page, setPage] = useState(1);
     const dispatch = useDispatch();
-    const popularMovies = useSelector(selectPopularMovies);
     const navigate = useNavigate();
-    const popularMoviesResults = popularMovies.results;
+    const topRatedMovies = useSelector(selectTopRatedMovies);
+    const topRatedMoviesResults = topRatedMovies.results;
+    console.log(topRatedMoviesResults)
 
     useEffect(() => {
-        dispatch(getPopularMovies())
-    }, [dispatch])
+        dispatch(getTopRatedMovies(page))
+    }, [dispatch, page])
 
     return (
         <section sx={{padding: "30px 0", display: "block"}}>
-            <Typography variant="h2" sx={{fontSize: "1.5rem", fontWeight: "bold"}}>Latest Movies</Typography>
+            <Typography variant="h2" sx={{fontSize: "1.5rem", fontWeight: "bold"}}>Top Rated Movies</Typography>
 
             <Box sx={{ margin: "30px 0", overflowY: "hidden", overflowX: "scroll"}}>
                 <Grid container wrap="nowrap" spacing={20} columns={6}>
-                    {popularMoviesResults.map(movie => {
+                    {topRatedMoviesResults.map(movie => {
                         const { id, title, original_title, poster_path, backdrop_path, vote_average, release_date } = movie;
                         const posterUrl = `https://image.tmdb.org/t/p/original${poster_path}`;
                         const date = new Date(release_date);
@@ -79,4 +82,4 @@ const PopularMovies = () => {
     )
 }
 
-export default PopularMovies
+export default TopRatedMovies

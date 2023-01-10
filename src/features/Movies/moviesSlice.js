@@ -78,17 +78,40 @@ export const getPopularMovies = createAsyncThunk(
 
         if(response.ok) {
             const popularMovies = await response.json();
-            console.log(popularMovies)
             return popularMovies;
         }
 
     }
 );
 
+//GET TOP RATED MOVIES
+export const getTopRatedMovies = createAsyncThunk(
+    "movies/getTopRatedMovies",
+
+    async(page = 1) => {
+        const topRatedMoviesEndpoint = "/movie/top_rated";
+
+        const urlToFetch = new URL(`${tmdbBaseUrl}${topRatedMoviesEndpoint}`);
+
+        //query params
+        urlToFetch.searchParams.append("api_key", tmdbKey)
+        urlToFetch.searchParams.append("language", "en-US")
+        urlToFetch.searchParams.append("page", page);
+
+        const response = await fetch(urlToFetch);
+
+        if(response.ok) {
+            const topRatedMovies = await response.json();
+            return topRatedMovies;
+        }
+
+    }
+);
+
+
 //GET NOW PLAYING MOVIES
 
 
-//GET TOP RATED MOVIES
 //GET UPCOMING MOVIES
 //GET RELEASE DATES 
 //GET RECOMMENDATIONS
@@ -110,6 +133,10 @@ export const moviesSlice = createSlice({
         popularMovies: {
             page: 1,
             results: []
+        },
+        topRatedMovies: {
+            page: 1,
+            results: []
         }
     },
     extraReducers: {
@@ -119,6 +146,9 @@ export const moviesSlice = createSlice({
         [getPopularMovies.fulfilled]: (state, action) => {
             state.popularMovies = action.payload;
         },
+        [getTopRatedMovies.fulfilled]: (state, action) => {
+            state.topRatedMovies = action.payload;
+        }
     }
 });
 
@@ -126,6 +156,7 @@ export const moviesSlice = createSlice({
 export const selectSearchMovies = state => state.movies.movies;
 //export const selectLatestMovies = state => state.movies.latestMovies;
 export const selectPopularMovies = state => state.movies.popularMovies;
+export const selectTopRatedMovies = state => state.movies.topRatedMovies;
 
 //REDUCER
 export default moviesSlice.reducer;

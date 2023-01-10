@@ -6,6 +6,7 @@ import SearchBar from '../../components/SearchBar/SearchBar';
 import { Box, Container } from '@mui/material';
 import Toolbar from '@mui/material/Toolbar';
 import PopularMovies from '../Movies/PopularMovies';
+import TopRatedMovies from '../Movies/TopRatedMovies';
 
 
  const Home = () => {
@@ -34,6 +35,8 @@ import PopularMovies from '../Movies/PopularMovies';
             <SearchBar onSubmit={handleSearch} setSearchText={handlePageReset}/> 
             <Toolbar />
             <PopularMovies />
+            <Toolbar />
+            <TopRatedMovies />
         </Box>
     )
 }
