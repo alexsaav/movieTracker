@@ -127,10 +127,27 @@ export const getSimilarMovies = createAsyncThunk(
     }
 );
 
+//GET RELEASE DATES 
+export const getMovieReleaseDates = createAsyncThunk(
+    "movie/getMovieReleaseDates",
 
-//Get Reviews
+    async(movieId) => {
+        //Get Similar Movies Endpoint
+        const releaseDatesEndpoint = `/movie/${movieId}/release_dates`;
 
+        const urlToFetch = new URL(`${tmdbBaseUrl}${releaseDatesEndpoint}`);
 
+        //query params
+        urlToFetch.searchParams.append("api_key", tmdbKey);
+
+        const response = await fetch(urlToFetch);
+
+        if(response.ok) {
+            const releaseDates = await response.json();
+            return releaseDates;
+        }
+    }
+);
 
 // SLICE details, images, videos
 export const movie = createSlice({
@@ -156,6 +173,9 @@ export const movie = createSlice({
         },
         recommendations: {
             results: []
+        },
+        releaseDates: {
+
         }
     },
     extraReducers: {
@@ -173,7 +193,10 @@ export const movie = createSlice({
         }, 
         [getRecommendations.fulfilled]: (state, action) => {
             state.recommendations = action.payload.recommendations;
-        }
+        },
+        [getMovieReleaseDates.fulfilled]: (state, action) => {
+            state.releaseDates = action.payload;
+        },
     }
 });
 
@@ -184,6 +207,7 @@ export const selectImages = state => state.movie.images;
 export const selectVideos = state => state.movie.videos;
 export const selectSimilarMovies = state => state.movie.similarMovies;
 export const selectRecommendations = state => state.movie.recommendations;
+export const selectReleaseDates = state => state.movie.releaseDates;
 
 //REDUCER
 export default movie.reducer;

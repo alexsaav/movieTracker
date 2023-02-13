@@ -11,6 +11,7 @@ const MovieCard2 = ({movie}) => {
     const { id, title, original_title, poster_path, backdrop_path, vote_average, release_date } = movie;
     const posterUrl = `https://image.tmdb.org/t/p/original${poster_path}`;
     //const posterUrl = `https://image.tmdb.org/t/p/original${backdrop_path}`;
+    const averageVotes = vote_average.toFixed(1);
     const date = new Date(release_date);
                         let formattedDate = new Intl.DateTimeFormat("en-US", {
                                                 year: "numeric",
@@ -33,7 +34,7 @@ const MovieCard2 = ({movie}) => {
                     />
                     <CardContent sx={{display: "flex", flexDirection: "column", alignContent: "flex-start", flexWrap: "wrap"}}>
                         <Avatar sx={{ background: 'rgba(0, 0, 0, 0.5)', position: "absolute", top: "5px", left: "10px" }}>
-                            <Typography sx={{fontWeight: "bold"}}>{vote_average}</Typography>
+                            <Typography sx={{fontWeight: "bold"}}>{averageVotes}</Typography>
                         </Avatar>
                         <Typography 
                             variant="h2" 

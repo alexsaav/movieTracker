@@ -9,6 +9,7 @@ import UpcomingMovies from '../Movies/UpcomingMovies';
 import { Box } from '@mui/material';
 import Toolbar from '@mui/material/Toolbar';
 import MoviesInTheatres from '../Movies/MoviesInTheatres';
+import TrendingMovies from '../Movies/TrendingMovies';
 
 
  const Home = () => {
@@ -36,13 +37,15 @@ import MoviesInTheatres from '../Movies/MoviesInTheatres';
         <Box sx={{margin: '50px 50px'}}>
             <SearchBar onSubmit={handleSearch} setSearchText={handlePageReset}/> 
             <Toolbar />
-            <PopularMovies />
+            <TrendingMovies />
             <Toolbar />
-            <TopRatedMovies />
-            <Toolbar />
+            {/* <PopularMovies />
+            <Toolbar /> */}
+            {/* <TopRatedMovies />
+            <Toolbar /> */}
             <UpcomingMovies />
             <Toolbar />
-            <MoviesInTheatres />
+            <MoviesInTheatres />   
         </Box>
     )
 }

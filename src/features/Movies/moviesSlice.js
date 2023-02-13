@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { format, add } from "date-fns";
 
 
 //TMDB API
@@ -37,40 +38,7 @@ export const searchMovies = createAsyncThunk(
     }
 );
 
-//GET LATEST MOVIE
-export const getLatestMovies = createAsyncThunk(
-    "movies/getLastestMovies",
-
-    async() => {
-        const latestMoviesEndpoint = "/movie/latest";
-
-        const urlToFetch = new URL(`${tmdbBaseUrl}${latestMoviesEndpoint}`);
-
-        //query params
-        urlToFetch.searchParams.append("api_key", tmdbKey)
-        urlToFetch.searchParams.append("language", "en-US")
-
-        const response = await fetch(urlToFetch);
-
-        if(response.ok) {
-            const latestMovies = await response.json();
-            latestMovies.results.sort((a, b) => {
-                const aDate = a.release_date ?? a.first_air_date;
-                const bDate = b.release_date ?? b.first_air_date;
-                if (!aDate) return 1;
-                if (!bDate) return -1
-               
-                var dateA = new Date(aDate);
-                var dateB = new Date(bDate);
-                return dateB - dateA;  
-            })
-            return latestMovies;
-        }
-
-    }
-);
-
-//GET POPULAR MOVIE
+//GET POPULAR MOVIES
 export const getPopularMovies = createAsyncThunk(
     "movies/getPopularMovies",
 
@@ -141,6 +109,7 @@ export const getUpcomingMovies = createAsyncThunk(
         urlToFetch.searchParams.append("api_key", tmdbKey)
         urlToFetch.searchParams.append("language", "en-US")
         urlToFetch.searchParams.append("page", page);
+        urlToFetch.searchParams.append("ISO3166-1", "UK");
 
         const response = await fetch(urlToFetch);
 
@@ -164,47 +133,60 @@ export const getUpcomingMovies = createAsyncThunk(
     }
 );
 
-//GET NOW PLAYING MOVIES
+//GET TRENDING MOVIES
+export const getTrendingMovies = createAsyncThunk(
+    "movies/getTrendingMovies",
+
+    async () => {
+        const trendingMoviesEndpoint = `/trending/movie/week`;
+
+        const urlToFetch = new URL(`${tmdbBaseUrl}${trendingMoviesEndpoint}`);
+
+        //query params
+        urlToFetch.searchParams.append("api_key", tmdbKey)
+
+        const response = await fetch(urlToFetch);
+
+        if(response.ok) {
+            const trendingMovies = await response.json();
+            return trendingMovies;
+        }
+    }
+);
+
+
+//GET MOVIES IN THEATER
 export const getMoviesInTheatres = createAsyncThunk(
     "movies/getMoviesInTheatres",
 
     async(page = 1) => {
-        const moviesInTheatresEndpoint = "/movie/now_playing";
+        const moviesInTheatresEndpoint = "/discover/movie";
 
         const urlToFetch = new URL(`${tmdbBaseUrl}${moviesInTheatresEndpoint}`);
 
+        const currentDate = format(new Date(), 'yyyy-MM-dd');
+        const addDate = add(new Date(), {days: 15} ); 
+        const nextDate = format(addDate,'yyyy-MM-dd'); 
+
         //query params
         urlToFetch.searchParams.append("api_key", tmdbKey)
-        urlToFetch.searchParams.append("language", "en-US")
+        urlToFetch.searchParams.append("language", "en")
+        urlToFetch.searchParams.append("region", "US");
+        urlToFetch.searchParams.append("sort_by", "popularity.desc");
+        urlToFetch.searchParams.append("include_adult", "false");
         urlToFetch.searchParams.append("page", page);
+        urlToFetch.searchParams.append("release_date.gte", currentDate); //modifidy with current date
+        urlToFetch.searchParams.append("release_date.lte", nextDate);
+        urlToFetch.searchParams.append("with_release_type", "3");
 
         const response = await fetch(urlToFetch);
 
         if(response.ok) {
             const moviesInTheatres = await response.json();
-
-            moviesInTheatres.results.sort((a, b) => {
-                const aDate = a.release_date ?? a.first_air_date;
-                const bDate = b.release_date ?? b.first_air_date;
-                if (!aDate) return 1;
-                if (!bDate) return -1
-               
-                var dateA = new Date(aDate);
-                var dateB = new Date(bDate);
-                return dateB - dateA;  
-            })
-
             return moviesInTheatres;
         }
-
     }
 );
-
-//GET RELEASE DATES 
-//GET RECOMMENDATIONS
-//Get Changes
-//Get Release Dates
-//Get Trending /trending/{media_type}/{time_window}
 
 
 
@@ -232,7 +214,11 @@ export const moviesSlice = createSlice({
         moviesInTheatres: {
             page: 1,
             results: []
-        }
+        },
+        trendingMovies: {
+            page: 1,
+            results: []
+        },
     },
     extraReducers: {
         [searchMovies.fulfilled]: (state, action) => {
@@ -249,17 +235,20 @@ export const moviesSlice = createSlice({
         },
         [getMoviesInTheatres.fulfilled]: (state, action) => {
             state.moviesInTheatres = action.payload;
-        }
+        },
+        [getTrendingMovies.fulfilled]: (state, action) => {
+            state.trendingMovies = action.payload;
+        },
     }
 });
 
 //SELECTORS
 export const selectSearchMovies = state => state.movies.movies;
-//export const selectLatestMovies = state => state.movies.latestMovies;
 export const selectPopularMovies = state => state.movies.popularMovies;
 export const selectTopRatedMovies = state => state.movies.topRatedMovies;
 export const selectUpcomingMovies = state => state.movies.upcomingMovies;
 export const selectMoviesInTheatres = state => state.movies.moviesInTheatres;
+export const selectTrendingMovies = state => state.movies.trendingMovies;
 
 //REDUCER
 export default moviesSlice.reducer;

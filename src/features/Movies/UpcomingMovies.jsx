@@ -11,7 +11,6 @@ const UpcomingMovies = () => {
     const dispatch = useDispatch();
     const upcomingMovies = useSelector(selectUpcomingMovies);
     const upcomingMoviesResults = upcomingMovies.results;
-    console.log(upcomingMovies)
 
     useEffect(() => {
         dispatch(getUpcomingMovies(page))
