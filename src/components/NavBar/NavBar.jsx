@@ -1,56 +1,103 @@
-import * as React from 'react';
-import { NavLink } from "react-router-dom"
+import { useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+import ButtonMenuList from '../ButtonMenuList/ButtonMenuList';
+import NestedList from './NestedList';
+
 
 const drawerWidth = 240;
 
+const menuItems = [
+    {
+        title: "Home",
+        url: "/"
+    },
+    {
+        title: "Movies",
+        items: [
+            {
+                name: "Popular",
+                url: "",
+            },
+            {
+                name: "In Theatre",
+                url: ""
+            },
+            {
+                name: "Upcoming",
+                url: ""
+            },
+            {
+                name: "Top Rated",
+                url: ""
+            }
+        ]
+    },
+    {
+        title: "TV Series",
+        items: [
+            {
+                name: "Popular",
+                url: "",
+            },
+            {
+                name: "Airing Today",
+                url: ""
+            },
+            {
+                name: "On TV",
+                url: ""
+            },
+            {
+                name: "Top Rated",
+                url: ""
+            }
+        ]
+    },
+    {   
+        title: "People",
+        items: [
+            {
+                name: "Popular People",
+                url: ""
+            }
+        ]
+    }
+];
+
 const NavBar = (props) => {
     const { window } = props;
-    const [mobileOpen, setMobileOpen] = React.useState(false);
+    const [mobileOpen, setMobileOpen] = useState(false);
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
-
+    
     const drawer = (
-        <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-            <Typography variant="h6" sx={{ my: 2 }}>
+        <Box sx={{ textAlign: 'center' }}>
+            <Typography variant="h6" sx={{ my: 2 }} onClick={handleDrawerToggle}>
                 MovieTracker
             </Typography>
             <Divider />
-            <List>
-                <ListItem disablePadding>
-                    <ListItemButton sx={{ textAlign: 'center' }}>
-                        <ListItemText primary='Home' />
-                    </ListItemButton>
-                </ListItem>
-                <ListItem>
-                    <ListItemButton sx={{ textAlign: 'center' }}>
-                        <ListItemText primary='Movies' />
-                    </ListItemButton>
-                </ListItem>
-                <ListItem>
-                    <ListItemButton sx={{ textAlign: 'center' }}>
-                        <ListItemText primary='Series' />
-                    </ListItemButton>
-                </ListItem>
+            <List sx={{display: "flex", flexDirection: "column"}}>
+                {menuItems.map((menuItem) => {
+                    return (
+                        <NestedList menuItem={menuItem} />
+                    )
+                })}
             </List>
         </Box>
     );
     
     const container = window !== undefined ? () => window().document.body : undefined;
+
 
     return (
         <>
@@ -73,9 +120,7 @@ const NavBar = (props) => {
                         MovieTracker
                     </Typography>
                     <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-                        <NavLink to="/"><Button style={{ color: '#fff' }}>Home</Button></NavLink>
-                        <NavLink to="/"><Button sx={{ color: '#fff' }}>Movies</Button></NavLink>
-                        <NavLink to="/series"><Button sx={{ color: '#fff' }}>Series</Button></NavLink>
+                        <ButtonMenuList menuItems={menuItems}/>
                     </Box>
                 </Toolbar>
             </AppBar>

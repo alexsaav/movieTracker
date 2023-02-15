@@ -11,9 +11,7 @@ const MoviesInTheatres = () => {
     const dispatch = useDispatch();
     const moviesInTheatres = useSelector(selectMoviesInTheatres);
     const moviesInTheatresResults = moviesInTheatres.results;
-
-    console.log(moviesInTheatresResults)
-
+    
     useEffect(() => {
         dispatch(getMoviesInTheatres(page))
     }, [dispatch, page])

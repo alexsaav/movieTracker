@@ -109,7 +109,7 @@ export const getUpcomingMovies = createAsyncThunk(
         urlToFetch.searchParams.append("api_key", tmdbKey)
         urlToFetch.searchParams.append("language", "en-US")
         urlToFetch.searchParams.append("page", page);
-        urlToFetch.searchParams.append("ISO3166-1", "UK");
+        urlToFetch.searchParams.append("region", "GB");
 
         const response = await fetch(urlToFetch);
 
@@ -126,7 +126,6 @@ export const getUpcomingMovies = createAsyncThunk(
                 var dateB = new Date(bDate);
                 return dateB - dateA;  
             })
-
             return upcomingMovies;
         }
 
@@ -171,11 +170,11 @@ export const getMoviesInTheatres = createAsyncThunk(
         //query params
         urlToFetch.searchParams.append("api_key", tmdbKey)
         urlToFetch.searchParams.append("language", "en")
-        urlToFetch.searchParams.append("region", "US");
+        urlToFetch.searchParams.append("region", "GB");
         urlToFetch.searchParams.append("sort_by", "popularity.desc");
         urlToFetch.searchParams.append("include_adult", "false");
         urlToFetch.searchParams.append("page", page);
-        urlToFetch.searchParams.append("release_date.gte", currentDate); //modifidy with current date
+        urlToFetch.searchParams.append("release_date.gte", currentDate);
         urlToFetch.searchParams.append("release_date.lte", nextDate);
         urlToFetch.searchParams.append("with_release_type", "3");
 

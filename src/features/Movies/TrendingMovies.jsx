@@ -10,7 +10,6 @@ const TrendingMovies = () => {
     const dispatch = useDispatch();
     const trendingMovies = useSelector(selectTrendingMovies);
     const trendingMoviesResult = trendingMovies.results;
-    console.log(trendingMoviesResult)
 
     useEffect(() => {
         dispatch(getTrendingMovies())
