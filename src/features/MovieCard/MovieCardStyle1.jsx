@@ -1,12 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import Grid from '@mui/material/Unstable_Grid2';
-
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 
+//Movie Card for search
 
-const MovieCard = ({ movie }) => {
+const MovieCardStyle1 = ({ movie }) => {
     const { id, title, poster_path, backdrop_path, vote_average, release_date } = movie;
     const moviePosterUrl = `https://image.tmdb.org/t/p/original${poster_path ?? backdrop_path}`;
 
@@ -31,4 +31,4 @@ const MovieCard = ({ movie }) => {
     )
 }
 
-export default MovieCard
+export default MovieCardStyle1

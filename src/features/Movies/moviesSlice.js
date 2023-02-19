@@ -43,32 +43,24 @@ export const getPopularMovies = createAsyncThunk(
     "movies/getPopularMovies",
 
     async(page = 1) => {
-        const popularMoviesEndpoint = "/movie/popular";
+        const popularMoviesEndpoint = "/discover/movie";
 
         const urlToFetch = new URL(`${tmdbBaseUrl}${popularMoviesEndpoint}`);
 
         //query params
         urlToFetch.searchParams.append("api_key", tmdbKey)
-        urlToFetch.searchParams.append("language", "en-US")
+        urlToFetch.searchParams.append("language", "en")
+        urlToFetch.searchParams.append("region", "GB");
+        urlToFetch.searchParams.append("sort_by", "popularity.desc");
+        urlToFetch.searchParams.append("include_adult", "false");
         urlToFetch.searchParams.append("page", page);
 
         const response = await fetch(urlToFetch);
 
         if(response.ok) {
             const popularMovies = await response.json();
-            popularMovies.results.sort((a, b) => {
-                const aDate = a.release_date ?? a.first_air_date;
-                const bDate = b.release_date ?? b.first_air_date;
-                if (!aDate) return 1;
-                if (!bDate) return -1
-               
-                var dateA = new Date(aDate);
-                var dateB = new Date(bDate);
-                return dateB - dateA;  
-            })
             return popularMovies;
         }
-
     }
 );
 

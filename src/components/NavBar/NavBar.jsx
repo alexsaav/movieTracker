@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import ButtonMenuList from './ButtonMenuList/ButtonMenuList'
+import NestedList from './NestedList';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
@@ -8,8 +11,6 @@ import List from '@mui/material/List';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import ButtonMenuList from '../ButtonMenuList/ButtonMenuList';
-import NestedList from './NestedList';
 
 
 const drawerWidth = 240;
@@ -24,19 +25,19 @@ const menuItems = [
         items: [
             {
                 name: "Popular",
-                url: "",
+                url: "/movies/popular",
             },
             {
                 name: "In Theatre",
-                url: ""
+                url: "/movies/in-theatre"
             },
             {
                 name: "Upcoming",
-                url: ""
+                url: "/movies/upcoming"
             },
             {
                 name: "Top Rated",
-                url: ""
+                url: "/movies/top-rated"
             }
         ]
     },
@@ -73,8 +74,9 @@ const menuItems = [
 ];
 
 const NavBar = (props) => {
-    const { window } = props;
     const [mobileOpen, setMobileOpen] = useState(false);
+    const navigate = useNavigate();
+    const { window } = props;
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
@@ -115,7 +117,8 @@ const NavBar = (props) => {
                     <Typography
                         variant="h6"
                         component="div"
-                        sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+                        onClick={() => navigate('/')}
+                        sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' }, cursor: "pointer" }}
                     >
                         MovieTracker
                     </Typography>

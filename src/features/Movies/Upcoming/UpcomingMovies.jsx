@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getUpcomingMovies, selectUpcomingMovies } from "./moviesSlice"
-import MovieCard2 from "../MovieCard/MovieCard2"
+import { getUpcomingMovies, selectUpcomingMovies } from "../moviesSlice"
+import MovieCard2 from "../../MovieCard/MovieCardStyle2"
 import Grid from "@mui/material/Unstable_Grid2/Grid2"
 import Box from "@mui/material/Box"
-import { Typography } from "@mui/material"
+import Typography from "@mui/material/Typography"
 
 const UpcomingMovies = () => {
     const [page, setPage] = useState(1);

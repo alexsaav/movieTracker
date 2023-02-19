@@ -6,7 +6,9 @@ import { CardActionArea } from '@mui/material';
 import { CardMedia, Typography } from "@mui/material"
 import Avatar from '@mui/material/Avatar';
 
-const MovieCard2 = ({movie}) => {
+//Movie Card with score
+
+const MovieCardStyle3 = ({movie}) => {
     const navigate = useNavigate();
     const { id, title, original_title, poster_path, backdrop_path, vote_average, release_date } = movie;
     const posterUrl = `https://image.tmdb.org/t/p/original${poster_path}`;
@@ -22,14 +24,14 @@ const MovieCard2 = ({movie}) => {
     return (
         <Grid item xs={1} key={id}>
             <Card 
-                sx={{width: 150, minWidth: 150, borderRadius: 3, position: "relative", background: "transparent", boxShadow: "none"}}
+                sx={{width: "150", minWidth: 150, height: "100%", borderRadius: 2, position: "relative", display: "flex", flexWrap: "wrap", alignContent: "flex-start", overflow: "hidden" }}
             >
-                <CardActionArea>
+                <CardActionArea onClick={() => navigate(`/movie/${id}`)}>
                     <CardMedia 
                         component="img"
                         image={posterUrl}
                         alt={title}
-                        sx={{height: "calc(150px * 1.5)", borderRadius: "10px", boxShadow: "0 2px 8px rgb(0 0 0 / 10%)"}}
+                        sx={{height: "calc(150px * 1.5)", overflow: "hidden"}}
                         onClick={() => navigate(`/movie/${id}`)}
                     />
                     <CardContent sx={{display: "flex", flexDirection: "column", alignContent: "flex-start", flexWrap: "wrap"}}>
@@ -56,4 +58,4 @@ const MovieCard2 = ({movie}) => {
     );
 };
 
-export default MovieCard2;
+export default MovieCardStyle3;

@@ -3,13 +3,13 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { searchMovies } from '../Movies/moviesSlice';
 import SearchBar from '../../components/SearchBar/SearchBar';
-import PopularMovies from '../Movies/PopularMovies';
-import TopRatedMovies from '../Movies/TopRatedMovies';
-import UpcomingMovies from '../Movies/UpcomingMovies';
+import PopularMovies from '../Movies/Popular/TopPopularMovies';
+import TopRatedMovies from '../Movies/TopRated/TopRatedMovies';
+import UpcomingMovies from '../Movies/Upcoming/UpcomingMovies';
 import { Box } from '@mui/material';
 import Toolbar from '@mui/material/Toolbar';
-import MoviesInTheatres from '../Movies/MoviesInTheatres';
-import TrendingMovies from '../Movies/TrendingMovies';
+import MoviesInTheatres from '../Movies/InTheatre/MoviesInTheatres';
+import TrendingMovies from '../Movies/Trending/TrendingMovies';
 
 
  const Home = () => {
@@ -39,7 +39,7 @@ import TrendingMovies from '../Movies/TrendingMovies';
             <Toolbar />
             <TrendingMovies />
             <Toolbar />
-            {/* <PopularMovies />
+            {/* <TopPopularMovies />
             <Toolbar /> */}
             {/* <TopRatedMovies />
             <Toolbar /> */}
