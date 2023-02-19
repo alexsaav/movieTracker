@@ -3,10 +3,8 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { searchMovies } from '../Movies/moviesSlice';
 import SearchBar from '../../components/SearchBar/SearchBar';
-import PopularMovies from '../Movies/Popular/TopPopularMovies';
-import TopRatedMovies from '../Movies/TopRated/TopRatedMovies';
 import UpcomingMovies from '../Movies/Upcoming/UpcomingMovies';
-import { Box } from '@mui/material';
+import { Container } from '@mui/material';
 import Toolbar from '@mui/material/Toolbar';
 import MoviesInTheatres from '../Movies/InTheatre/MoviesInTheatres';
 import TrendingMovies from '../Movies/Trending/TrendingMovies';
@@ -34,7 +32,7 @@ import TrendingMovies from '../Movies/Trending/TrendingMovies';
       };
 
     return (
-        <Box sx={{margin: '50px 50px'}}>
+        <Container>
             <SearchBar onSubmit={handleSearch} setSearchText={handlePageReset}/> 
             <Toolbar />
             <TrendingMovies />
@@ -46,7 +44,7 @@ import TrendingMovies from '../Movies/Trending/TrendingMovies';
             <UpcomingMovies />
             <Toolbar />
             <MoviesInTheatres />   
-        </Box>
+        </Container>
     )
 }
 
