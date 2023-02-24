@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
@@ -47,7 +47,11 @@ const MenuItemButton = ({menuItem}) => {
                     }}
                 >
                     {items.map(item => {
-                        return <MenuItem onClick={() => navigate(item.url)}>{item.name}</MenuItem>
+                        return (
+                            <Link to={item.url} style={{color: "#fff", textDecoration: "none"}}>
+                                <MenuItem onClick={handleClose}>{item.name}</MenuItem>
+                            </Link>
+                        )
                     })}
                 </Menu>
             }

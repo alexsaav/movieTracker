@@ -8,8 +8,10 @@ import Person from '../features/People/Person';
 import Images from '../features/MovieMedia/Images';
 import Videos from '../features/MovieMedia/Videos';
 import PersonImages from '../features/People/PersonImages';
-import './App.css';
 import PopularMovies from '../features/Movies/Popular/PopularMovies';
+import UpcomingMovies from '../features/Movies/Upcoming/UpcomingMovies';
+import TopRatedMovies from '../features/Movies/TopRated/TopRatedMovies';
+import './App.css';
 
 function App() {
     return (
@@ -25,9 +27,8 @@ function App() {
                     <Route path='movie/:title/:id/videos' element={ <Videos /> } />
                     <Route path='/photos/:id/:name' element={ <PersonImages /> } />
                     <Route path='/movies/popular' element={ <PopularMovies /> } />
-                    <Route path='/movies/upcoming' />
-                    <Route path='/movies/now-playing' />
-                    <Route path='/movies/top-rated' />
+                    <Route path='/movies/upcoming' element={ <UpcomingMovies /> } />
+                    <Route path='/movies/top-rated' element={ <TopRatedMovies /> }/> 
                 </Route>
             </Routes>
         </Router>

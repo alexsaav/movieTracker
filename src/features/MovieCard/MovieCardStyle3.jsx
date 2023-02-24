@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { format } from "date-fns";
 import Grid from "@mui/material/Unstable_Grid2/Grid2"
 import Card from "@mui/material/Card"
 import CardContent from '@mui/material/CardContent';
@@ -14,17 +15,22 @@ const MovieCardStyle3 = ({movie}) => {
     const posterUrl = `https://image.tmdb.org/t/p/original${poster_path}`;
     //const posterUrl = `https://image.tmdb.org/t/p/original${backdrop_path}`;
     const averageVotes = vote_average.toFixed(1);
-    const date = new Date(release_date);
-                        let formattedDate = new Intl.DateTimeFormat("en-US", {
-                                                year: "numeric",
-                                                month: "short",
-                                                day: "2-digit",
-                                                }).format(date);
+    let formattedDate = format(new Date(release_date), 'PP');
 
     return (
         <Grid item xs={1} key={id}>
             <Card 
-                sx={{width: "150", minWidth: 150, height: "100%", borderRadius: 2, position: "relative", display: "flex", flexWrap: "wrap", alignContent: "flex-start", overflow: "hidden" }}
+                sx={{
+                    width: "150", 
+                    minWidth: 150, 
+                    height: "100%", 
+                    borderRadius: 2, 
+                    position: "relative", 
+                    display: "flex", 
+                    flexWrap: "wrap", 
+                    alignContent: "flex-start", 
+                    overflow: "hidden" 
+                }}
             >
                 <CardActionArea onClick={() => navigate(`/movie/${id}`)}>
                     <CardMedia 

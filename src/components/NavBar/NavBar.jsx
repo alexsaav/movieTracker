@@ -28,10 +28,6 @@ const menuItems = [
                 url: "/movies/popular",
             },
             {
-                name: "In Theatre",
-                url: "/movies/in-theatre"
-            },
-            {
                 name: "Upcoming",
                 url: "/movies/upcoming"
             },

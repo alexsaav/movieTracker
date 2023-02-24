@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getPopularMovies, selectPopularMovies } from "../moviesSlice"
-import PaginationComponent from "../../../components/Pagination/Pagination";
 import MovieCardList from "../MovieCardList";
+import PaginationComponent from "../../../components/Pagination/Pagination";
 
 
 const PopularMovies = () => {
@@ -19,7 +19,7 @@ const PopularMovies = () => {
 
     return (
         <>
-            <MovieCardList movieList={popularMoviesResults} listName="Popular Movies" />
+            <MovieCardList movieList={popularMoviesResults} title="Popular Movies" />
             <PaginationComponent 
                 totalPages={pages} 
                 setPage={setPage} 

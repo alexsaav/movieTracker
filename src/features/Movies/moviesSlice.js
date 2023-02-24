@@ -65,8 +65,8 @@ export const getPopularMovies = createAsyncThunk(
 );
 
 //GET TOP RATED MOVIES
-export const getTopRatedMovies = createAsyncThunk(
-    "movies/getTopRatedMovies",
+export const getTopRatedMovies2 = createAsyncThunk(
+    "movies/getTopRatedMovies2",
 
     async(page = 1) => {
         const topRatedMoviesEndpoint = "/movie/top_rated";
@@ -88,39 +88,61 @@ export const getTopRatedMovies = createAsyncThunk(
     }
 );
 
+export const getTopRatedMovies = createAsyncThunk(
+    "movies/getTopRatedMovies",
+
+    async(page = 1) => {
+        const getTopRatedMoviesEndpoint = "/discover/movie";
+
+        const urlToFetch = new URL(`${tmdbBaseUrl}${getTopRatedMoviesEndpoint}`);
+
+        //query params
+        urlToFetch.searchParams.append("api_key", tmdbKey)
+        urlToFetch.searchParams.append("language", "en")
+        urlToFetch.searchParams.append("region", "GB");
+        urlToFetch.searchParams.append("sort_by", "vote_count.desc");
+        urlToFetch.searchParams.append("include_adult", "false");
+        urlToFetch.searchParams.append("page", page);
+
+        const response = await fetch(urlToFetch);
+
+        if(response.ok) {
+            const getTopRatedMovies = await response.json();
+            return getTopRatedMovies;
+        }
+    }
+);
+
 //GET UPCOMING MOVIES
 export const getUpcomingMovies = createAsyncThunk(
     "movies/getUpcomingMovies",
 
     async(page = 1) => {
-        const upcomingMoviesEndpoint = "/movie/upcoming";
+        const upcomingMoviesEndpoint = "/discover/movie";
 
         const urlToFetch = new URL(`${tmdbBaseUrl}${upcomingMoviesEndpoint}`);
 
+        const currentDate = format(new Date(), 'yyyy-MM-dd');
+        const addDate = add(new Date(), {years: 1} ); 
+        const nextDate = format(addDate,'yyyy-MM-dd'); 
+
         //query params
         urlToFetch.searchParams.append("api_key", tmdbKey)
-        urlToFetch.searchParams.append("language", "en-US")
-        urlToFetch.searchParams.append("page", page);
+        urlToFetch.searchParams.append("language", "en")
         urlToFetch.searchParams.append("region", "GB");
+        urlToFetch.searchParams.append("sort_by", "release_date.asc");
+        urlToFetch.searchParams.append("include_adult", "false");
+        urlToFetch.searchParams.append("page", page);
+        urlToFetch.searchParams.append("release_date.gte", currentDate);
+        urlToFetch.searchParams.append("release_date.lte", nextDate);
+        urlToFetch.searchParams.append("with_release_type", "3");
 
         const response = await fetch(urlToFetch);
 
         if(response.ok) {
             const upcomingMovies = await response.json();
-
-            upcomingMovies.results.sort((a, b) => {
-                const aDate = a.release_date ?? a.first_air_date;
-                const bDate = b.release_date ?? b.first_air_date;
-                if (!aDate) return 1;
-                if (!bDate) return -1
-               
-                var dateA = new Date(aDate);
-                var dateB = new Date(bDate);
-                return dateB - dateA;  
-            })
             return upcomingMovies;
         }
-
     }
 );
 
@@ -146,7 +168,7 @@ export const getTrendingMovies = createAsyncThunk(
 );
 
 
-//GET MOVIES IN THEATER
+//GET MOVIES IN THEATRES
 export const getMoviesInTheatres = createAsyncThunk(
     "movies/getMoviesInTheatres",
 
@@ -156,7 +178,7 @@ export const getMoviesInTheatres = createAsyncThunk(
         const urlToFetch = new URL(`${tmdbBaseUrl}${moviesInTheatresEndpoint}`);
 
         const currentDate = format(new Date(), 'yyyy-MM-dd');
-        const addDate = add(new Date(), {days: 15} ); 
+        const addDate = add(new Date(), {days: 30} ); 
         const nextDate = format(addDate,'yyyy-MM-dd'); 
 
         //query params
