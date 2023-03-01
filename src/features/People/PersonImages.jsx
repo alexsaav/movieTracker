@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { getPersonImages, getPersonTaggedImages, selectPersonImages, selectPersonTaggedImages } from "./personSlice"
 import { useNavigate, useParams } from "react-router-dom"
 import { v4 as uuidv4 } from 'uuid';
-import MovieHeader from "../Movie/MovieHeader"
 import Grid from "@mui/material/Unstable_Grid2/Grid2"
 import Typography from "@mui/material/Typography"
 import Box from "@mui/system/Box"

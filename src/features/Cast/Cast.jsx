@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { scrollTopWin } from '../util/helperFunctions';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
+import { Box } from '@mui/system';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -14,14 +14,13 @@ import Avatar from '@mui/material/Avatar';
 
 
 
-
 const Cast = ({ movieCast }) => {
     const navigate = useNavigate();
 
     return (
         <Container>
             <Typography variant='h5'>Cast ({movieCast.length-1})</Typography>
-            <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }} >
+            <Box>
                 <List dense sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', display: 'flex', flexDirection: 'column' }}>
                 {movieCast.map(cast => {
                      const { name, character, id, profile_path } = cast;
@@ -51,7 +50,7 @@ const Cast = ({ movieCast }) => {
                     }
                 )}
                 </List>
-            </Grid> 
+            </Box> 
         </Container>
     )
 }

@@ -2,7 +2,6 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getMovieImages, selectImages } from "../Movie/movieSlice"
 import { Link } from "react-router-dom"
-import Grid from "@mui/material/Unstable_Grid2/Grid2"
 import {Typography} from "@mui/material"
 import { Box } from "@mui/system"
 import { Card } from '@mui/material';
@@ -26,30 +25,36 @@ const TopImages = ({movieId, title}) => {
     }
 
     return (
-        <Box sx={{padding: "30px 0"}}>
+        <section style={{padding: "30px 0"}}>
             <Typography variant="h5">Images</Typography>
-            <Box sx={{margin: "30px 0", overflowY: "hidden"}}>
-                <Grid container wrap="nowrap" spacing={63} sx={{ overflowX: 'auto'}} columns={6} >
-                        {backdrops.map((poster) => {
-                            const { file_path } = poster;
-                            const imageUrl = `https://image.tmdb.org/t/p/original${file_path}`;
+            <Box sx={{ 
+                    display: "flex", 
+                    flexDirection: "row",  
+                    width: "100%", 
+                    p: "30px 0", 
+                    overflowX: "scroll", 
+                    overflowY: "hidden"
+                    }}
+            >
+                {backdrops.map((poster) => {
+                    const { file_path } = poster;
+                    const imageUrl = `https://image.tmdb.org/t/p/original${file_path}`;
 
-                            return (
-                                <Grid item xs={4} key={file_path} >
-                                    <Card 
-                                        sx={{width: 500, height: '100%'}}
-                                    >
-                                        <CardMedia 
-                                            component="img"
-                                            image={imageUrl}
-                                        />
-                                    </Card>
-                                </Grid>
-                            )
-                        })}
-                </Grid>
+                    return (
+                        <Box sx={{p: "0 5px", maxWidth: "400px"}}>
+                            <Card key={file_path}>
+                                <CardMedia 
+                                    component="img"
+                                    image={imageUrl}
+                                    sx={{width: "450px", height: "250px"}}
+                                />
+                            </Card>
+                        </Box>
+                    )
+                })}
             </Box>
-            <Box sx={{mt: 4}}>
+
+            <Box>
                 <Link 
                     to={`/movie/${movieId}/images`} 
                     onClick={scrollTopWin} 
@@ -58,7 +63,7 @@ const TopImages = ({movieId, title}) => {
                     <Typography variant="button">View More</Typography>
                 </Link>
             </Box>
-        </Box>
+        </section>
     )
 }
 

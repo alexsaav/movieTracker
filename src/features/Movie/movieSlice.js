@@ -96,6 +96,7 @@ export const getRecommendations = createAsyncThunk(
 
         if(response.ok) {
             const recommendations = await response.json();
+            console.log(recommendations)
             return { recommendations };
         }
     }

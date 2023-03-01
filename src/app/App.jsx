@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from '../components/Layout/Layout';
-import Movies from '../features/Movies/Movies';
+import SearchResultMovies from '../features/Movies/SearchResultMovies';
 import Home from '../features/Home/Home'
 import Movie from '../features/Movie/Movie';
 import MovieCredits from '../features/MovieCredits/MovieCredits';
@@ -19,7 +19,7 @@ function App() {
             <Routes>
                 <Route path='/' element={<Layout />}>
                     <Route index element={<Home />} />
-                    <Route path='/search' element={<Movies />} />
+                    <Route path='/search' element={<SearchResultMovies />} />
                     <Route path='/movie/:id' element={ <Movie /> } />
                     <Route path='movie/:id/cast' element={ <MovieCredits /> } />
                     <Route path='/person/:id/:name' element={ <Person /> } />

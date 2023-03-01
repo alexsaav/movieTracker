@@ -1,11 +1,10 @@
 import React from 'react'
 import { useEffect } from 'react'
-import { Link, useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCombinedCredits, selectCombinedCredits } from './personSlice'
 import { scrollTopWin } from '../util/helperFunctions'
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 import Divider from "@mui/material/Divider";
 import List from '@mui/material/List';
@@ -37,11 +36,9 @@ const CombinedCredits = () => {
         departments[departmentGroup].push(crewJob);
    });
 
-    console.log(combinedCredits)
-
     return (
         <>
-            <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }} sx={{flexDirection: "column", margin: '50px 50px'}}>
+            <Box sx={{margin: '50px 50px'}}>
                 <Typography variant="h2" sx={{fontSize: "2rem", fontWeight: "bold", pb: "30px"}}>Filmography</Typography>
                 <Typography variant="h2" sx={{fontSize: "1.5rem", fontWeight: "bold"}}>Acting</Typography>
                 <List dense sx={{ width: '100%', bgcolor: 'background.paper', display: 'flex', flexDirection: 'column', pt: "30px" }}>
@@ -132,7 +129,7 @@ const CombinedCredits = () => {
                         </List>                
                     )
                 })}
-            </Grid>
+            </Box>
         </>
     )
 }

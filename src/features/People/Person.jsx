@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom"
 import { getPersonDetailsAsync, selectPersonDetails } from "./personSlice"
 import CombinedCredits from "./CombinedCredits";
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 import PersonTopImages from "./PersonTopImages";
 import { Divider } from "@mui/material";
@@ -36,7 +35,7 @@ const Person = () =>  {
 
     return (
         <>
-            <Grid container rowSpacing={2} sx={{flexWrap: "nowrap", background: 'rgba(0, 0, 0, 0.8)', padding: "30px 0" }} >
+            <Box sx={{ display: "flex", flexWrap: "nowrap", background: 'rgba(0, 0, 0, 0.8)', padding: "30px 0" }} >
                 <Box sx={{
                         height: "400px",
                         display: 'flex',
@@ -45,7 +44,7 @@ const Person = () =>  {
                     }}>
                         <img src={profilePhoto} alt={name} style={{borderRadius: '15px'}} />
                 </Box>
-                <Grid sx={{display: 'flex', flexDirection: 'column', pr: '50px', pt: "50px", color: '#F7F7F8'}}>
+                <Box sx={{display: 'flex', flexDirection: 'column', pr: '50px', pt: "50px", color: '#F7F7F8'}}>
                         <Typography variant="h1" sx={{fontSize: "2.5rem", fontWeight: "bold"}}>{name}</Typography>
                         <Box sx={{pr: "40px", pt: "30px", pb: "10px"}}>
                             <Typography sx={{fontWeight: "bold"}}>Biography</Typography>
@@ -67,8 +66,8 @@ const Person = () =>  {
                                     <Typography variant="body1">{deathday}</Typography>
                                 </Box>
                         }
-                </Grid>
-            </Grid>
+                </Box>
+            </Box>
             <Box sx={{margin: '50px 50px'}}>
                 <PersonTopImages personId={id} name={name} />
                 <Divider />

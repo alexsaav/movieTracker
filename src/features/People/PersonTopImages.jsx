@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { useParams, Link } from "react-router-dom"
 import { getPersonImages, getPersonTaggedImages, selectPersonImages, selectPersonTaggedImages } from "./personSlice"
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
@@ -31,17 +30,24 @@ const PersonTopImages = ({personId, name}) => {
     }, [dispatch, page, personId])
 
     return (
-        <Box sx={{padding: "30px 0"}}>
+        <section style={{padding: "30px 0"}}>
             <Typography variant="h2" sx={{fontSize: "2rem", fontWeight: "bold"}}>Photos</Typography>
-            <Box sx={{margin: "30px 0", overflowY: "hidden"}}>
-                <Grid container wrap="nowrap" spacing={38} sx={{ overflowX: 'auto'}} columns={6} >
+            <Box sx={{ 
+                    display: "flex", 
+                    flexDirection: "row",  
+                    width: "100%", 
+                    p: "30px 0", 
+                    overflowX: "scroll", 
+                    overflowY: "hidden"
+                    }}
+            >
                     <>
                         {personTopImages.map((photo) => {
                             const { file_path } = photo;
                             const imageUrl = `https://image.tmdb.org/t/p/original${file_path}`;
 
                             return (
-                                <Grid item xs={1} key={file_path}>
+                                <Box sx={{p: "0 5px", maxWidth: "400px"}}>
                                     <Card 
                                         sx={{width: "300px", height: "300px"}}
                                     >
@@ -51,7 +57,7 @@ const PersonTopImages = ({personId, name}) => {
                                             sx={{height: "100%",  width: "100%"}}
                                         />
                                     </Card>
-                                </Grid>
+                                </Box>
                             )
                         })}
                     </>
@@ -61,7 +67,7 @@ const PersonTopImages = ({personId, name}) => {
                             const imageUrl = `https://image.tmdb.org/t/p/original${file_path}`;
 
                             return (
-                                <Grid item xs={1} key={file_path}>
+                                <Box sx={{p: "0 5px", maxWidth: "400px"}}>
                                     <Card 
                                         sx={{width: "300px", height: "300px"}}
                                     >
@@ -71,19 +77,18 @@ const PersonTopImages = ({personId, name}) => {
                                             sx={{height: "100%", width: "100%"}}
                                         />
                                     </Card>
-                                </Grid>
+                                </Box>
                             )
                         })}
                     </>
                     
-                </Grid>
             </Box>
             <Box sx={{mt: 4}}>
                 <Link to={`/photos/${id}/${name}`} style={{textDecoration: 'none', color: '#1D1F20'}}>
                     <Typography variant="button">View More</Typography>
                 </Link>
             </Box>
-        </Box>
+        </section>
     )
 }
 

@@ -5,12 +5,12 @@ import { useNavigate, Link } from 'react-router-dom';
 import { getMovieCreditsAsync, selectMovieCredits } from '../MovieCredits/movieCreditsSlice';
 import { scrollTopWin } from '../util/helperFunctions';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography'
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import CardActionArea from '@mui/material/CardActionArea';
+import PersonIcon from '@mui/icons-material/Person';
 
 
 const TopCast = ({id}) => {
@@ -26,19 +26,39 @@ const TopCast = ({id}) => {
     }, [dispatch, id]);
 
     return (
-        <Box container='main'>
+        <section style={{padding: "30px 0"}}>
             <Typography variant='h5' sx={{fontWeight: 'bold'}}>Top Cast</Typography>
-            <Grid container rowSpacing={2} 
-                columnSpacing={{ xs: 1, sm: 2, md: 3 }} 
-                sx={{overflowX: "scroll", overflowY: "hidden", margin: '20px 0px'}}
+            <Box sx={{ 
+                    display: "flex", 
+                    flexDirection: "row",  
+                    width: "100%", 
+                    p: "30px 0", 
+                    overflowX: "scroll", 
+                    overflowY: "hidden"
+                }}
             >
                 {movieCast.map(cast => {
                     const { name, character, id, profile_path } = cast;
+                    let image;
+                    if (profile_path) {
+                        const photorUrl = `https://image.tmdb.org/t/p/original/${profile_path}`;
+                        image = <CardMedia
+                                    component="img"
+                                    height="140"
+                                    image={photorUrl}
+                                    alt={name}
+                                /> 
+                    } else {
+                        image = <Box sx={{textAlign: "center"}}>
+                                    <PersonIcon color="disabled" sx={{fontSize: 60, height:"140px"}}/>
+                                </Box> 
+                    }
                 
                     return (
                         <Card 
                             sx={{ 
-                                maxWidth: 140,  
+                                maxWidth: 130, 
+                                minWidth: 130, 
                                 paddingBottom: '3px', 
                                 margin: '5px' 
                             }} 
@@ -46,18 +66,13 @@ const TopCast = ({id}) => {
                             onClick={scrollTopWin}
                         >
                             <CardActionArea onClick={() => navigate(`/person/${id}/${name}`)}>
-                                <CardMedia
-                                    component="img"
-                                    height="140"
-                                    image={`https://image.tmdb.org/t/p/original/${profile_path}`}
-                                    alt={name}
-                                />
-                                <CardContent sx={{padding: '5px 16px'}}>
+                                {image}
+                                <CardContent sx={{padding: '5px 16px', bottom: 0}}>
                                     <Typography 
                                         noWrap 
                                         variant="h6" 
                                         component="div" 
-                                        sx={{fontSize: '1em'}} 
+                                        sx={{fontSize: "0.8rem"}} 
                                         onClick={() => navigate(`person/${id}-${name}`)}
                                     >
                                         {name}
@@ -70,13 +85,13 @@ const TopCast = ({id}) => {
                         </Card>
                     )
                 })}
-            </Grid>
+            </Box>
             <Box sx={{mt: 4, mb: 4}}>
                 <Link to={`/movie/${id}/cast`} style={{textDecoration: 'none', color: '#1D1F20'}}>
                     <Typography variant="button">Full Cast and Crew</Typography>
                 </Link>
             </Box>
-        </Box>
+        </section>
     )
 }
 

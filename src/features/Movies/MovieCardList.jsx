@@ -10,7 +10,7 @@ const MovieCardList = ({movieList, title}) => {
             <Typography variant="h2" sx={{fontSize: "1.5rem", fontWeight: "bold", mb: "40px"}}>{title}</Typography>
 
             <section sx={{ py: 5, width: "100%", display: "flex", justifyContent: "space-between", flexWrap: "wrap" }}>
-                <Grid container spacing={{ xs: 4, s: 2, md: 3 }} columns={{ xs: 3, sm: 4, md: 6 }} sx={{ flexWrap: "wrap"}}>
+                <Grid container spacing={{ xs: 2, s: 3, md: 4 }} columns={{ xs: 2, sm: 4, md: 6 }} sx={{ flexWrap: "wrap"}}>
                     {movieList.map(movie => {
                         return <MovieCardStyle3 movie={movie} key={movie.id}/>
                     })}
@@ -21,3 +21,5 @@ const MovieCardList = ({movieList, title}) => {
 }
 
 export default MovieCardList;
+
+

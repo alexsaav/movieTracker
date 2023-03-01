@@ -3,19 +3,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useSearchParams } from 'react-router-dom';
 import { selectSearchMovies, searchMovies } from './moviesSlice';
 import SearchBar from '../../components/SearchBar/SearchBar';
+import MovieSearchResultCard from '../MovieCard/SearchResultMovieCard';
 import { scrollTopWin } from '../util/helperFunctions';
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Unstable_Grid2';
-import MovieCard from '../MovieCard/MovieCardStyle1';
-import { Box } from '@mui/system';
 import PaginationComponent from '../../components/Pagination/Pagination';
 import Typography from '@mui/material/Typography';
-import MovieSearchResultCard from '../MovieCard/MovieSearchResultCard';
-import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
 
 
 
-const Movies = () => {
+const SearchResultMovies = () => {
     let [searchParams, setSearchParams] = useSearchParams();
     const [searchText, setSearchText] = useState(searchParams.get("query"));
     const [page, setPage] = useState(1);
@@ -55,7 +51,4 @@ const Movies = () => {
     )
 }
 
-export default Movies
-
-
-/*  <MovieCard movie={movie} key={movie.id} /> */
+export default SearchResultMovies

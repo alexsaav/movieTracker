@@ -44,7 +44,8 @@ const NestedList = ({menuItem}) => {
                         )
                     })}
                 </List>
-            </Collapse> }
+            </Collapse> 
+            }
         </>
     );
 }

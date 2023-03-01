@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { useParams, Link, useNavigate } from "react-router-dom"
 import { getPopularPeople, selectPopularPeople } from "./personSlice"
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
@@ -36,7 +35,7 @@ const PopularPeople = (personId) => {
                         <>
                             <Box>
                                 return (
-                                    <Grid item xs={4} key={id}>
+                                    <Box sx={{p: "0 5px", maxWidth: "400px"}}>
                                     <Link to={`/movie/${id}`}>
                                         <Card 
                                                 sx={{width: 260, borderRadius: 3, position: "relative"}}
@@ -66,7 +65,7 @@ const PopularPeople = (personId) => {
                                                 </Box>
                                             </Card>
                                     </Link>
-                                </Grid>
+                                </Box>
                                 )
                             </Box>
                         </>

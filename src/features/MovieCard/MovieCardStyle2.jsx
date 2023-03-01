@@ -1,35 +1,68 @@
 import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
-import Grid from "@mui/material/Unstable_Grid2/Grid2"
+import { Box } from "@mui/material";
 import Card from "@mui/material/Card"
 import CardContent from '@mui/material/CardContent';
 import { CardActionArea } from '@mui/material';
 import { CardMedia, Typography } from "@mui/material"
 import Avatar from '@mui/material/Avatar';
+import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
 
 //Movie Card with score
 
 const MovieCardStyle2 = ({movie}) => {
     const navigate = useNavigate();
     const { id, title, original_title, poster_path, backdrop_path, vote_average, release_date } = movie;
-    const posterUrl = `https://image.tmdb.org/t/p/original${poster_path}`;
-    //const posterUrl = `https://image.tmdb.org/t/p/original${backdrop_path}`;
+    //const posterUrl = `https://image.tmdb.org/t/p/original${poster_path}`;
+    //const backdroprUrl = `https://image.tmdb.org/t/p/original${backdrop_path}`;
     const averageVotes = vote_average.toFixed(1);
     let formattedDate = format(new Date(release_date), 'PP');
+
+    let image;
+    if (poster_path) {
+        const posterUrl = `https://image.tmdb.org/t/p/original${poster_path}`;
+        image = <CardMedia 
+                    component="img"
+                    image={posterUrl}
+                    alt={title}
+                    sx={{
+                        borderRadius: "10px", 
+                        boxShadow: "0 2px 8px rgb(0 0 0 / 10%)", 
+                        width: "100%", 
+                        minHeight: "calc(150px * 1.5)",
+                        height: "calc(150px * 1.5)"
+                    }}
+                    onClick={() => navigate(`/movie/${id}`)}
+                />
+    } else {
+        image = <Box sx={{
+                        textAlign: "center", 
+                        borderRadius: "10px", 
+                        boxShadow: "0 2px 8px rgb(0 0 0 / 10%)", 
+                        width: "100%", 
+                        minHeight: "calc(150px * 1.5)",
+                        height: "calc(150px * 1.5)"
+                    }}
+                > 
+                    <ImageNotSupportedIcon color="disabled" sx={{ fontSize: 60, pt: "70px"}}/>
+                </Box>
+    }
     
     return (
-        <Grid item xs={1} key={id}>
+        <Box key={id}>
             <Card 
-                sx={{width: 150, minWidth: 150, borderRadius: 3, position: "relative", background: "transparent", boxShadow: "none"}}
+                sx={{
+                    width: 150, 
+                    minWidth: 150, 
+                    borderRadius: 3, 
+                    position: "relative", 
+                    background: "transparent", 
+                    boxShadow: "none",
+                    p: "0 5px"
+                }}
             >
                 <CardActionArea>
-                    <CardMedia 
-                        component="img"
-                        image={posterUrl}
-                        alt={title}
-                        sx={{height: "calc(150px * 1.5)", borderRadius: "10px", boxShadow: "0 2px 8px rgb(0 0 0 / 10%)"}}
-                        onClick={() => navigate(`/movie/${id}`)}
-                    />
+                    {image}
                     <CardContent sx={{display: "flex", flexDirection: "column", alignContent: "flex-start", flexWrap: "wrap"}}>
                         <Avatar sx={{ background: 'rgba(0, 0, 0, 0.5)', position: "absolute", top: "5px", left: "10px" }}>
                             <Typography sx={{fontWeight: "bold"}}>{averageVotes}</Typography>
@@ -50,7 +83,7 @@ const MovieCardStyle2 = ({movie}) => {
                     </CardContent>
                 </CardActionArea>
             </Card>
-        </Grid>
+        </Box>
     );
 };
 
