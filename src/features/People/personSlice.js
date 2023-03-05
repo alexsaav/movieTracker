@@ -99,6 +99,17 @@ export const getCombinedCredits = createAsyncThunk(
                 return dateB - dateA;  
             })
 
+            combinedCredits.crew.sort((a, b) => {
+                const aDate = a.release_date ?? a.first_air_date;
+                const bDate = b.release_date ?? b.first_air_date;
+                if (!aDate) return 1;
+                if (!bDate) return -1
+               
+                var dateA = new Date(aDate);
+                var dateB = new Date(bDate);
+                return dateB - dateA;  
+            })
+
             return combinedCredits;
         }
     }

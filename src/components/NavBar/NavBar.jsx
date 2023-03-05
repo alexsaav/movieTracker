@@ -11,7 +11,7 @@ import List from '@mui/material/List';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-
+import SearchAppBar from './SearchAppBar';
 
 const drawerWidth = 240;
 
@@ -118,6 +118,7 @@ const NavBar = (props) => {
                     >
                         MovieTracker
                     </Typography>
+                    <SearchAppBar />
                     <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
                         <ButtonMenuList menuItems={menuItems}/>
                     </Box>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getMoviesInTheatres, selectMoviesInTheatres } from "../moviesSlice"
-import MovieCard2 from "../../MovieCard/MovieCardStyle2"
+import MovieCardStyle2 from "../../MovieCard/MovieCardStyle2"
 import Box from "@mui/material/Box"
 import { Typography } from "@mui/material"
 
@@ -29,7 +29,7 @@ const TopMoviesInTheatres = () => {
                 }}
             >
                 {moviesInTheatresResults.map(movie => {
-                    return <MovieCard2 movie={movie} key={movie.id}/>
+                    return <MovieCardStyle2 movie={movie} key={movie.id}/>
                 })}
             </Box>
         </section>

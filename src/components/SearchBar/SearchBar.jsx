@@ -1,10 +1,7 @@
 import { Box } from "@mui/material"
-import { Input } from '@mui/material'
-import { Form } from "react-router-dom"
 import TextField from "@mui/material/TextField"
 import IconButton from "@mui/material/IconButton"
 import SearchIcon from '@mui/icons-material/Search';
-import InputBase from "@mui/material/InputBase"
 
 
 const SearchBar = ({searchText, setSearchText, onSubmit}) => {
@@ -19,17 +16,15 @@ const SearchBar = ({searchText, setSearchText, onSubmit}) => {
                 component="form" 
                 onSubmit={onSubmit}
                 noValidate
-                autoComplete="off" 
+                //autoComplete="off" 
                 sx={{mt: 5, display: "flex", justifyContent: "flex-end", alignItems: "center"}}
             >
                 <TextField
                     id="outlined-basic" 
-                    label="Search" 
                     variant="outlined"
-
                     color="secondary"
                     fullWidth
-                    placeholder="Search"
+                    placeholder="Search..."
                     name="query"
                     defaultValue={searchText}
                     onChange={(e) => {searchMovies(e.target.value)}}

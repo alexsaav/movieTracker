@@ -1,0 +1,17 @@
+{
+  "user": [
+    {
+      "name": "Alex",
+      "useName": "alex001",
+      "password": "1234"
+    }
+  ],
+  "movie": [
+    {
+      "favourites": "false",
+      "watch": "false",
+      "collection": "false",
+      "watchlist": "false"
+    }
+  ]
+}

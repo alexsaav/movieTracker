@@ -12,15 +12,15 @@ import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
 
 const MovieCardStyle2 = ({movie}) => {
     const navigate = useNavigate();
-    const { id, title, original_title, poster_path, backdrop_path, vote_average, release_date } = movie;
+    const { id, title, poster_path, backdrop_path, vote_average, release_date, first_air_date } = movie;
     //const posterUrl = `https://image.tmdb.org/t/p/original${poster_path}`;
     //const backdroprUrl = `https://image.tmdb.org/t/p/original${backdrop_path}`;
     const averageVotes = vote_average.toFixed(1);
-    let formattedDate = format(new Date(release_date), 'PP');
+    let formattedDate = format(new Date(release_date ?? first_air_date), 'PP');
 
     let image;
     if (poster_path) {
-        const posterUrl = `https://image.tmdb.org/t/p/original${poster_path}`;
+        const posterUrl = `https://image.tmdb.org/t/p/original${poster_path ?? backdrop_path}`;
         image = <CardMedia 
                     component="img"
                     image={posterUrl}

@@ -45,7 +45,7 @@ const TopImages = ({movieId, title}) => {
                             <Card key={file_path}>
                                 <CardMedia 
                                     component="img"
-                                    image={imageUrl}
+                                    image={!imageUrl}
                                     sx={{width: "450px", height: "250px"}}
                                 />
                             </Card>

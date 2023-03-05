@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import PersonTopImages from "./PersonTopImages";
 import { Divider } from "@mui/material";
+import KnownFor from "./KnownFor";
 
 
 const Person = () =>  {
@@ -69,9 +70,9 @@ const Person = () =>  {
                 </Box>
             </Box>
             <Box sx={{margin: '50px 50px'}}>
-                <PersonTopImages personId={id} name={name} />
+                <KnownFor />
                 <Divider />
-                {/* <KnownFor personId={id} /> */}
+                <PersonTopImages personId={id} name={name} />
                 <Divider />
                 <CombinedCredits />
             </Box>

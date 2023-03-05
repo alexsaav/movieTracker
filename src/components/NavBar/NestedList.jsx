@@ -34,17 +34,17 @@ const NestedList = ({menuItem}) => {
      
 
             {items?.length > 0 &&
-            <Collapse in={open} timeout="auto" unmountOnExit>
-                <List component="div" disablePadding>
-                    {items.map(item => {
-                        return (
-                            <ListItemButton sx={{ pl: "32px", textAlign: 'left' }}>
-                                <ListItemText primary={item.name} onClick={() => navigate(item.url)} />
-                            </ListItemButton>
-                        )
-                    })}
-                </List>
-            </Collapse> 
+                <Collapse in={open} timeout="auto" unmountOnExit>
+                    <List component="div" disablePadding>
+                        {items.map(item => {
+                            return (
+                                <ListItemButton sx={{ pl: "32px", textAlign: 'left' }} key={item.name}>
+                                    <ListItemText primary={item.name} onClick={() => navigate(item.url)} />
+                                </ListItemButton>
+                            )
+                        })}
+                    </List>
+                </Collapse> 
             }
         </>
     );

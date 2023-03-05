@@ -24,12 +24,12 @@ import TrendingMovies from '../Movies/Trending/TrendingMovies';
     const handlePageReset = (input) => {
         setSearchText(input);
         setPage(1);
-    }
+    };
 
     const handleSearch = (event) => {
         event.preventDefault();
         if (searchText) navigate(`/search?query=${searchText}`);
-      };
+    };
 
     return (
         <Container>

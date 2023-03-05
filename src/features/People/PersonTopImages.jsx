@@ -47,7 +47,7 @@ const PersonTopImages = ({personId, name}) => {
                             const imageUrl = `https://image.tmdb.org/t/p/original${file_path}`;
 
                             return (
-                                <Box sx={{p: "0 5px", maxWidth: "400px"}}>
+                                <Box sx={{p: "0 5px", maxWidth: "400px"}} key={imageUrl}>
                                     <Card 
                                         sx={{width: "300px", height: "300px"}}
                                     >
@@ -67,7 +67,7 @@ const PersonTopImages = ({personId, name}) => {
                             const imageUrl = `https://image.tmdb.org/t/p/original${file_path}`;
 
                             return (
-                                <Box sx={{p: "0 5px", maxWidth: "400px"}}>
+                                <Box sx={{p: "0 5px", maxWidth: "400px"}} key={imageUrl}>
                                     <Card 
                                         sx={{width: "300px", height: "300px"}}
                                     >
