@@ -14,6 +14,7 @@ import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import LoadingGridItem from "../../components/Loading/LoadingGridItem";
 
 const buttonStyle = {
     position: "absolute",
@@ -51,16 +52,6 @@ const PersonImages = () => {
     const { id, name } = useParams();
     const navigate = useNavigate();
 
-    const personImages = useSelector(selectPersonImages);
-    const personImagesResult = personImages.profiles;
-
-    const taggedImages = useSelector(selectPersonTaggedImages);
-    const taggedImagesResult = taggedImages.results;
-
-    const images = personImagesResult.concat(taggedImagesResult)
-
-    console.log(images)
-
     useEffect(() => {
         dispatch(getPersonImages(id))
     }, [dispatch, id])
@@ -68,7 +59,18 @@ const PersonImages = () => {
     useEffect(() => {
         dispatch(getPersonTaggedImages({personId: id, page}))
     }, [dispatch, page, id])
+    
+    const personImages = useSelector(selectPersonImages);
+    const personImagesResult = personImages.profiles;
+    const isLoadingImage = personImages.isLoading;
 
+    const taggedImages = useSelector(selectPersonTaggedImages);
+    const taggedImagesResult = taggedImages.results;
+    const isLoadingTaggedImages = personImages.isLoading;
+
+    const images = personImagesResult.concat(taggedImagesResult)
+
+    console.log(images.isLoading)
 
     // set new current index
     const handleOpen = (i) => {
@@ -132,6 +134,7 @@ const PersonImages = () => {
                 <Typography variant="h2" sx={{fontSize: "1.5rem"}}>Photo Gallery</Typography>
                 <Box sx={{ margin: "30px 0"}}>
                     <Grid container spacing={1} sx={{ overflowX: 'auto'}} columns={6} >
+                    {isLoadingImage  && <LoadingGridItem items={30} />}
                         <>
                             {images.map((photo, index) => {
                                 const { file_path } = photo;

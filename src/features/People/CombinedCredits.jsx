@@ -8,6 +8,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Divider from "@mui/material/Divider";
 import List from '@mui/material/List';
+import LoadingList from '../../components/Loading/LoadingList'
 
 const CombinedCredits = () => {
     const dispatch = useDispatch();
@@ -16,6 +17,7 @@ const CombinedCredits = () => {
     const castJob = combinedCredits.cast;
     const crewJob = combinedCredits.crew;
     let departments = {};
+    const isLoading = combinedCredits.isLoading;
 
     useEffect(() => {
         dispatch(getCombinedCredits(id))
@@ -34,6 +36,8 @@ const CombinedCredits = () => {
         <>
             <Box sx={{margin: '50px 50px'}}>
                 <Typography variant="h2" sx={{fontSize: "2rem", fontWeight: "bold", pb: "30px"}}>Filmography</Typography>
+
+                {isLoading && <LoadingList />}
                 <Typography variant="h2" sx={{fontSize: "1.5rem", fontWeight: "bold"}}>Acting</Typography>
                 <List dense sx={{ width: '100%', bgcolor: 'background.paper', display: 'flex', flexDirection: 'column', pt: "30px" }}>
                     {castJob.map(cast => {

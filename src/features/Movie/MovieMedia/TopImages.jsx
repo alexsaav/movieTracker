@@ -1,16 +1,17 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getMovieImages, selectImages } from "../Movie/movieSlice"
+import { getMovieImages, selectImages } from "../movieSlice"
 import { Link } from "react-router-dom"
 import {Typography} from "@mui/material"
 import { Box } from "@mui/system"
 import { Card } from '@mui/material';
 import {CardMedia} from "@mui/material"
+import LoadingMediaItem from "../../../components/Loading/LoadingMediaItem"
 
 const TopImages = ({movieId, title}) => {
     const dispatch = useDispatch();
     const movieImages = useSelector(selectImages);
-
+    let isLoading = movieImages.isLoading;
     let backdrops = movieImages.backdrops;
     backdrops = backdrops.slice(0, 9);
     //const logos = movieImages.logos; 
@@ -36,6 +37,7 @@ const TopImages = ({movieId, title}) => {
                     overflowY: "hidden"
                     }}
             >
+                {isLoading && <LoadingMediaItem items={5} />}
                 {backdrops.map((poster) => {
                     const { file_path } = poster;
                     const imageUrl = `https://image.tmdb.org/t/p/original${file_path}`;
@@ -45,7 +47,7 @@ const TopImages = ({movieId, title}) => {
                             <Card key={file_path}>
                                 <CardMedia 
                                     component="img"
-                                    image={!imageUrl}
+                                    image={imageUrl}
                                     sx={{width: "450px", height: "250px"}}
                                 />
                             </Card>

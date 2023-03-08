@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCombinedCredits, selectCombinedCredits } from './personSlice'
+import LoadingCardItem from '../../components/Loading/LoadingCardItem'
 import MovieCardStyle2 from '../MovieCard/MovieCardStyle2'
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -11,6 +12,7 @@ const KnownFor = () => {
     const { id } = useParams();
     const combinedCredits = useSelector(selectCombinedCredits);
     const castJob = combinedCredits.cast.slice(0, 10);
+    const isLoading = combinedCredits.isLoading;
     
     useEffect(() => {
         dispatch(getCombinedCredits(id))
@@ -37,7 +39,8 @@ const KnownFor = () => {
                     overflowX: "scroll", 
                     overflowY: "hidden"
                 }}
-            >
+            >   
+                {isLoading && <LoadingCardItem />}
                 {filmsSorted.map(movie => {
                     return (
                         <MovieCardStyle2 movie={movie} key={movie.id}/>

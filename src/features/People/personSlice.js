@@ -1,4 +1,3 @@
-import { create } from "@mui/material/styles/createTransitions";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 //TMDB API
@@ -147,13 +146,16 @@ export const person = createSlice({
     initialState: {
         personDetails: {
             name: "",
-            biography: ""
+            biography: "",
+            isLoading: false
         },
         personImages: {
-            profiles: []
+            profiles: [],
+            isLoading: false
         },
         personTaggedImages: {
-            results: []
+            results: [],
+            isLoading: false
         },
         combinedCredits: {
             cast: [],
@@ -161,28 +163,49 @@ export const person = createSlice({
                 {
                     release_date: ""
                 }
-            ]
+            ],
+            isLoading: false
         },
         popularPeople: {
             page: 1,
             results: [{
                 known_for: []
             }],
-            total_pages: 1
+            total_pages: 1,
+            isLoading: false
         }
     },
     extraReducers: {
+        [getPersonDetailsAsync.pending]: (state, action) => {
+            state.personDetails.isLoading = true
+        },
         [getPersonDetailsAsync.fulfilled]: (state, action) => {
             state.personDetails = action.payload;
+        },
+
+        [getPersonImages.pending]: (state, action) => {
+            state.personImages.isLoading = true;
         },
         [getPersonImages.fulfilled]: (state, action) => {
             state.personImages = action.payload;
         },
+
+        [getPersonTaggedImages.pending]: (state, action) => {
+            state.personTaggedImages.isLoading = true;
+        },
         [getPersonTaggedImages.fulfilled]: (state, action) => {
             state.personTaggedImages = action.payload;
         },
+
+        [getCombinedCredits.pending]: (state, action) => {
+            state.combinedCredits.isLoading = true;
+        },
         [getCombinedCredits.fulfilled]: (state, action) => {
             state.combinedCredits = action.payload;
+        },
+
+        [getPopularPeople.pending]: (state, action) => {
+            state.popularPeople.isLoading = true;
         },
         [getPopularPeople.fulfilled]: (state, action) => {
             state.popularPeople = action.payload;

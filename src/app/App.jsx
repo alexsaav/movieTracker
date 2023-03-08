@@ -5,12 +5,14 @@ import Home from '../features/Home/Home'
 import Movie from '../features/Movie/Movie';
 import MovieCredits from '../features/MovieCredits/MovieCredits';
 import Person from '../features/People/Person';
-import Images from '../features/MovieMedia/Images';
-import Videos from '../features/MovieMedia/Videos';
+import Images from '../features/Movie/MovieMedia/Images'
+import Videos from '../features/Movie/MovieMedia/Videos';
 import PersonImages from '../features/People/PersonImages';
 import PopularMovies from '../features/Movies/Popular/PopularMovies';
 import UpcomingMovies from '../features/Movies/Upcoming/UpcomingMovies';
 import TopRatedMovies from '../features/Movies/TopRated/TopRatedMovies';
+
+import Register from '../features/User/Register';
 import './App.css';
 
 function App() {
@@ -29,6 +31,9 @@ function App() {
                     <Route path='/movies/popular' element={ <PopularMovies /> } />
                     <Route path='/movies/upcoming' element={ <UpcomingMovies /> } />
                     <Route path='/movies/top-rated' element={ <TopRatedMovies /> }/> 
+                    {/* <Route path='user/login' element={<LoginScreen />} /> */}
+                    <Route path='user/register' element={<Register />} />    
+                    {/* <Route path='user/user-profile' element={<ProfileScreen />} /> */}
                 </Route>
             </Routes>
         </Router>

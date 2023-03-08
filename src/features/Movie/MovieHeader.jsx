@@ -5,6 +5,7 @@ import { getMovieDetails, selectDetails } from './movieSlice';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import Skeleton from '@mui/material/Skeleton';
 
 const MovieHeader = () => {
     const dispatch = useDispatch();
@@ -15,6 +16,7 @@ const MovieHeader = () => {
         title, 
         poster_path, 
         release_date, 
+        isLoading
     } = movieDetailsResult;
 
     const moviePosterUrl = `https://image.tmdb.org/t/p/original/${poster_path}`;
@@ -28,17 +30,22 @@ const MovieHeader = () => {
         <Box sx={{background: 'rgba(0, 0, 0, 0.7)', padding: "15px 40px", display: "flex"}}>
             <Box> 
                 <Link to={`/movie/${id}`}>
-                    <img 
-                        src={moviePosterUrl} 
-                        alt={title} 
-                        style={{
-                            borderRadius: 10, 
-                            height: 87, 
-                            width: 58, 
-                            minWidth: 58, 
-                            padding: 6
-                        }} 
-                    />
+                    {
+                        isLoading ? (
+                            <Skeleton animation="wave" variant="rounded" width={58} height={87} />
+                        ) : (
+                        <img 
+                            src={moviePosterUrl} 
+                            alt={title} 
+                            style={{
+                                borderRadius: 10, 
+                                height: 87, 
+                                width: 58, 
+                                minWidth: 58, 
+                                padding: 6
+                            }} 
+                        />
+                    )}
                 </Link>
             </Box>
 
@@ -52,36 +59,44 @@ const MovieHeader = () => {
                     paddingLeft: "20px",
                 }}
             >
-                <Box 
-                    sx={{
-                        display: "flex", 
-                        alignContent: "center", 
-                        alignItems: "center", 
-                        mb: 0
-                    }}
-                >
-                    <Link to={`/movie/${id}`} style={{textDecoration: "none"}}>
+                {
+                    isLoading ? (
+                        <Skeleton animation="wave" variant="h1" width={300} height={40}/>
+                    ) : (
+                    <Box 
+                        sx={{
+                            display: "flex", 
+                            alignContent: "center", 
+                            alignItems: "center", 
+                            mb: 0
+                        }}
+                    >   
+                        <Link to={`/movie/${id}`} style={{textDecoration: "none"}}>
+                    
+                            <Typography 
+                                variant="h1" 
+                                sx={{
+                                    color: "#F7F7F8", 
+                                    fontSize: "2.2rem", 
+                                    fontWeight: 600
+                                }}
+                            >
+                                {title}
+                            </Typography>
+                            
+                        </Link>
                         <Typography 
-                            variant="h2" 
-                            sx={{
-                                color: "#F7F7F8", 
-                                fontSize: "2.2rem", 
-                                fontWeight: 600
-                            }}
+                            variant="caption" 
+                            sx={{fontSize: "1.1em", 
+                                fontWeight: 400, 
+                                margin: "0 10px", 
+                                opacity: 0.6}}
                         >
-                            {title}
+                            ({date})
                         </Typography>
-                    </Link>
-                    <Typography 
-                        variant="caption" 
-                        sx={{fontSize: "1.1em", 
-                            fontWeight: 400, 
-                            margin: "0 10px", 
-                            opacity: 0.6}}
-                    >
-                        ({date})
-                    </Typography>
-                </Box>
+                        
+                    </Box>
+                )}
                 <Link 
                     to={`/movie/${id}`} 
                     style={{textDecoration: "none", 

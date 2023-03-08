@@ -4,7 +4,6 @@ import { getPopularMovies, selectPopularMovies } from "../moviesSlice"
 import MovieCardList from "../MovieCardList";
 import PaginationComponent from "../../../components/Pagination/Pagination";
 
-
 const PopularMovies = () => {
     const dispatch = useDispatch();
     const [page, setPage] = useState(1);
@@ -19,7 +18,7 @@ const PopularMovies = () => {
 
     return (
         <>
-            <MovieCardList movieList={popularMoviesResults} title="Popular Movies" />
+            <MovieCardList movieList={popularMoviesResults} title="Popular Movies" isLoading={popularMovies.isLoading}/>
             <PaginationComponent 
                 totalPages={pages} 
                 setPage={setPage} 

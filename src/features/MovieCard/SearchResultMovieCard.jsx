@@ -17,7 +17,7 @@ const overviewTextStyle = {
     WebkitLineClamp: 2,
     overflow: 'hidden',
     textOverflow: 'ellipsis',
-  };
+};
 
  const SearchResultMovieCard = ({ movie, key }) => {
     const navigate = useNavigate();
@@ -58,7 +58,7 @@ const overviewTextStyle = {
                     { image }
                 </CardContent>
                 <CardContent sx={{ display: "flex", flexDirection: "column",  p: "10px 15px", width: "950px"}}>
-                    <Box sx={{}}>
+                    <Box>
                         <Typography variant="h2" sx={{fontSize: "1rem", fontWeight: "bold"}} onClick={() => navigate(`/movie/${id}`)}>{title}</Typography>
                         <Typography variant="body2" color="text.secondary">{formattedDate}</Typography>
                     </Box>

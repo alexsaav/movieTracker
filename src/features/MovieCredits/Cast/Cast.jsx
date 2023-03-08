@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { scrollTopWin } from '../util/helperFunctions';
+import { scrollTopWin } from '../../util/helperFunctions';
+import LoadingList from '../../../components/Loading/LoadingList';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/system';
@@ -12,20 +13,21 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 
 
-
-
-const Cast = ({ movieCast }) => {
+const Cast = ({ movieCast, isLoading, loadingItem }) => {
     const navigate = useNavigate();
+    const totalCast = isLoading ?? <>({movieCast.length-1})</>;
 
     return (
         <Container>
-            <Typography variant='h5'>Cast ({movieCast.length-1})</Typography>
+            <Typography variant='h5'>Cast {totalCast}</Typography>
             <Box>
+                {isLoading && <LoadingList />}
                 <List dense sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', display: 'flex', flexDirection: 'column' }}>
                 {movieCast.map(cast => {
                      const { name, character, id, profile_path } = cast;
                         return (
-                            <ListItem alignItems="flex-start" onClick={scrollTopWin} sx={{pl: 0}}>
+                            <ListItem alignItems="flex-start" onClick={scrollTopWin} sx={{pl: 0}} key={id}>
+                           
                                 <ListItemButton onClick={() => navigate(`/person/${id}/${name}`)}>
                                     <ListItemAvatar>
                                         <Avatar 
@@ -45,14 +47,14 @@ const Cast = ({ movieCast }) => {
                                         sx={{pl: "25px"}}
                                     />
                                 </ListItemButton>
-                            </ListItem>
+                            
+                            </ListItem>)}
                         )
                     }
-                )}
                 </List>
             </Box> 
         </Container>
     )
-}
+};
 
 export default Cast

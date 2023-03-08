@@ -17,7 +17,7 @@ const UpcomingMovies = () => {
 
     return (
         <>
-            <MovieCardList movieList={upcomingMoviesResults} title="Upcoming Movies" />
+            <MovieCardList movieList={upcomingMoviesResults} title="Upcoming Movies" isLoading={upcomingMovies.isLoading} />
             <PaginationComponent 
                 totalPages={pages} 
                 setPage={setPage} 

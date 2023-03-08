@@ -11,15 +11,13 @@ const TopRatedMovies = () => {
     const topRatedMoviesResults = topRatedMovies.results;
     const pages = 200;
 
-    console.log(topRatedMovies)
-
     useEffect(() => {
         dispatch(getTopRatedMovies(page))
     }, [dispatch, page])
 
     return (
         <>
-            <MovieCardList movieList={topRatedMoviesResults} title="Top Rated Movies" />
+            <MovieCardList movieList={topRatedMoviesResults} isLoading={topRatedMovies.isLoading} title="Top Rated Movies" />
             <PaginationComponent 
                 totalPages={pages} 
                 setPage={setPage} 

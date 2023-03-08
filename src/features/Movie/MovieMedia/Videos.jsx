@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getMovieVideos, selectVideos } from "../Movie/movieSlice"
-import { Link, useParams } from "react-router-dom"
-import MovieHeader from "../Movie/MovieHeader"
+import { getMovieVideos, selectVideos } from "../movieSlice"
+import { useParams } from "react-router-dom"
+import MovieHeader from "../MovieHeader"
 import Grid from "@mui/material/Unstable_Grid2/Grid2"
 import { Box } from "@mui/system"
 import { Typography } from "@mui/material"
@@ -13,6 +13,13 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import Skeleton from '@mui/material/Skeleton';
+
+let loadingItem = Array(10).fill((
+    <Grid item xs={2}>
+        <Skeleton animation="wave" variant="rectangular" width={360} height={200} sx={{borderRadius: 1}} />
+    </Grid>
+));
 
 const buttonStyle = {
     position: "absolute",
@@ -46,8 +53,7 @@ const Videos = () => {
     const movieVideos = useSelector(selectVideos);
     const { id } = useParams();
     let videos = movieVideos.results;
-
-    console.log(videos)
+    let isLoading = movieVideos.isLoading;
 
     useEffect(() => {
         dispatch(getMovieVideos(id))
@@ -96,7 +102,8 @@ const Videos = () => {
                             width: "80%"
                         }} 
                 >
-                    {videos[currentIndex] && (<iframe
+                    {videos[currentIndex] && ( 
+                        <iframe
                         src={`https://www.youtube.com/embed/${videos[currentIndex].key}`}
                         title={`https://www.youtube.com/embed/${videos[currentIndex].name}`}
                         frameborder="0"
@@ -131,9 +138,9 @@ const Videos = () => {
                 <Typography variant="h5">Videos</Typography>
                     <Box sx={{ margin: "30px 0"}}>
                         <Grid container spacing={1} sx={{ overflowX: 'auto'}} columns={6} >
+                            {isLoading && loadingItem}
                             {videos.map((video, index) => {
                                 const { id, key, name, site } = video;
-                                //const videoUrl = `https://www.youtube.com/embed/${key}`;
                                 const videoImgUrl = `https://img.youtube.com/vi/${key}/sddefault.jpg`
 
                                 return (
@@ -158,7 +165,7 @@ const Videos = () => {
                                                 >
                                                 <PlayArrowIcon sx={{ height: 38, width: 38, color: "#F7F7F8" }} />
                                             </Box>
-                                        </Card>
+                                        </Card> 
                                     </Grid>
                                 )
                             })}

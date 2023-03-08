@@ -1,17 +1,32 @@
 {
-  "user": [
+  "users": [
     {
-      "name": "Alex",
-      "useName": "alex001",
+      "id": 1,
+      "email": "Alex",
+      "username": "alex001",
       "password": "1234"
     }
   ],
+  "register": [],
+  "signup": [],
   "movie": [
     {
-      "favourites": "false",
+      "id": 1,
+      "idMovie": 123,
+      "favourite": "false",
       "watch": "false",
       "collection": "false",
-      "watchlist": "false"
+      "watchlist": "false",
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "idMovie": 432,
+      "favourite": "false",
+      "watch": "false",
+      "collection": "false",
+      "watchlist": "false",
+      "userId": 1
     }
   ]
 }

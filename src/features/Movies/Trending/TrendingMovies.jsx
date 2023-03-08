@@ -4,11 +4,13 @@ import { getTrendingMovies, selectTrendingMovies } from "../moviesSlice"
 import MovieCard2 from "../../MovieCard/MovieCardStyle2";
 import Box from "@mui/material/Box"
 import Typography from "@mui/material/Typography"
+import LoadingItem from "../../../components/Loading/LoadingCardItem";
 
 const TrendingMovies = () => {
     const dispatch = useDispatch();
     const trendingMovies = useSelector(selectTrendingMovies);
     const trendingMoviesResult = trendingMovies.results;
+    const isLoading = trendingMovies.isLoading;
 
     useEffect(() => {
         dispatch(getTrendingMovies())
@@ -27,8 +29,9 @@ const TrendingMovies = () => {
                     overflowY: "hidden"
                 }}
             >
+                {isLoading && <LoadingItem />}
                 {trendingMoviesResult.map(movie => {
-                    return <MovieCard2 movie={movie} key={movie.id}/>
+                    return <MovieCard2 movie={movie} key={movie.id} isLoading={trendingMovies.isLoading}/>
                 })}
             </Box>
         </section>

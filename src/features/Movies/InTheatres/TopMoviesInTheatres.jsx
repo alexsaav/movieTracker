@@ -4,12 +4,14 @@ import { getMoviesInTheatres, selectMoviesInTheatres } from "../moviesSlice"
 import MovieCardStyle2 from "../../MovieCard/MovieCardStyle2"
 import Box from "@mui/material/Box"
 import { Typography } from "@mui/material"
+import LoadingItem from "../../../components/Loading/LoadingCardItem"
 
 const TopMoviesInTheatres = () => {
     const [page, setPage] = useState(1);
     const dispatch = useDispatch();
     const moviesInTheatres = useSelector(selectMoviesInTheatres);
     const moviesInTheatresResults = moviesInTheatres.results;
+    const isLoading = moviesInTheatres.isLoading;
     
     useEffect(() => {
         dispatch(getMoviesInTheatres(page))
@@ -28,8 +30,9 @@ const TopMoviesInTheatres = () => {
                     overflowY: "hidden"
                 }}
             >
+                {isLoading && <LoadingItem />}
                 {moviesInTheatresResults.map(movie => {
-                    return <MovieCardStyle2 movie={movie} key={movie.id}/>
+                    return <MovieCardStyle2 movie={movie} key={movie.id} isLoading={moviesInTheatres.isLoading}/>
                 })}
             </Box>
         </section>

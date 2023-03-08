@@ -29,8 +29,8 @@ const MovieCardStyle2 = ({movie}) => {
                         borderRadius: "10px", 
                         boxShadow: "0 2px 8px rgb(0 0 0 / 10%)", 
                         width: "100%", 
-                        minHeight: "calc(150px * 1.5)",
-                        height: "calc(150px * 1.5)"
+                        minHeight: 225,
+                        height: 225
                     }}
                     onClick={() => navigate(`/movie/${id}`)}
                 />
@@ -40,8 +40,8 @@ const MovieCardStyle2 = ({movie}) => {
                         borderRadius: "10px", 
                         boxShadow: "0 2px 8px rgb(0 0 0 / 10%)", 
                         width: "100%", 
-                        minHeight: "calc(150px * 1.5)",
-                        height: "calc(150px * 1.5)"
+                        minHeight: 225,
+                        height: 225
                     }}
                 > 
                     <ImageNotSupportedIcon color="disabled" sx={{ fontSize: 60, pt: "70px"}}/>

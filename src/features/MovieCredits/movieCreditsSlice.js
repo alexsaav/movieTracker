@@ -33,9 +33,13 @@ export const movieCredits = createSlice({
     name: 'movieCredits',
     initialState: {
         cast: [],
-        crew:[]
+        crew:[],
+        isLoading: false
     },
     extraReducers: {
+        [getMovieCreditsAsync.pending]: (state, action) => {
+            state.isLoading = true;
+        },
         [getMovieCreditsAsync.fulfilled]: (state, action) => {
             return action.payload.movieCredits;
         }

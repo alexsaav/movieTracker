@@ -210,44 +210,73 @@ export const moviesSlice = createSlice({
         movies: {
             page: 1,
             results: [],
-            total_pages: 0
+            total_pages: 0,
+            isLoading: false
         },
         popularMovies: {
             page: 1,
-            results: []
+            results: [],
+            isLoading: false
         },
         topRatedMovies: {
             page: 1,
-            results: []
+            results: [],
+            isLoading: false
         },
         upcomingMovies: {
             page: 1,
-            results: []
+            results: [],
+            isLoading: false
         },
         moviesInTheatres: {
             page: 1,
-            results: []
+            results: [],
+            isLoading: false
         },
         trendingMovies: {
             page: 1,
-            results: []
+            results: [],
+            isLoading: false
         },
     },
     extraReducers: {
+        [searchMovies.pending]: (state, action) => {
+            state.movies.isLoading = true;
+        },
         [searchMovies.fulfilled]: (state, action) => {
             state.movies = action.payload;
+        },
+
+        [getPopularMovies.pending]: (state, action) => {
+            state.popularMovies.isLoading = true;
         },
         [getPopularMovies.fulfilled]: (state, action) => {
             state.popularMovies = action.payload;
         },
+
+        [getTopRatedMovies.pending]: (state, action) => {
+            state.topRatedMovies.isLoading = true;
+        },
         [getTopRatedMovies.fulfilled]: (state, action) => {
             state.topRatedMovies = action.payload;
+        },
+
+        [getUpcomingMovies.pending]: (state, action) => {
+            state.upcomingMovies.isLoading = true;
         },
         [getUpcomingMovies.fulfilled]: (state, action) => {
             state.upcomingMovies = action.payload;
         },
+
+        [getMoviesInTheatres.pending]: (state, action) => {
+            state.moviesInTheatres.isLoading = true;
+        },
         [getMoviesInTheatres.fulfilled]: (state, action) => {
             state.moviesInTheatres = action.payload;
+        },
+
+        [getTrendingMovies.pending]: (state, action) => {
+            state.trendingMovies.isLoading = true;
         },
         [getTrendingMovies.fulfilled]: (state, action) => {
             state.trendingMovies = action.payload;

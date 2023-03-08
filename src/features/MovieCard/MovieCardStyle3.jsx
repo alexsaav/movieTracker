@@ -37,7 +37,7 @@ const MovieCardStyle3 = ({movie}) => {
                         component="img"
                         image={posterUrl}
                         alt={title}
-                        sx={{height: "calc(150px * 1.5)", overflow: "hidden"}}
+                        sx={{height: 225, overflow: "hidden"}}
                         onClick={() => navigate(`/movie/${id}`)}
                     />
                     <CardContent sx={{display: "flex", flexDirection: "column", alignContent: "flex-start", flexWrap: "wrap"}}>

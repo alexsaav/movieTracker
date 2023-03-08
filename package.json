@@ -29,7 +29,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "json-server --watch db.json --port 5000"
+    "server": "json-server --watch db.json --port 5000 -m ./node_modules/json-server-auth"
   },
   "eslintConfig": {
     "extends": [
@@ -50,6 +50,7 @@
     ]
   },
   "devDependencies": {
+    "json-server-auth": "^2.1.0",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0"
   }

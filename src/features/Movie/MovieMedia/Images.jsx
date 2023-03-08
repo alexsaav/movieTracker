@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getMovieImages, selectImages } from "../Movie/movieSlice"
+import { getMovieImages, movie, selectImages } from "../movieSlice"
 import { useParams } from "react-router-dom"
 import { v4 as uuidv4 } from 'uuid';
-import MovieHeader from "../Movie/MovieHeader"
+import MovieHeader from "../MovieHeader"
+import LoadingGridItem from "../../../components/Loading/LoadingGridItem";
 import Grid from "@mui/material/Unstable_Grid2/Grid2"
 import Typography from "@mui/material/Typography"
 import Box from "@mui/system/Box"
@@ -15,6 +16,7 @@ import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+
 
 const buttonStyle = {
     position: "absolute",
@@ -47,11 +49,11 @@ const style = {
 const Images = () => {
     const [open, setOpen] = useState(false);
     const [currentIndex, setCurrentIndex] = useState(null);
-
     const dispatch = useDispatch();
     const movieImages = useSelector(selectImages);
     const { id } = useParams();
     const backdrops = movieImages.backdrops;
+    const isLoading = movieImages.isLoading;   
     //const logos = movieImages.logos; 
     //const posters = movieImages.posters;
 
@@ -61,7 +63,6 @@ const Images = () => {
 
     // set new current index
     const handleOpen = (i) => {
-        console.log(i)
         setCurrentIndex(i);
         setOpen(true)
     };
@@ -124,32 +125,35 @@ const Images = () => {
             <MovieHeader />
             <Container sx={{pt: "30px"}}>
                 <Typography variant="h5">Photo Gallery</Typography>
-                <Box sx={{ margin: "30px 0"}}>
-                    <Grid container spacing={1} sx={{ overflowX: 'auto'}} columns={6} >
-                            {backdrops.map((poster, index) => {
-                                const { file_path } = poster;
-                                const imageUrl = `https://image.tmdb.org/t/p/original${file_path}`;
-                                let imgId = uuidv4();
 
-                                return (
-                                    <Grid item xs={1} key={imgId}>
-                                        <Card sx={{width: "100%", height: '100%', cursor: "pointer"}} onClick={() => handleOpen(index)}>
-                                            <CardMedia 
-                                                component="img"
-                                                image={imageUrl}
-                                            />
-                                        </Card>
-                                    </Grid>
-                                )
-                            })}
+                <Box sx={{ margin: "30px 0"}}>
+                    
+                    <Grid container spacing={1} sx={{ overflowX: 'auto'}} columns={5} >
+                        {isLoading && <LoadingGridItem items={20} />}
+                        {backdrops.map((poster, index) => {
+                            const { file_path } = poster;
+                            const imageUrl = `https://image.tmdb.org/t/p/original${file_path}`;
+                            
+                            return (
+                                <Grid item xs={1} key={file_path}>
+                                    <Card sx={{width: "100%", height: '100%', cursor: "pointer"}} onClick={() => handleOpen(index)}>
+                                        <CardMedia 
+                                            component="img"
+                                            image={imageUrl}
+                                        />
+                                    </Card>
+                                </Grid>
+                            )
+                        })}
                     </Grid>
                 </Box>
             </Container>
-            <div>
+
+            <Box>
                 <Modal open={open}>   
                     {modalBody}
                 </Modal>
-            </div>
+            </Box>
         </Box>
     )
 }

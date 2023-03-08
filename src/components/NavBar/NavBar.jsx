@@ -12,62 +12,9 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import SearchAppBar from './SearchAppBar';
+import menuItems from './menu'
 
 const drawerWidth = 240;
-
-const menuItems = [
-    {
-        title: "Home",
-        url: "/"
-    },
-    {
-        title: "Movies",
-        items: [
-            {
-                name: "Popular",
-                url: "/movies/popular",
-            },
-            {
-                name: "Upcoming",
-                url: "/movies/upcoming"
-            },
-            {
-                name: "Top Rated",
-                url: "/movies/top-rated"
-            }
-        ]
-    },
-    {
-        title: "TV Series",
-        items: [
-            {
-                name: "Popular",
-                url: "",
-            },
-            {
-                name: "Airing Today",
-                url: ""
-            },
-            {
-                name: "On TV",
-                url: ""
-            },
-            {
-                name: "Top Rated",
-                url: ""
-            }
-        ]
-    },
-    {   
-        title: "People",
-        items: [
-            {
-                name: "Popular People",
-                url: ""
-            }
-        ]
-    }
-];
 
 const NavBar = (props) => {
     const [mobileOpen, setMobileOpen] = useState(false);
@@ -110,6 +57,7 @@ const NavBar = (props) => {
                     >
                         <MenuIcon />
                     </IconButton>
+                    
                     <Typography
                         variant="h6"
                         component="div"

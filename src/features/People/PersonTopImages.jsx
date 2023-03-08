@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { useParams, Link } from "react-router-dom"
 import { getPersonImages, getPersonTaggedImages, selectPersonImages, selectPersonTaggedImages } from "./personSlice"
+import LoadingMediaItem from "../../components/Loading/LoadingMediaItem";
+import Image from "./Image";
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
 
 const PersonTopImages = ({personId, name}) => {
     const [page, setPage] = useState(1);
@@ -14,10 +14,12 @@ const PersonTopImages = ({personId, name}) => {
     const personImages = useSelector(selectPersonImages);
     const personImagesResult = personImages.profiles;
     const personTopImages = personImagesResult.slice(0, 9);
+    const isLoadingImage = personImages.isLoading;
 
     const taggedImages = useSelector(selectPersonTaggedImages);
     const taggedImagesResult = taggedImages.results;
     const topTaggedImages = taggedImagesResult.slice(0, 9);
+    const isLoadingTaggedImages = personImages.isLoading;
 
     //const totalPages = taggedImages.total_pages-1;
 
@@ -41,23 +43,14 @@ const PersonTopImages = ({personId, name}) => {
                     overflowY: "hidden"
                     }}
             >
+                {(isLoadingImage || isLoadingTaggedImages)  && <LoadingMediaItem items={5} />}
                     <>
                         {personTopImages.map((photo) => {
                             const { file_path } = photo;
                             const imageUrl = `https://image.tmdb.org/t/p/original${file_path}`;
 
                             return (
-                                <Box sx={{p: "0 5px", maxWidth: "400px"}} key={imageUrl}>
-                                    <Card 
-                                        sx={{width: "300px", height: "300px"}}
-                                    >
-                                        <CardMedia 
-                                            component="img"
-                                            image={imageUrl}
-                                            sx={{height: "100%",  width: "100%"}}
-                                        />
-                                    </Card>
-                                </Box>
+                                <Image imageUrl={imageUrl}/>
                             )
                         })}
                     </>
@@ -67,17 +60,7 @@ const PersonTopImages = ({personId, name}) => {
                             const imageUrl = `https://image.tmdb.org/t/p/original${file_path}`;
 
                             return (
-                                <Box sx={{p: "0 5px", maxWidth: "400px"}} key={imageUrl}>
-                                    <Card 
-                                        sx={{width: "300px", height: "300px"}}
-                                    >
-                                        <CardMedia 
-                                            component="img"
-                                            image={imageUrl}
-                                            sx={{height: "100%", width: "100%"}}
-                                        />
-                                    </Card>
-                                </Box>
+                                <Image imageUrl={imageUrl}/>
                             )
                         })}
                     </>

@@ -4,12 +4,14 @@ import { getUpcomingMovies, selectUpcomingMovies } from "../moviesSlice"
 import MovieCard2 from "../../MovieCard/MovieCardStyle2"
 import Box from "@mui/material/Box"
 import Typography from "@mui/material/Typography"
+import LoadingItem from "../../../components/Loading/LoadingCardItem"
 
 const TopUpcomingMovies = () => {
     const [page, setPage] = useState(1);
     const dispatch = useDispatch();
     const upcomingMovies = useSelector(selectUpcomingMovies);
     const upcomingMoviesResults = upcomingMovies.results;
+    const isLoading = upcomingMovies.isLoading;
 
     useEffect(() => {
         dispatch(getUpcomingMovies(page))
@@ -28,6 +30,7 @@ const TopUpcomingMovies = () => {
                     overflowY: "hidden"
                 }}
             >
+                {isLoading && <LoadingItem />}
                 {upcomingMoviesResults.map(movie => {
                     return <MovieCard2 movie={movie} key={movie.id}/>
                 })}

@@ -15,6 +15,10 @@ const NestedList = ({menuItem}) => {
     const {items, title} = menuItem;
 
     const handleClick = () => {
+        if(menuItem.url) {
+            navigate(menuItem.url)
+            return
+        }
         setOpen(!open);
     };
 

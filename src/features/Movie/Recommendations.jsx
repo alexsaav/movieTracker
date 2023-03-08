@@ -8,13 +8,23 @@ import { Card } from '@mui/material';
 import {CardMedia} from '@mui/material';
 import { Link } from 'react-router-dom';
 import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
+import Skeleton from '@mui/material/Skeleton';
 
+let loadingItem = Array(6).fill(
+    <Box>
+        <Skeleton animation="wave" variant="rectangular" width={260} height={146} sx={{mr: 1, borderRadius: 2}} />
+        <Box>
+            <Skeleton animation="wave" height={10} width="90%" sx={{borderRadius: 1}}/>
+        </Box>
+    </Box>
+);
 
 const Recommendations = ({movieId}) => {
     const [page, setPage] = useState(1);
     const dispatch = useDispatch();
     const movieRecommendations = useSelector(selectRecommendations);
     const recommendationsResults = movieRecommendations.results;
+    const isLoading = movieRecommendations.isLoading;
 
     useEffect(() => {
         dispatch(getRecommendations({movieId, page}))
@@ -32,6 +42,7 @@ const Recommendations = ({movieId}) => {
                     overflowY: "hidden"
                     }}
             >
+                {isLoading && loadingItem}
                 {recommendationsResults.map((movie) => {
                     const { backdrop_path, title, release_date, vote_average, id } = movie;
 
