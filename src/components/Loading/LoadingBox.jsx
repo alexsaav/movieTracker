@@ -11,12 +11,12 @@ const LoadingBox = () => {
     );
 
     return (
-        <Box sx={{display: "flex", justifyContent: "flex-start", alignItems: "center", p: "0 30px"}} className="MIERDA">
+        <Box sx={{display: "flex", justifyContent: "flex-start", alignItems: "center", p: "40px 30px"}}>
             <Box style={{display: "flex", width: "35%"}}>
                 <Skeleton animation="wave" variant="rounded" width={300} height={450} />
             </Box>
         
-            <Box className="HOLI" sx={{display: "flex", flexDirection: "column", p: "0px 10px", width: "600px"}}>
+            <Box sx={{display: "flex", flexDirection: "column", p: "0px 10px", width: "600px"}}>
                 <Skeleton animation="wave" variant="h1" height={50} sx={{ml: 1, mb: 2}}/>
                 <>{loadingItem}</>
             </Box>

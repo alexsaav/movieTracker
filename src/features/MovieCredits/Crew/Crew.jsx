@@ -12,7 +12,6 @@ import Avatar from '@mui/material/Avatar';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/system';
-import { Skeleton } from '@mui/material';
 
 
 const Crew = ({ movieCrew, isLoading, loadingItem }) => {

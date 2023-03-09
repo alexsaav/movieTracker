@@ -147,7 +147,7 @@ export const person = createSlice({
         personDetails: {
             name: "",
             biography: "",
-            isLoading: false
+            isLoading: false,
         },
         personImages: {
             profiles: [],

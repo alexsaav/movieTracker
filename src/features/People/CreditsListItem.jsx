@@ -40,7 +40,7 @@ const CreditsListItem = ({jobsList}) => {
                         />
                     </ListItemAvatar>
                 </ListItemButton>
-                <Box sx={{display: "flex", justifyContent: "space-between", width: "100%", alignItems: "center"}}>
+                <Box sx={{display: "flex", justifyContent: "space-between", width: "100%", alignItems: "center", pl: "10px"}}>
                     <Box sx={{textTransform: "capitalize"}}>
                         <Box onClick={() => navigate(`/movie/${id}`)}>
                             <ListItemText 
