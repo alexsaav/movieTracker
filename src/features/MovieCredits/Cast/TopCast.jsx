@@ -11,17 +11,9 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import CardActionArea from '@mui/material/CardActionArea';
 import PersonIcon from '@mui/icons-material/Person';
-import Skeleton from '@mui/material/Skeleton';
-
-let loadingItem = Array(6).fill(
-    <Box>
-        <Skeleton animation="wave" variant="rectangular" width={130} height={140} sx={{mr: 1, borderRadius: 2}} />
-        <Box>
-            <Skeleton animation="wave" height={15} width="90%" />
-            <Skeleton animation="wave" height={15} width="90%" />
-        </Box>
-    </Box>
-    );
+import ViewMore from '../../../components/Button/ViewMore';
+import LoadingCardItem from '../../../components/Loading/LoadingCardItem';
+import { topMediaContainersStyles } from '../../styles/styles';
 
 const TopCast = ({id}) => {
     const dispatch = useDispatch();
@@ -37,18 +29,10 @@ const TopCast = ({id}) => {
     }, [dispatch, id]);
 
     return (
-        <section style={{padding: "30px 0"}}>
-            <Typography variant='h5' sx={{fontWeight: 'bold'}}>Top Cast</Typography>
-            <Box sx={{ 
-                    display: "flex", 
-                    flexDirection: "row",  
-                    width: "100%", 
-                    p: "30px 0", 
-                    overflowX: "scroll", 
-                    overflowY: "hidden"
-                }}
-            >
-                {isLoading && loadingItem}
+        <Box component="section" sx={topMediaContainersStyles.sectionStyle}>
+            <Typography variant='h5' sx={topMediaContainersStyles.sectionTitle}>Top Cast</Typography>
+            <Box sx={topMediaContainersStyles.innerContainer}>
+                {isLoading && <LoadingCardItem items={6} /> }
                 {movieCast.map(cast => {
                     const { name, character, id, profile_path } = cast;
                     let image;
@@ -98,12 +82,8 @@ const TopCast = ({id}) => {
                     )
                 })}
             </Box>
-            <Box sx={{mt: 4, mb: 4}}>
-                <Link to={`/movie/${id}/cast`} style={{textDecoration: 'none', color: '#1D1F20'}} onClick={scrollTopWin}>
-                    <Typography variant="button">Full Cast and Crew</Typography>
-                </Link>
-            </Box>
-        </section>
+            <ViewMore route={`/movie/${id}/cast`} title={"Full Cast and Crew"} />
+        </Box>
     )
 }
 

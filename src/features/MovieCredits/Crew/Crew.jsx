@@ -35,7 +35,7 @@ const Crew = ({ movieCrew, isLoading, loadingItem }) => {
                 Crew {totalCrew}
             </Typography>
             <Box>
-                {isLoading && <LoadingList />}
+                {isLoading && <LoadingList items={40} />}
                 {Object.keys(departments).map(department => {
                     return (
                         <List dense sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', display: 'flex', flexDirection: 'column'}}>

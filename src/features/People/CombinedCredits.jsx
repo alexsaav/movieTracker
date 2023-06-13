@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCombinedCredits, selectCombinedCredits } from './personSlice'
 import CreditsListItem from './CreditsListItem'
+import { useTheme } from '@mui/material/styles';
+import { getFilmographyStyles } from '../styles/styles'
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Divider from "@mui/material/Divider";
@@ -30,39 +32,40 @@ const CombinedCredits = () => {
         }
 
         departments[departmentGroup].push(crewJob);
-   });
+    });
+
+    const theme = useTheme();
+    const styles = getFilmographyStyles(theme);
 
     return (
-        <>
-            <Box sx={{margin: '50px 50px'}}>
-                <Typography variant="h2" sx={{fontSize: "2rem", fontWeight: "bold", pb: "30px"}}>Filmography</Typography>
+        <Box component='section' sx={styles.container}>
+            <Typography variant="h2" sx={{fontSize: "2rem", fontWeight: "bold", pb: "30px"}}>Filmography</Typography>
 
-                {isLoading && <LoadingList />}
-                <Typography variant="h2" sx={{fontSize: "1.5rem", fontWeight: "bold"}}>Acting</Typography>
-                <List dense sx={{ width: '100%', bgcolor: 'background.paper', display: 'flex', flexDirection: 'column', pt: "30px" }}>
-                    {castJob.map(cast => {
-                        return (
-                            <CreditsListItem jobsList={cast}/>
-                        )
-                    })}
-                </List>
-         
-                {Object.keys(departments).map(department => {
+            {isLoading && <LoadingList items={40} />}
+            <Typography variant="h2" sx={{fontSize: "1.5rem", fontWeight: "bold"}}>Acting</Typography>
+            <List dense sx={{ width: '100%', bgcolor: 'background.paper', display: 'flex', flexDirection: 'column', pt: "30px" }}>
+                {castJob.map(cast => {
                     return (
-                        <List dense sx={{ width: '100%', bgcolor: 'background.paper', display: 'flex', flexDirection: 'column'}}>
-                            <Typography variant="h2" sx={{fontSize: "1.5rem", fontWeight: "bold"}}>{department}</Typography>
-                            {departments[department].map(crewJob => {
-
-                                return (
-                                    <CreditsListItem jobsList={crewJob}/>
-                                )}
-                            )}
-                            <Divider/>
-                        </List>                
+                        <CreditsListItem jobsList={cast} listItemStyle={styles.listItem} listItemStyleInfo={styles.listItemInfo} />
                     )
                 })}
-            </Box>
-        </>
+            </List>
+         
+            {Object.keys(departments).map(department => {
+                return (
+                    <List dense sx={{ width: '100%', bgcolor: 'background.paper', display: 'flex', flexDirection: 'column'}}>
+                        <Typography variant="h2" sx={{fontSize: "1.5rem", fontWeight: "bold"}}>{department}</Typography>
+                        {departments[department].map(crewJob => {
+
+                            return (
+                                <CreditsListItem jobsList={crewJob} listItemStyle={styles.listItem} listItemStyleInfo={styles.listItemInfo} />
+                            )}
+                        )}
+                        <Divider/>
+                    </List>                
+                )
+            })}
+        </Box>
     )
 }
 

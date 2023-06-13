@@ -5,6 +5,7 @@ import MovieCard2 from "../../MovieCard/MovieCardStyle2";
 import Box from "@mui/material/Box"
 import Typography from "@mui/material/Typography"
 import LoadingItem from "../../../components/Loading/LoadingCardItem";
+import { topMediaContainersStyles } from "../../styles/styles";
 
 const TrendingMovies = () => {
     const dispatch = useDispatch();
@@ -17,24 +18,17 @@ const TrendingMovies = () => {
     }, [dispatch])
 
     return (
-        <section sx={{padding: "30px 0", display: "block"}}>
-            <Typography variant="h2" sx={{fontSize: "1.5rem", fontWeight: "bold"}}>Trending Movies</Typography>
+        <Box component='section' sx={topMediaContainersStyles.wrapper}>
+            <Typography variant="h2" sx={topMediaContainersStyles.title}>Trending Movies</Typography>
 
-            <Box sx={{ 
-                    display: "flex", 
-                    flexDirection: "row",  
-                    width: "100%", 
-                    p: "30px 0", 
-                    overflowX: "scroll", 
-                    overflowY: "hidden"
-                }}
+            <Box sx={topMediaContainersStyles.innerContainer}
             >
-                {isLoading && <LoadingItem />}
+                {isLoading && <LoadingItem items={8} />}
                 {trendingMoviesResult.map(movie => {
                     return <MovieCard2 movie={movie} key={movie.id} isLoading={trendingMovies.isLoading}/>
                 })}
             </Box>
-        </section>
+        </Box>
     )
 }
 

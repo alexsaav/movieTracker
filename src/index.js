@@ -6,13 +6,30 @@ import App from './app/App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
 
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+
 const container = document.getElementById('root');
 const root = createRoot(container);
+
+const theme = createTheme({
+    breakpoints: {
+        values: {
+            xxs: 350,
+            xs: 500,
+            sm: 740,
+            md: 1024,
+            lg: 1200,
+        },
+    },
+  });
 
 root.render(
     <React.StrictMode>
         <Provider store={store}>
-            <App />
+            <ThemeProvider theme={theme}>
+                <App />
+            </ThemeProvider>
         </Provider>
     </React.StrictMode>
 );

@@ -177,7 +177,7 @@ export const person = createSlice({
     },
     extraReducers: {
         [getPersonDetailsAsync.pending]: (state, action) => {
-            state.personDetails.isLoading = true
+            state.personDetails.isLoading = true;
         },
         [getPersonDetailsAsync.fulfilled]: (state, action) => {
             state.personDetails = action.payload;

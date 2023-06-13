@@ -10,6 +10,8 @@ import Typography from '@mui/material/Typography';
 import PersonTopImages from "./PersonTopImages";
 import { Divider } from "@mui/material";
 import ReadMore from "./ReadMore";
+import { getPersonComponentStyles, detailsComponentStyles } from "../styles/styles";
+import { useTheme } from '@mui/material/styles';
 
 const Person = () =>  {
     const dispatch = useDispatch();
@@ -20,8 +22,7 @@ const Person = () =>  {
         name,
         birthday,
         deathday,
-        place_of_birth,    
-        imdb_id,
+        place_of_birth,
         profile_path,
         biography,
         isLoading,
@@ -33,52 +34,47 @@ const Person = () =>  {
         dispatch(getPersonDetailsAsync(id))
     }, [dispatch, id])
 
+    const theme = useTheme();
+    const styles = getPersonComponentStyles(theme);
 
     return (
         <>
-            <Box container sx={{background: "#1D1F20"}} >
-                {isLoading ? (<LoadingBox />) : (
-                <Box sx={{display: "flex", justifyContent: "center", alignItems: "flex-start", flexWrap: "wrap", width: "100%", minHeight: "500px", height: "100%", pt: "50px"}}>
-                    <Box sx={{
-                        height: 450,
-                        minWidth: 300,
-                        display: 'flex',
-                        borderRadius: '15px',
-                        overflow: "hidden",
-                    }}>
-                        <img src={profilePhoto} alt={name} style={{borderRadius: '15px'}} />
+            {isLoading ? (<LoadingBox />) : (
+                <Box sx={styles.container} >
+                    <Box sx={detailsComponentStyles.imageContainer}>
+                        <img src={profilePhoto} alt={name} style={detailsComponentStyles.image} />
                     </Box>
 
-                    <Box sx={{display: 'flex', flexWrap: "wrap", color: '#F7F7F8', maxWidth: "920px", p: "30px 40px"}}>        
+                    <Box sx={detailsComponentStyles.infoContainer}>        
                         <Box sx={{width: "100%"}}>
-                            <Typography variant='h1' sx={{fontSize: "2.2rem", fontWeight: 'bold',  width: "100%"}}>
+                            <Typography variant='h1' sx={detailsComponentStyles.title}>
                                 {name}
                             </Typography>
                         </Box>  
             
-                        <Box sx={{width: "100%", mt: "30px"}}>
-                            <Typography variant='h3' sx={{mb: "8px", fontSize: "1.3em", fontWeight: 600, overflow: "hidden" }}>
+                        <Box sx={styles.factsContainer}>
+                            <Typography variant='h3' sx={styles.biographyHeader}>
                                 Biography
                             </Typography>
                             
-                            <Box sx={{paddingBottom: '5px'}}>
+                            <Box sx={styles.biographyText}>
                                 {biography ? <ReadMore text={biography} limit={500}/> :
                                     <Typography>There is no biography available.</Typography>
                                 }
                             </Box>
                                             
-                            <Box sx={{pb: "10px"}}>
+                            <Box sx={styles.personalInfoContainer}>
                                 <Typography sx={{fontWeight: "bold"}}>Born</Typography>
                                 {birthday ? <Typography variant="body1">{birthday}</Typography> : "-"}
                             </Box>
                         
-                            <Box sx={{pb: "10px"}}>
+                            <Box sx={styles.personalInfoContainer}>
                                 <Typography sx={{fontWeight: "bold"}}>Place of Birth </Typography>
                                 {place_of_birth ? <Typography variant="body1">{place_of_birth}</Typography> : "-"}
                             </Box>
             
                             {deathday  && 
-                                <Box sx={{pb: "10px"}}>
+                                <Box sx={styles.personalInfoContainer}>
                                     <Typography sx={{fontWeight: "bold"}}>Date of Death </Typography>
                                     <Typography variant="body1">{deathday}</Typography>
                                 </Box>
@@ -86,8 +82,7 @@ const Person = () =>  {
                         </Box>   
                     </Box>    
                 </Box>
-                )}
-            </Box>
+            )}
 
             <Box sx={{margin: '50px 50px'}}>
                 <KnownFor />

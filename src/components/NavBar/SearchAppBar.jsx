@@ -70,7 +70,7 @@ const SearchAppBar = () => {
 
     return (
         <Box sx={{ flexGrow: 1 }} component="form" onSubmit={handleSearch}>
-            <Search >
+            <Search>
                 <SearchIconWrapper>
                     <SearchIcon />
                 </SearchIconWrapper>

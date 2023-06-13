@@ -21,7 +21,7 @@ const PopularPeople = (personId) => {
     }, [dispatch, page])
 
     const handlePageChange = () => {
-        setPage([...page] + 1);
+        setPage([page] + 1);
     }
 
     return (

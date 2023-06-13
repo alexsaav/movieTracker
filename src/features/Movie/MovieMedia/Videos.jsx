@@ -136,16 +136,16 @@ const Videos = () => {
             <MovieHeader />
             <Container sx={{pt: "30px"}}>
                 <Typography variant="h5">Videos</Typography>
-                    <Box sx={{ margin: "30px 0"}}>
-                        <Grid container spacing={1} sx={{ overflowX: 'auto'}} columns={6} >
+                    <Box sx={{ margin: "30px 0", flexGrow: 1}}>
+                        <Grid container spacing={1} sx={{}} >
                             {isLoading && loadingItem}
                             {videos.map((video, index) => {
                                 const { id, key, name, site } = video;
                                 const videoImgUrl = `https://img.youtube.com/vi/${key}/sddefault.jpg`
 
                                 return (
-                                    <Grid item xs={2} key={id}>
-                                        <Card sx={{minWidth: "360px", position: "relative", cursor: "pointer"}} onClick={() => handleOpen(index)}> 
+                                    <Grid item xs={4} key={id}>
+                                        <Card sx={{ position: "relative", cursor: "pointer"}} onClick={() => handleOpen(index)}> 
                                             <CardMedia
                                                 component="img"
                                                 image={videoImgUrl}

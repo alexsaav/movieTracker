@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { getPersonImages, getPersonTaggedImages, selectPersonImages, selectPersonTaggedImages } from "./personSlice"
 import { useNavigate, useParams } from "react-router-dom"
 import { v4 as uuidv4 } from 'uuid';
 import Grid from "@mui/material/Unstable_Grid2/Grid2"
@@ -14,36 +12,20 @@ import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import LoadingGridItem from "../../components/Loading/LoadingGridItem";
+import LoadingGridItem from "../Loading/LoadingGridItem";
 import { useTheme } from "@mui/material";
 import { getImagesStyle, getModalStyleImages } from "./peopleStyles";
 
-const PersonImages = () => {
+const Images = ({images, isLoading}) => {
     const [open, setOpen] = useState(false);
     const [page, setPage] = useState(1);
     const [currentIndex, setCurrentIndex] = useState(null);
-    const dispatch = useDispatch();
     const { id, name } = useParams();
     const navigate = useNavigate();
-
-    useEffect(() => {
-        dispatch(getPersonImages(id))
-    }, [dispatch, id])
-
-    useEffect(() => {
-        dispatch(getPersonTaggedImages({personId: id, page}))
-    }, [dispatch, page, id])
     
-    const personImages = useSelector(selectPersonImages);
-    const personImagesResult = personImages.profiles;
-    const isLoadingImage = personImages.isLoading;
-
-    const taggedImages = useSelector(selectPersonTaggedImages);
-    const taggedImagesResult = taggedImages.results;
-    const isLoadingTaggedImages = personImages.isLoading;
-
-    const images = personImagesResult.concat(taggedImagesResult)
-
+    const theme = useTheme();
+    const modalStyle = getModalStyleImages(theme); 
+    const imagesStyle = getImagesStyle(theme);
 
     // set new current index
     const handleOpen = (i) => {
@@ -62,10 +44,6 @@ const PersonImages = () => {
         currentIndex > 0 ? setCurrentIndex(currentIndex - 1) : setCurrentIndex(images.length - 1)
         currentIndex > images.length - 2 ? setCurrentIndex(0) : setCurrentIndex(currentIndex + 1)
     };
-
-    const theme = useTheme();
-    const modalStyle = getModalStyleImages(theme); 
-    const imagesStyle = getImagesStyle(theme);
 
     const modalBody = (
         <Box style={modalStyle.container}>
@@ -105,7 +83,7 @@ const PersonImages = () => {
                 <Typography variant="h2" sx={imagesStyle.subtitle}>Photo Gallery</Typography>
                 <Box sx={imagesStyle.imagesContainer}>
                     <Grid container spacing={1} sx={imagesStyle.imagesInnerContainer} columns={{ xs: 2, sm: 4, md: 6 }} >
-                        {isLoadingImage  && <LoadingGridItem items={30} />}
+                        {isLoading  && <LoadingGridItem items={30} />}
                         <>
                             {images.map((photo, index) => {
                                 const { file_path } = photo;
@@ -137,5 +115,4 @@ const PersonImages = () => {
     )
 }
 
-export default PersonImages
-
+export default Images

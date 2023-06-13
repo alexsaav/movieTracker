@@ -128,14 +128,14 @@ const Images = () => {
 
                 <Box sx={{ margin: "30px 0"}}>
                     
-                    <Grid container spacing={1} sx={{ overflowX: 'auto'}} columns={5} >
+                    <Grid container spacing={1} sx={{ overflowX: 'auto'}} columns={{ xs: 1, sm: 8, md: 12 }} >
                         {isLoading && <LoadingGridItem items={20} />}
                         {backdrops.map((poster, index) => {
                             const { file_path } = poster;
                             const imageUrl = `https://image.tmdb.org/t/p/original${file_path}`;
                             
                             return (
-                                <Grid item xs={1} key={file_path}>
+                                <Grid item xs={6} sm={4} md={4} key={file_path}>
                                     <Card sx={{width: "100%", height: '100%', cursor: "pointer"}} onClick={() => handleOpen(index)}>
                                         <CardMedia 
                                             component="img"

@@ -5,11 +5,9 @@ import { Link } from "react-router-dom"
 import { Box } from "@mui/system"
 import { Card, CardMedia, Typography } from "@mui/material"
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import Skeleton from '@mui/material/Skeleton';
-
-let loadingItem = Array(5).fill(
-    <Skeleton animation="wave" variant="rectangular" width="100%" height={250} sx={{mr: 1, borderRadius: 1}} />
-    );
+import ViewMore from "../../../components/Button/ViewMore"
+import { topMediaContainersStyles, topVideosStyles } from "../../styles/styles"
+import LoadingMediaItem from "../../../components/Loading/LoadingMediaItem"
 
 const TopVideos = ({movieId, title}) => {
     const dispatch = useDispatch();
@@ -27,44 +25,21 @@ const TopVideos = ({movieId, title}) => {
     }
 
     return (
-        <section style={{padding: "30px 0"}}>
-            <Typography variant="h5">Videos</Typography>
-            <Box sx={{ 
-                    display: "flex", 
-                    flexDirection: "row",  
-                    width: "100%", 
-                    p: "30px 0", 
-                    overflowX: "scroll", 
-                    overflowY: "hidden"
-                    }}
-            >
-
-                {isLoading && loadingItem}
+        <Box component="section" sx={topMediaContainersStyles.sectionStyle}>
+            <Typography variant="h5" sx={topMediaContainersStyles.sectionTitle}>Videos</Typography>
+            <Box sx={topMediaContainersStyles.innerContainer}>
+                {isLoading && <LoadingMediaItem items={5} />}
                 {videos.map((video) => {
                     const {key} = video;
                     const videoImgUrl = `https://img.youtube.com/vi/${key}/sddefault.jpg`;
 
                     return (
-                        <Box sx={{p: "0 5px", width: "400px"}}>
-                            <Link to={`/movie/${title}/${movieId}/videos`} onClick={scrollTopWin} style={{textDecoration: 'none', color: '#1D1F20'}}>
-                                <Card sx={{minWidth: "360px", maxWidth: "400px",  height: "250px", position: "relative" }}> 
-                                    <CardMedia
-                                        component="img"
-                                        image={videoImgUrl}
-                                    />
-                                    <Box aria-label="play/pause"
-                                        sx={{
-                                            padding: "0 7px", background: 'rgba(0, 0, 0, 0.5)',
-                                            position: "absolute",
-                                            color: "primary",
-                                            textDecoration: "none",
-                                            bottom: 0,
-                                            left: 0,
-                                            right: 0,
-                                            paddingBottom: 1
-                                        }}
-                                    >
-                                        <PlayArrowIcon sx={{ height: 38, width: 38, color: "#F7F7F8" }} />
+                        <Box sx={topVideosStyles.videoContainer}>
+                            <Link to={`/movie/${title}/${movieId}/videos`} onClick={scrollTopWin} style={topVideosStyles.videoLink}>
+                                <Card sx={topVideosStyles.card}> 
+                                    <CardMedia component="img" image={videoImgUrl}/>
+                                    <Box aria-label="play/pause"sx={topVideosStyles.playButtonContainer}>
+                                        <PlayArrowIcon sx={topVideosStyles.playButtonIcon} />
                                     </Box>
                                 </Card>
                             </Link>
@@ -72,12 +47,8 @@ const TopVideos = ({movieId, title}) => {
                     )
                 })}
             </Box>
-            <Box>
-                <Link to={`/movie/${title}/${movieId}/videos`} style={{textDecoration: 'none', color: '#1D1F20'}}>
-                    <Typography variant="button">View More</Typography>
-                </Link>
-            </Box>
-        </section> 
+            <ViewMore route={`/movie/${title}/${movieId}/videos`} title={"View More"} />
+        </Box> 
     )
 }
 

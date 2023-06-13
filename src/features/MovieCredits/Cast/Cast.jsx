@@ -21,7 +21,7 @@ const Cast = ({ movieCast, isLoading, loadingItem }) => {
         <Container>
             <Typography variant='h5'>Cast {totalCast}</Typography>
             <Box>
-                {isLoading && <LoadingList />}
+                {isLoading && <LoadingList items={40} />}
                 <List dense sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', display: 'flex', flexDirection: 'column' }}>
                 {movieCast.map(cast => {
                      const { name, character, id, profile_path } = cast;

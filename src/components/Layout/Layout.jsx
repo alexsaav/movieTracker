@@ -15,7 +15,6 @@ const Layout = () => {
             </ThemeProvider>
             <Box component='main'>
                 <Toolbar />
-                <Toolbar />
                 <Outlet />
             </Box>
             <Footer />

@@ -5,7 +5,9 @@ import { getMovieDetails, selectDetails } from './movieSlice';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import Skeleton from '@mui/material/Skeleton';
+import LoadingList from '../../components/Loading/LoadingList';
+import { getMovieHeaderStyles } from '../styles/styles';
+import { useTheme } from 'styled-components';
 
 const MovieHeader = () => {
     const dispatch = useDispatch();
@@ -25,94 +27,48 @@ const MovieHeader = () => {
     useEffect(() => {
         dispatch(getMovieDetails(id))
     }, [dispatch, id])
+    
+
+    const theme = useTheme();
+    const styles = getMovieHeaderStyles(theme);
 
     return (
-        <Box sx={{background: 'rgba(0, 0, 0, 0.7)', padding: "15px 40px", display: "flex"}}>
-            <Box> 
-                <Link to={`/movie/${id}`}>
-                    {
-                        isLoading ? (
-                            <Skeleton animation="wave" variant="rounded" width={58} height={87} />
-                        ) : (
-                        <img 
-                            src={moviePosterUrl} 
-                            alt={title} 
-                            style={{
-                                borderRadius: 10, 
-                                height: 87, 
-                                width: 58, 
-                                minWidth: 58, 
-                                padding: 6
-                            }} 
-                        />
-                    )}
-                </Link>
-            </Box>
-
-            <Box 
-                sx={{
-                    color: "#F7F7F8", 
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center", 
-                    alignContent: "center",
-                    paddingLeft: "20px",
-                }}
-            >
-                {
-                    isLoading ? (
-                        <Skeleton animation="wave" variant="h1" width={300} height={40}/>
-                    ) : (
-                    <Box 
-                        sx={{
-                            display: "flex", 
-                            alignContent: "center", 
-                            alignItems: "center", 
-                            mb: 0
-                        }}
-                    >   
-                        <Link to={`/movie/${id}`} style={{textDecoration: "none"}}>
-                    
-                            <Typography 
-                                variant="h1" 
-                                sx={{
-                                    color: "#F7F7F8", 
-                                    fontSize: "2.2rem", 
-                                    fontWeight: 600
-                                }}
-                            >
-                                {title}
-                            </Typography>
-                            
-                        </Link>
-                        <Typography 
-                            variant="caption" 
-                            sx={{fontSize: "1.1em", 
-                                fontWeight: 400, 
-                                margin: "0 10px", 
-                                opacity: 0.6}}
-                        >
-                            ({date})
-                        </Typography>
+        <Box sx={styles.container}>
+            {isLoading ? <LoadingList items={1} /> : (
+                <>
+                    <Box> 
+                        <Link to={`/movie/${id}`}>
+                            <img 
+                                src={moviePosterUrl} 
+                                alt={title} 
+                                style={styles.poster} 
+                                />
                         
+                        </Link>
                     </Box>
-                )}
-                <Link 
-                    to={`/movie/${id}`} 
-                    style={{textDecoration: "none", 
-                            color: "#F7F7F8", 
-                            opacity: 0.6, 
-                            fontSize: "1.1em", 
-                            display: "flex", 
-                            margin: 0}}
-                >
-                    <ArrowBackIcon />
-                    <Typography variant="h3" sx={{fontSize: "1.1em", fontWeight: 600,}}>Back to main</Typography>
-                </Link>
-            </Box>
+
+                    <Box sx={styles.titleContainer}>
+                        <Box sx={styles.titleInnerContainer}>   
+                            <Link to={`/movie/${id}`} style={{textDecoration: "none"}}>
+                                <Typography variant="h1" sx={styles.title}>
+                                    {title}
+                                </Typography>    
+                            </Link>
+                            <Typography variant="caption" sx={styles.date}>
+                                ({date})
+                            </Typography>    
+                        </Box>
+                    
+                        <Link to={`/movie/${id}`} style={styles.button}>
+                            <ArrowBackIcon />
+                            <Typography variant="h3" sx={styles.buttonText}>Back to main</Typography>
+                        </Link>
+                    </Box>
+                </>
+            )}
         </Box>
     )
-}
+};
 
 export default MovieHeader
 

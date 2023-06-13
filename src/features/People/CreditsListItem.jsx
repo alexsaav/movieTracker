@@ -9,7 +9,7 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 
-const CreditsListItem = ({jobsList}) => {
+const CreditsListItem = ({jobsList, listItemStyle, listItemStyleInfo}) => {
     const navigate = useNavigate();
     const { 
         id,
@@ -29,7 +29,7 @@ const CreditsListItem = ({jobsList}) => {
     
     return (
         <>
-            <ListItem alignItems="flex-start" sx={{pl: 0}} key={id}>
+            <ListItem alignItems="flex-start" sx={listItemStyle} key={id}>
                 <ListItemButton onClick={() => navigate(`/movie/${id}`)} sx={{flexGrow: 0}}>
                     <ListItemAvatar>
                         <Avatar 
@@ -40,7 +40,7 @@ const CreditsListItem = ({jobsList}) => {
                         />
                     </ListItemAvatar>
                 </ListItemButton>
-                <Box sx={{display: "flex", justifyContent: "space-between", width: "100%", alignItems: "center", pl: "10px"}}>
+                <Box sx={listItemStyleInfo}>
                     <Box sx={{textTransform: "capitalize"}}>
                         <Box onClick={() => navigate(`/movie/${id}`)}>
                             <ListItemText 

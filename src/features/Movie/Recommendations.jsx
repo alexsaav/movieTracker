@@ -8,16 +8,8 @@ import { Card } from '@mui/material';
 import {CardMedia} from '@mui/material';
 import { Link } from 'react-router-dom';
 import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
-import Skeleton from '@mui/material/Skeleton';
-
-let loadingItem = Array(6).fill(
-    <Box>
-        <Skeleton animation="wave" variant="rectangular" width={260} height={146} sx={{mr: 1, borderRadius: 2}} />
-        <Box>
-            <Skeleton animation="wave" height={10} width="90%" sx={{borderRadius: 1}}/>
-        </Box>
-    </Box>
-);
+import { recommendationsStyles, topMediaContainersStyles } from '../styles/styles';
+import { LoadingRecommendationCard } from '../../components/Loading/LoadingRecommendationsCard';
 
 const Recommendations = ({movieId}) => {
     const [page, setPage] = useState(1);
@@ -31,18 +23,10 @@ const Recommendations = ({movieId}) => {
     }, [dispatch, movieId, page])
     
     return (
-        <section style={{padding: "30px 0"}}>
-            <Typography variant="h5">Recommendations</Typography>
-            <Box sx={{ 
-                    display: "flex", 
-                    flexDirection: "row",  
-                    width: "100%", 
-                    p: "30px 0", 
-                    overflowX: "scroll", 
-                    overflowY: "hidden"
-                    }}
-            >
-                {isLoading && loadingItem}
+        <Box component="section" sx={topMediaContainersStyles.sectionStyle}>
+            <Typography variant="h5" sx={topMediaContainersStyles.sectionTitle}>Recommendations</Typography>
+            <Box sx={topMediaContainersStyles.innerContainer}>
+                {isLoading && <LoadingRecommendationCard />}
                 {recommendationsResults.map((movie) => {
                     const { backdrop_path, title, release_date, vote_average, id } = movie;
 
@@ -63,24 +47,14 @@ const Recommendations = ({movieId}) => {
                     return (
                         <Box sx={{p: "0 5px"}}>
                             <Link to={`/movie/${id}`} onClick={scrollTopWin}>
-                                <Card sx={{width: 260, minHeight: 146, maxHeight: 146, borderRadius: 3, position: "relative", background: "#EAEBEB"}}>
+                                <Card sx={recommendationsStyles.card}>
                                     {image}
-                                    <Box sx={{
-                                        padding: "0 7px", 
-                                        background: 'rgba(0, 0, 0, 0.5)',
-                                        position: "absolute",
-                                        color: "#F7F7F8",
-                                        textDecoration: "none",
-                                        bottom: 0,
-                                        left: 0,
-                                        right: 0,
-                                        paddingBottom: 1
-                                    }}>
+                                    <Box sx={recommendationsStyles.imageContainer}>
                                         <Typography 
                                             variant="subtitle1" 
                                             display="block" 
                                             gutterBottom
-                                            sx={{mb: 0, textDecoration: "none", paddingBottom: 0}}
+                                            sx={recommendationsStyles.title}
                                         >
                                             {title}
                                         </Typography>
@@ -91,7 +65,7 @@ const Recommendations = ({movieId}) => {
                     )
                 })}
             </Box>
-        </section>
+        </Box>
     )
 }
 

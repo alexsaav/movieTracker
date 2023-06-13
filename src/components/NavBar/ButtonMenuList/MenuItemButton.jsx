@@ -10,7 +10,7 @@ const MenuItemButton = ({menuItem}) => {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const {title, items} = menuItem;
-    let itemId = uuidv4();
+    //let itemId = uuidv4();
     
     const handleClick = (event) => {
         if(menuItem.url) {
@@ -27,12 +27,12 @@ const MenuItemButton = ({menuItem}) => {
     return (
         <>
             <Button
-            id="basic-button"
-            aria-controls={open ? 'basic-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-            onClick={handleClick}
-            style={{ color: '#fff' }}
+                id="basic-button"
+                aria-controls={open ? 'basic-menu' : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? 'true' : undefined}
+                onClick={handleClick}
+                style={{ color: '#fff' }}
             >
                 {title}
             </Button>

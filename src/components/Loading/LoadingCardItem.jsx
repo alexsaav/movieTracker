@@ -1,11 +1,11 @@
 import Skeleton from "@mui/material/Skeleton";
 import Box from "@mui/material/Box";
 
-const LoadingCardItem = () => {
+const LoadingCardItem = (items) => {
 
     return (
         <>
-            {Array(8).fill(
+            {Array(items).fill(
                 (<Box sx={{width: 150, position: "relative"}}>
                     <Skeleton animation="wave" variant="rectangular" height={225} sx={{mr: 1, borderRadius: 2}} />
                     <Box>

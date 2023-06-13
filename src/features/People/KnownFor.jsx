@@ -40,7 +40,7 @@ const KnownFor = () => {
                     overflowY: "hidden"
                 }}
             >   
-                {isLoading && <LoadingCardItem />}
+                {isLoading && <LoadingCardItem items={8} />}
                 {filmsSorted.map(movie => {
                     return (
                         <MovieCardStyle2 movie={movie} key={movie.id}/>

@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { searchMovies } from '../Movies/moviesSlice';
-import SearchBar from '../../components/SearchBar/SearchBar';
 import TopUpcomingMovies from '../Movies/Upcoming/TopUpcomingMovies';
-import { Container } from '@mui/material';
+import { Box } from '@mui/material';
 import Toolbar from '@mui/material/Toolbar';
 import TopMoviesInTheatres from '../Movies/InTheatres/TopMoviesInTheatres';
 import TrendingMovies from '../Movies/Trending/TrendingMovies';
+import HomeBanner from '../../components/HomeBanner/HomeBanner';
 
 
  const Home = () => {
@@ -32,15 +32,15 @@ import TrendingMovies from '../Movies/Trending/TrendingMovies';
     };
 
     return (
-        <Container>
-            <SearchBar onSubmit={handleSearch} setSearchText={handlePageReset}/> 
+        <Box component='main'>
+            <HomeBanner onSubmit={handleSearch} setSearchText={handlePageReset}/> 
             <Toolbar />
             <TrendingMovies />
             <Toolbar />
             <TopUpcomingMovies />
             <Toolbar />
             <TopMoviesInTheatres />   
-        </Container>
+        </Box>
     )
 }
 
