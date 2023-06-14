@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import LoadingList from '../../components/Loading/LoadingList';
 import { getMovieHeaderStyles } from '../styles/styles';
-import { useTheme } from 'styled-components';
+import { useTheme } from "@mui/material";
 
 const MovieHeader = () => {
     const dispatch = useDispatch();

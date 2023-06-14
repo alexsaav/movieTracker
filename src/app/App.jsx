@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from '../components/Layout/Layout';
 import SearchResultMovies from '../features/Movies/SearchResultMovies';
-import Home from '../features/Home/Home'
+import Home from '../components/Home/Home'
 import Movie from '../features/Movie/Movie';
 import MovieCredits from '../features/MovieCredits/MovieCredits';
 import Person from '../features/People/Person';
-import Images from '../features/Movie/MovieMedia/Images'
+import Images from '../features/Movie/MovieMedia/MovieImages'
 import Videos from '../features/Movie/MovieMedia/Videos';
 import PersonImages from '../features/People/PersonImages';
 import PopularMovies from '../features/Movies/Popular/PopularMovies';

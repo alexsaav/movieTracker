@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { searchMovies } from '../Movies/moviesSlice';
-import TopUpcomingMovies from '../Movies/Upcoming/TopUpcomingMovies';
+import { searchMovies } from '../../features/Movies/moviesSlice';
+import TopUpcomingMovies from '../../features/Movies/Upcoming/TopUpcomingMovies';
 import { Box } from '@mui/material';
 import Toolbar from '@mui/material/Toolbar';
-import TopMoviesInTheatres from '../Movies/InTheatres/TopMoviesInTheatres';
-import TrendingMovies from '../Movies/Trending/TrendingMovies';
-import HomeBanner from '../../components/HomeBanner/HomeBanner';
+import TopMoviesInTheatres from '../../features/Movies/InTheatres/TopMoviesInTheatres';
+import TrendingMovies from '../../features/Movies/Trending/TrendingMovies';
+import HomeBanner from '../HomeBanner/HomeBanner';
 
 
  const Home = () => {

@@ -100,7 +100,6 @@ export const getMovieComponentStyles = (theme) => {
             minHeight: "500px",
             height: "100%",
         },
-        
         releaseDate: {
             fontSize: "2.2rem", 
             opacity: 0.8, 
@@ -240,13 +239,19 @@ export const getMovieHeaderStyles = (theme) => {
         title: {
             color: "#F7F7F8", 
             fontSize: "2.2rem", 
-            fontWeight: 600        
+            fontWeight: 600,            
+            [theme.breakpoints.down('sm')]: {
+                fontSize: "1.2rem"
+            }, 
         },
         date: {
             fontSize: "1.1em", 
             fontWeight: 400, 
             margin: "0 10px", 
-            opacity: 0.6        
+            opacity: 0.6,
+            [theme.breakpoints.down('sm')]: {
+                fontSize: "1rem"
+            },      
         },
         button: {
             textDecoration: "none", 
@@ -254,7 +259,10 @@ export const getMovieHeaderStyles = (theme) => {
             opacity: 0.6, 
             fontSize: "1.1em", 
             display: "flex", 
-            margin: 0
+            margin: 0,
+            [theme.breakpoints.down('sm')]: {
+                fontSize: "1rem"
+            }, 
         },
         buttonText: {
             fontSize: "1.1em", 

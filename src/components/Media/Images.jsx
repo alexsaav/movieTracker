@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { v4 as uuidv4 } from 'uuid';
 import Grid from "@mui/material/Unstable_Grid2/Grid2"
@@ -13,14 +13,14 @@ import CloseIcon from '@mui/icons-material/Close';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import LoadingGridItem from "../Loading/LoadingGridItem";
+import MovieHeader from "../../features/Movie/MovieHeader";
 import { useTheme } from "@mui/material";
-import { getImagesStyle, getModalStyleImages } from "./peopleStyles";
+import { getImagesStyle, getModalStyleImages } from "../../features/People/peopleStyles";
 
-const Images = ({images, isLoading}) => {
+const Images = ({movie, images, isLoading, name, id}) => {
     const [open, setOpen] = useState(false);
-    const [page, setPage] = useState(1);
+    //const [page, setPage] = useState(1);
     const [currentIndex, setCurrentIndex] = useState(null);
-    const { id, name } = useParams();
     const navigate = useNavigate();
     
     const theme = useTheme();
@@ -29,7 +29,6 @@ const Images = ({images, isLoading}) => {
 
     // set new current index
     const handleOpen = (i) => {
-        console.log(i)
         setCurrentIndex(i);
         setOpen(true)
     };
@@ -70,19 +69,23 @@ const Images = ({images, isLoading}) => {
         </Box>
     );
 
+    const columns = movie ? { xs: 1, sm: 2, md: 3 } : { xs: 2, sm: 4, md: 6 };
+
     return (
         <>
+            {movie && <MovieHeader /> }
             <Container sx={imagesStyle.container}>
                 <Typography 
                     variant="h1" 
                     onClick={() => navigate(`/person/${id}/${name}`)} 
                     sx={imagesStyle.title}
                 >
-                    {name}
+                    {!movie && name}
                 </Typography>
                 <Typography variant="h2" sx={imagesStyle.subtitle}>Photo Gallery</Typography>
                 <Box sx={imagesStyle.imagesContainer}>
-                    <Grid container spacing={1} sx={imagesStyle.imagesInnerContainer} columns={{ xs: 2, sm: 4, md: 6 }} >
+                    
+                    <Grid container spacing={1} sx={imagesStyle.imagesInnerContainer} columns={columns} >
                         {isLoading  && <LoadingGridItem items={30} />}
                         <>
                             {images.map((photo, index) => {

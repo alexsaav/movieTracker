@@ -23,7 +23,7 @@ const TrendingMovies = () => {
 
             <Box sx={topMediaContainersStyles.innerContainer}
             >
-                {isLoading && <LoadingItem items={8} />}
+                {isLoading && <LoadingItem items={10} />}
                 {trendingMoviesResult.map(movie => {
                     return <MovieCard2 movie={movie} key={movie.id} isLoading={trendingMovies.isLoading}/>
                 })}
