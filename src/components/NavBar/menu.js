@@ -20,6 +20,10 @@ const menuList = [
             }
         ]
     },
+    /* {
+        title: "Popular People",
+        url: "/popular-people"
+    }, */
 ];
 export default menuList
 

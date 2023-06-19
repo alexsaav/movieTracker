@@ -114,29 +114,6 @@ export const getCombinedCredits = createAsyncThunk(
     }
 );
 
-// GET POPULAR PEOPLE (ALSO GETS WHAT THAT PEOPLE IS KNOWN FOR)
-export const getPopularPeople = createAsyncThunk(
-    "people/getPopularPeople",
-
-    async(page) => {
-        const getPopularPeopleEndpoint = "/person/popular";
-
-        const urlToFetch = new URL(`${tmdbBaseUrl}${getPopularPeopleEndpoint}`);
-
-        //query params
-        urlToFetch.searchParams.append("api_key", tmdbKey)
-        urlToFetch.searchParams.append("language", "en-US")
-        urlToFetch.searchParams.append("page", page)
-
-        const response = await fetch(urlToFetch);
-
-        if(response.ok) {
-            const popularPeople = await response.json();
-            return popularPeople;
-        }
-    }
-);
-
 //GET /search/person
 
 
@@ -166,14 +143,6 @@ export const person = createSlice({
             ],
             isLoading: false
         },
-        popularPeople: {
-            page: 1,
-            results: [{
-                known_for: []
-            }],
-            total_pages: 1,
-            isLoading: false
-        }
     },
     extraReducers: {
         [getPersonDetailsAsync.pending]: (state, action) => {
@@ -202,14 +171,7 @@ export const person = createSlice({
         },
         [getCombinedCredits.fulfilled]: (state, action) => {
             state.combinedCredits = action.payload;
-        },
-
-        [getPopularPeople.pending]: (state, action) => {
-            state.popularPeople.isLoading = true;
-        },
-        [getPopularPeople.fulfilled]: (state, action) => {
-            state.popularPeople = action.payload;
-        },
+        }
     }
 });
 
@@ -218,7 +180,6 @@ export const selectPersonDetails = state => state.person.personDetails;
 export const selectPersonImages = state => state.person.personImages;
 export const selectPersonTaggedImages = state => state.person.personTaggedImages;
 export const selectCombinedCredits = state => state.person.combinedCredits;
-export const selectPopularPeople = state => state.person.popularPeople;
 
 //REDUCER
 export default person.reducer;

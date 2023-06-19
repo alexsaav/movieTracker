@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { getCombinedCredits, selectCombinedCredits } from './personSlice'
-import LoadingCardItem from '../../components/Loading/LoadingCardItem'
-import MovieCardStyle2 from '../MovieCard/MovieCardStyle2'
+import { getCombinedCredits, selectCombinedCredits } from '../personSlice'
+import LoadingCardItem from '../../../components/Loading/LoadingCardItem'
+import MovieCardStyle2 from '../../Cards/MovieCardStyle2'
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 

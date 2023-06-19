@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getPersonImages, getPersonTaggedImages, selectPersonImages, selectPersonTaggedImages } from "./personSlice"
+import { getPersonImages, getPersonTaggedImages, selectPersonImages, selectPersonTaggedImages } from "../../Person/personSlice"
 import { useParams } from "react-router-dom"
-import Images from "../../components/Media/Images.jsx";
+import Images from "../../../components/Media/Images.jsx";
 
 const PersonImages = () => {
     const [page, setPage] = useState(1);

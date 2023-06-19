@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getPopularMovies, selectPopularMovies } from "../moviesSlice"
-import MovieCard2 from "../../MovieCard/MovieCardStyle2";
+import MovieCard2 from "../../Cards/MovieCardStyle2";
 import Box from "@mui/material/Box"
 import Typography from "@mui/material/Typography";
 import LoadingItem from "../LoadingItem";

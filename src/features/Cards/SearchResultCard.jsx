@@ -19,14 +19,34 @@ const overviewTextStyle = {
     textOverflow: 'ellipsis',
 };
 
- const SearchResultMovieCard = ({ movie, key }) => {
+ const SearchResultCard = ({ information }) => {
     const navigate = useNavigate();
-    const { id, title, overview, poster_path, backdrop_path, vote_average, release_date } = movie;
-    let formattedDate = format(new Date(release_date), 'PPP');
+    const { 
+        id, 
+        title, 
+        overview, 
+        poster_path, 
+        backdrop_path, 
+        vote_average, 
+        release_date, 
+        media_type,
+        name,
+        known_for_department,
+        profile_path,
+        known_for
+    
+    } = information;
+
+
+    let date = release_date ? release_date : null
+    let formattedDate = format(new Date(date), 'PPP');
+
+    const knownForList = known_for?.map(work => work.title);
+    const knowForWork = knownForList?.map((work) => <span key={work}>{work}</span>)
 
     let image;
-    if (poster_path || backdrop_path) {
-        const moviePosterUrl = `https://image.tmdb.org/t/p/original${poster_path ?? backdrop_path}`;
+    if (poster_path || backdrop_path || profile_path) {
+        const moviePosterUrl = `https://image.tmdb.org/t/p/original${poster_path ?? backdrop_path ?? profile_path}`;
         image = <CardMedia
                     component="img"
                     image={moviePosterUrl}
@@ -38,11 +58,16 @@ const overviewTextStyle = {
                     <ImageNotSupportedIcon color="disabled" sx={{ fontSize: 60}}/>
                 </Box> 
     }
+
+    const onClick = () => {
+        if (media_type === 'tv') navigate(`/page-not-found`)
+        media_type === 'person' ? navigate(`/person/${id}/${name}`) : navigate(`/movie/${id}`)
+    };
                         
     return (
         <Card 
             sx={{ display: "flex", mt: "10px", width: "100%", height: "150px"}} 
-            onClick={() => navigate(`/movie/${id}`)}
+            onClick={onClick}
         >
             <CardActionArea sx={{ display: "flex", justifyContent: "flex-start", alignItems: "flex-start"}}>
                 <CardContent 
@@ -57,10 +82,14 @@ const overviewTextStyle = {
                 >
                     { image }
                 </CardContent>
+
                 <CardContent sx={{ display: "flex", flexDirection: "column",  p: "10px 15px", width: "950px"}}>
                     <Box>
-                        <Typography variant="h2" sx={{fontSize: "1rem", fontWeight: "bold"}} onClick={() => navigate(`/movie/${id}`)}>{title}</Typography>
+                        <Typography variant="h2" sx={{fontSize: "1rem", fontWeight: "bold"}} onClick={onClick}>{title ?? name}</Typography>
                         <Typography variant="body2" color="text.secondary">{formattedDate}</Typography>
+                        {media_type === ('movie' || 'tv') && <Typography variant="body2" color="text.secondary">{media_type}</Typography>}
+                        {known_for_department && <Typography>{known_for_department}</Typography>}
+                        {known_for && knowForWork}
                     </Box>
                     <Box sx={{mt: "10px" }}>
                         <Typography variant="body2" color="text.secondary" sx={overviewTextStyle} >{overview}</Typography>
@@ -71,4 +100,4 @@ const overviewTextStyle = {
     );
 }
 
-export default SearchResultMovieCard;
+export default SearchResultCard;

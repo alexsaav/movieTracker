@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { useParams, Link } from "react-router-dom"
-import { getPersonImages, getPersonTaggedImages, selectPersonImages, selectPersonTaggedImages } from "./personSlice"
-import LoadingMediaItem from "../../components/Loading/LoadingMediaItem";
+import { getPersonImages, getPersonTaggedImages, selectPersonImages, selectPersonTaggedImages } from "../../Person/personSlice"
+import LoadingMediaItem from "../../../components/Loading/LoadingMediaItem";
 import Image from "./Image";
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';

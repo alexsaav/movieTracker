@@ -18,11 +18,10 @@ const MovieCardStyle3 = ({movie}) => {
     let formattedDate = format(new Date(release_date), 'PP');
 
     return (
-        <Grid item xs={1} key={id}>
+        <Grid item xs={1} key={id} sx={{display: 'flex', justifyContent: 'center'}}>
             <Card 
                 sx={{
-                    width: "150", 
-                    minWidth: 150, 
+                    width: 160, 
                     height: "100%", 
                     borderRadius: 2, 
                     position: "relative", 

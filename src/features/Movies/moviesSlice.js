@@ -10,7 +10,7 @@ const tmdbBaseUrl = "https://api.themoviedb.org/3";
 
 
 // SEARCH MOVIES
-export const searchMovies = createAsyncThunk(
+/* export const searchMovies = createAsyncThunk(
     "movies/searchMovies",
 
     async ({title, page = 1}) => {
@@ -36,7 +36,7 @@ export const searchMovies = createAsyncThunk(
         }
         
     }
-);
+); */
 
 //GET POPULAR MOVIES
 export const getPopularMovies = createAsyncThunk(
@@ -240,12 +240,12 @@ export const moviesSlice = createSlice({
         },
     },
     extraReducers: {
-        [searchMovies.pending]: (state, action) => {
+        /* [searchMovies.pending]: (state, action) => {
             state.movies.isLoading = true;
         },
         [searchMovies.fulfilled]: (state, action) => {
             state.movies = action.payload;
-        },
+        }, */
 
         [getPopularMovies.pending]: (state, action) => {
             state.popularMovies.isLoading = true;

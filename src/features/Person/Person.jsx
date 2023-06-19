@@ -2,14 +2,12 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { getPersonDetailsAsync, selectPersonDetails } from "./personSlice"
-import KnownFor from "./KnownFor";
-import CombinedCredits from "./CombinedCredits";
+import KnownFor from "./KnownFor/KnownFor";
+import Filmography from "./Filmography/Filmography";
 import LoadingBox from "../../components/Loading/LoadingBox";
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import PersonTopImages from "./PersonTopImages";
-import { Divider } from "@mui/material";
+import PersonTopImages from "./Images/PersonTopImages";
 import ReadMore from "./ReadMore";
+import { Box, Divider, Typography } from "@mui/material";
 import { getPersonComponentStyles, detailsComponentStyles } from "../styles/styles";
 import { useTheme } from '@mui/material/styles';
 
@@ -89,7 +87,7 @@ const Person = () =>  {
                 <Divider />
                 <PersonTopImages personId={id} name={name} />
                 <Divider />
-                <CombinedCredits />
+                <Filmography />
             </Box>
         </>
     )

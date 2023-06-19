@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
-import { scrollTopWin } from '../util/helperFunctions'
+import { scrollTopWin } from '../../util/helperFunctions'
 import Box from '@mui/material/Box';
 import Divider from "@mui/material/Divider";
 import ListItem from '@mui/material/ListItem';
@@ -9,7 +9,7 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 
-const CreditsListItem = ({jobsList, listItemStyle, listItemStyleInfo}) => {
+const FilmographyListItem = ({jobsList, listItemStyle, listItemStyleInfo}) => {
     const navigate = useNavigate();
     const { 
         id,
@@ -67,4 +67,4 @@ const CreditsListItem = ({jobsList, listItemStyle, listItemStyleInfo}) => {
     )
 }
 
-export default CreditsListItem
+export default FilmographyListItem

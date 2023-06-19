@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { searchMovies } from '../../features/Movies/moviesSlice';
+//import { searchMovies } from '../../features/Movies/moviesSlice';
+import { searchMulti } from '../../components/SearchBar/searchSlice'
 import Box from '@mui/material/Box';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
@@ -15,6 +16,12 @@ const Search = styled('div')(({ theme }) => ({
     '&:hover': {
         backgroundColor: alpha(theme.palette.common.white, 0.25),
     },
+    marginRight: theme.spacing(2),
+    marginLeft: 0,
+    [theme.breakpoints.up('sm')]: {
+        marginLeft: theme.spacing(3),
+        width: 'auto',
+    }
 }));
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
@@ -34,8 +41,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
         // vertical padding + font size from searchIcon
         paddingLeft: `calc(1em + ${theme.spacing(4)})`,
         transition: theme.transitions.create('width'),
+        width: '100%',
         [theme.breakpoints.up('sm')]: {
-            width: '12ch',
+
             '&:focus': {
                 width: '20ch',
             },
@@ -49,12 +57,17 @@ const SearchAppBar = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    useEffect(() => {
+/*     useEffect(() => {
         if(searchText === '') return;
         dispatch(searchMovies({title: searchText, page}))
+    }, [dispatch, page, searchText]) */
+
+    useEffect(() => {
+        if(searchText === '') return;
+        dispatch(searchMulti({name: searchText, page}))
     }, [dispatch, page, searchText])
 
-    const searchMoviess = (searchValue) => {
+    const search = (searchValue) => {
         handlePageReset(searchValue)
     }
 
@@ -78,7 +91,7 @@ const SearchAppBar = () => {
                     placeholder="Search…"
                     inputProps={{ 'aria-label': 'search' }}
                     defaultValue={searchText}
-                    onChange={(e) => {searchMoviess(e.target.value)}}
+                    onChange={(e) => {search(e.target.value)}}
                 />
             </Search>
         </Box>

@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { searchMovies } from '../../features/Movies/moviesSlice';
+//import { searchMovies } from '../../features/Movies/moviesSlice';
+import { searchMulti } from '../SearchBar/searchSlice';
 import TopUpcomingMovies from '../../features/Movies/Upcoming/TopUpcomingMovies';
 import { Box } from '@mui/material';
 import Toolbar from '@mui/material/Toolbar';
@@ -16,9 +17,14 @@ import HomeBanner from '../HomeBanner/HomeBanner';
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    useEffect(() => {
+    /* useEffect(() => {
         if(searchText === '') return;
         dispatch(searchMovies({title: searchText, page}))
+    }, [dispatch, page, searchText]) */
+
+    useEffect(() => {
+        if(searchText === '') return;
+        dispatch(searchMulti({name: searchText, page}))
     }, [dispatch, page, searchText])
 
     const handlePageReset = (input) => {

@@ -2,19 +2,19 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { getCombinedCredits, selectCombinedCredits } from './personSlice'
-import CreditsListItem from './CreditsListItem'
+import { getCombinedCredits, selectCombinedCredits } from '../personSlice'
+import CreditsListItem from './FilmographyListItem'
 import { useTheme } from '@mui/material/styles';
-import { getFilmographyStyles } from '../styles/styles'
+import { getFilmographyStyles } from '../../styles/styles'
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Divider from "@mui/material/Divider";
 import List from '@mui/material/List';
-import LoadingList from '../../components/Loading/LoadingList'
+import LoadingList from '../../../components/Loading/LoadingList'
 import { v4 as uuidv4 } from 'uuid';
 
 
-const CombinedCredits = () => {
+const Filmography = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
     const combinedCredits = useSelector(selectCombinedCredits);
@@ -84,4 +84,4 @@ const CombinedCredits = () => {
     )
 }
 
-export default CombinedCredits
+export default Filmography

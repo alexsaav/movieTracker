@@ -34,7 +34,7 @@ const NavBar = (props) => {
             <List sx={{display: "flex", flexDirection: "column"}}>
                 {menuItems.map((menuItem) => {
                     return (
-                        <NestedList menuItem={menuItem} key={menuItem.t} />
+                        <NestedList menuItem={menuItem} key={menuItem.title} handleDrawerToggle={handleDrawerToggle} />
                     )
                 })}
             </List>
@@ -62,12 +62,13 @@ const NavBar = (props) => {
                         variant="h6"
                         component="div"
                         onClick={() => navigate('/')}
-                        sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' }, cursor: "pointer" }}
+                        sx={{display: { xs: 'none', sm: 'block' }, cursor: "pointer" }}
                     >
                         MovieTracker
                     </Typography>
                     <SearchAppBar />
-                    <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+                    <Box sx={{ flexGrow: 1 }} />
+                    <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                         <ButtonMenuList menuItems={menuItems}/>
                     </Box>
                 </Toolbar>
@@ -79,8 +80,7 @@ const NavBar = (props) => {
                     variant="temporary"
                     open={mobileOpen}
                     onClose={handleDrawerToggle}
-                    ModalProps={{
-                        keepMounted: true, // Better open performance on mobile.
+                    ModalProps={{ keepMounted: true, // Better open performance on mobile. 
                     }}
                     sx={{
                         display: { xs: 'block', sm: 'none' },
@@ -95,4 +95,3 @@ const NavBar = (props) => {
 }
 
 export default NavBar
-

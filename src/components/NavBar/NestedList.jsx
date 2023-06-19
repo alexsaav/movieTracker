@@ -6,10 +6,9 @@ import ListItemText from '@mui/material/ListItemText';
 import Collapse from '@mui/material/Collapse';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-
 import ListItem from '@mui/material/ListItem';
 
-const NestedList = ({menuItem}) => {
+const NestedList = ({menuItem, handleDrawerToggle}) => {
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
     const {items, title} = menuItem;
@@ -43,7 +42,13 @@ const NestedList = ({menuItem}) => {
                         {items.map(item => {
                             return (
                                 <ListItemButton sx={{ pl: "32px", textAlign: 'left' }} key={item.name}>
-                                    <ListItemText primary={item.name} onClick={() => navigate(item.url)} />
+                                    <ListItemText 
+                                        primary={item.name} 
+                                        onClick={() => {
+                                            navigate(item.url)
+                                            handleDrawerToggle()
+                                        }} 
+                                    />
                                 </ListItemButton>
                             )
                         })}

@@ -1,4 +1,4 @@
-import MovieCardStyle3 from "../MovieCard/MovieCardStyle3";
+import MovieCardStyle3 from "../Cards/MovieCardStyle3";
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from "@mui/material/Typography";
@@ -25,7 +25,7 @@ const MovieCardList = ({movieList, title, isLoading}) => {
             <Typography variant="h2" sx={{fontSize: "1.5rem", fontWeight: "bold", mb: "40px"}}>{title}</Typography>
 
             <section sx={{ py: 5, width: "100%", display: "flex", justifyContent: "space-between", flexWrap: "wrap" }}>
-                <Grid container spacing={{ xs: 2, s: 3, md: 4 }} columns={{ xs: 2, sm: 4, md: 6 }} sx={{ flexWrap: "wrap"}}>
+                <Grid container spacing={2} columns={{ xs: 3, sm: 4, md: 6 }} sx={{ flexWrap: "wrap", justifyContent: 'center'}}>
                     {isLoading && loadingItem}
                     {movieList.map(movie => {
                         return <MovieCardStyle3 movie={movie} key={movie.id}/>
