@@ -48,7 +48,7 @@ const MenuItemButton = ({menuItem}) => {
                 >
                     {items.map(item => {
                         return (
-                            <Link to={item.url} style={{color: "#fff", textDecoration: "none"}}>
+                            <Link to={item.url} style={{color: "#fff", textDecoration: "none"}} key={item.name}>
                                 <MenuItem onClick={handleClose}>{item.name}</MenuItem>
                             </Link>
                         )

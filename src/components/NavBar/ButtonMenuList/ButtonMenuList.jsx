@@ -9,7 +9,7 @@ const ButtonMenuList = ({menuItems = []}) => {
     return (
         <>
             {menuItems.map((menuItem) => (
-                <MenuItemButton menuItem={menuItem}/>
+                <MenuItemButton menuItem={menuItem} key={menuItem.title} />
             ))}
         </>
     );

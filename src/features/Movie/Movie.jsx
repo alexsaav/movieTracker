@@ -15,6 +15,8 @@ import ButtonsList from './ButtonsList';
 import { Paper } from '@mui/material';
 import { detailsComponentStyles, getMovieComponentStyles } from '../styles/styles';
 import { useTheme } from '@mui/material/styles';
+import { v4 as uuidv4 } from 'uuid';
+
 
 const Movie = () => {
     const dispatch = useDispatch();
@@ -61,8 +63,8 @@ const Movie = () => {
     return (
         <>
             <Paper sx={paperContainer}>
-                {isLoading ? <LoadingBox /> : (
-                <Box container sx={styles.container}>
+                {isLoading ? <LoadingBox items={3} /> : (
+                <Box container='true' sx={styles.container}>
                     <Box sx={detailsComponentStyles.imageContainer}>
                         <img src={moviePosterUrl} alt={title} style={detailsComponentStyles.borderRadius} />
                     </Box>            
@@ -81,13 +83,13 @@ const Movie = () => {
                             <Box sx={styles.factsContainer}>
                                 <span>{release_date}</span>
                                 <Divider orientation="vertical" sx={styles.divider}/> 
-                                {genres.map(genre => <span style={{padding: "0 4px"}}>{genre.name}</span>)} 
+                                {genres.map(genre => <span style={{padding: "0 4px"}} key={genre.name}>{genre.name}</span>)} 
                                 <Divider orientation="vertical" sx={styles.divider}/>  
                                 <span style={styles.runtime}>{toHoursAndMinutes(runtime)}</span>
                             </Box>
                         </Box>
 
-                        <ButtonsList averageVotes={averageVotes} />
+                        {/* <ButtonsList averageVotes={averageVotes} /> */}
 
                         <Box sx={styles.headerInfo}>
                             <Typography variant="subtitle1" sx={styles.tagline}>

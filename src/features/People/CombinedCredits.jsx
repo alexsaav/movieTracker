@@ -11,6 +11,8 @@ import Typography from '@mui/material/Typography';
 import Divider from "@mui/material/Divider";
 import List from '@mui/material/List';
 import LoadingList from '../../components/Loading/LoadingList'
+import { v4 as uuidv4 } from 'uuid';
+
 
 const CombinedCredits = () => {
     const dispatch = useDispatch();
@@ -46,19 +48,32 @@ const CombinedCredits = () => {
             <List dense sx={{ width: '100%', bgcolor: 'background.paper', display: 'flex', flexDirection: 'column', pt: "30px" }}>
                 {castJob.map(cast => {
                     return (
-                        <CreditsListItem jobsList={cast} listItemStyle={styles.listItem} listItemStyleInfo={styles.listItemInfo} />
+                        <CreditsListItem 
+                            jobsList={cast} 
+                            listItemStyle={styles.listItem} 
+                            listItemStyleInfo={styles.listItemInfo}
+                            key={uuidv4()}
+                        />
                     )
                 })}
             </List>
          
             {Object.keys(departments).map(department => {
                 return (
-                    <List dense sx={{ width: '100%', bgcolor: 'background.paper', display: 'flex', flexDirection: 'column'}}>
+                    <List 
+                        dense 
+                        sx={{ width: '100%', bgcolor: 'background.paper', display: 'flex', flexDirection: 'column'}} 
+                        key={department}
+                    >
                         <Typography variant="h2" sx={{fontSize: "1.5rem", fontWeight: "bold"}}>{department}</Typography>
                         {departments[department].map(crewJob => {
-
                             return (
-                                <CreditsListItem jobsList={crewJob} listItemStyle={styles.listItem} listItemStyleInfo={styles.listItemInfo} />
+                                <CreditsListItem 
+                                    jobsList={crewJob} 
+                                    listItemStyle={styles.listItem} 
+                                    listItemStyleInfo={styles.listItemInfo} 
+                                    key={uuidv4()}
+                                />
                             )}
                         )}
                         <Divider/>

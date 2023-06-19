@@ -26,11 +26,13 @@ const CreditsListItem = ({jobsList, listItemStyle, listItemStyleInfo}) => {
         job 
     } = jobsList;
     const date = new Date(release_date ?? first_air_date);
+
+    const onClick = media_type === 'movie' ? () => navigate(`/movie/${id}`) : () => navigate(`/page-not-found`)
     
     return (
         <>
             <ListItem alignItems="flex-start" sx={listItemStyle} key={id}>
-                <ListItemButton onClick={() => navigate(`/movie/${id}`)} sx={{flexGrow: 0}}>
+                <ListItemButton onClick={onClick} sx={{flexGrow: 0}}>
                     <ListItemAvatar>
                         <Avatar 
                             alt={title} 
@@ -42,7 +44,7 @@ const CreditsListItem = ({jobsList, listItemStyle, listItemStyleInfo}) => {
                 </ListItemButton>
                 <Box sx={listItemStyleInfo}>
                     <Box sx={{textTransform: "capitalize"}}>
-                        <Box onClick={() => navigate(`/movie/${id}`)}>
+                        <Box onClick={onClick}>
                             <ListItemText 
                                 primary={title ?? name}   
                                 onClick={scrollTopWin}

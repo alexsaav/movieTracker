@@ -13,7 +13,7 @@ const Layout = () => {
             <ThemeProvider theme={darkTheme}>
                 <NavBar />
             </ThemeProvider>
-            <Box component='main'>
+            <Box component='main' sx={{width: '100%'}}>
                 <Toolbar />
                 <Outlet />
             </Box>

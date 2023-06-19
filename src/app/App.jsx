@@ -14,6 +14,7 @@ import TopRatedMovies from '../features/Movies/TopRated/TopRatedMovies';
 
 import Register from '../features/User/Register';
 import './App.css';
+import PageNotFound from '../components/PageNotFound/PageNotFound';
 
 function App() {
     return (
@@ -32,8 +33,9 @@ function App() {
                     <Route path='/movies/upcoming' element={ <UpcomingMovies /> } />
                     <Route path='/movies/top-rated' element={ <TopRatedMovies /> }/> 
                     {/* <Route path='user/login' element={<LoginScreen />} /> */}
-                    <Route path='user/register' element={<Register />} />    
+                    <Route path='user/register' element={ <Register />} />    
                     {/* <Route path='user/user-profile' element={<ProfileScreen />} /> */}
+                    <Route path='/page-not-found' element={ <PageNotFound />} />
                 </Route>
             </Routes>
         </Router>

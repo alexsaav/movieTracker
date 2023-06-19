@@ -1,5 +1,27 @@
 import bgHome from '../../assets/images/background-2.jpg'
 
+//CONTAINERS
+export const topMediaContainersStyles = {
+    wrapper: {
+        padding: "30px"
+    },
+    innerContainer: {
+        display: "flex", 
+        flexDirection: "row",  
+        width: "100%", 
+        p: "30px 0", 
+        overflowX: "scroll", 
+        overflowY: "hidden"        
+    },
+    title: {
+        fontSize: "1.5rem",
+        fontWeight: 'bold'
+    }, 
+    sectionStyle: {
+        padding: '40px 0px'
+    }
+};
+
 //HOME BANNER
 export const homeBannerStyle = {
     position: 'relative',
@@ -201,9 +223,6 @@ export const getFilmographyStyles = (theme) => {
     }
 };
 
-//CAST AND CREW
-
-
 
 //HEADER
 
@@ -213,7 +232,8 @@ export const getMovieHeaderStyles = (theme) => {
             height: 87, 
             background: 'rgba(0, 0, 0, 0.7)', 
             padding: "15px 40px", 
-            display: "flex"
+            display: "flex",
+            width: 'inherit',
         },
         poster: {
             borderRadius: 10, 
@@ -346,25 +366,4 @@ export const topVideosStyles = {
     }
 };
 
-//BIG CONTAINERS
-export const topMediaContainersStyles = {
-    wrapper: {
-        padding: "30px"
-    },
-    innerContainer: {
-        display: "flex", 
-        flexDirection: "row",  
-        width: "100%", 
-        p: "30px 0", 
-        overflowX: "scroll", 
-        overflowY: "hidden"        
-    },
-    title: {
-        fontSize: "1.5rem",
-        fontWeight: 'bold'
-    }, 
-    sectionStyle: {
-        padding: '40px 0px'
-    }
 
-};

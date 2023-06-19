@@ -8,42 +8,18 @@ import { Box } from "@mui/system"
 import { Typography } from "@mui/material"
 import {Container, Card, CardMedia} from "@mui/material"
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import Modal from '@mui/material/Modal';
-import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Skeleton from '@mui/material/Skeleton';
+import { useTheme } from "@mui/material";
+import { getVideosStyle } from "../../../components/Media/mediaStyles"
+import ModalSlider from "../../../components/Modal/Modal"
+import { v4 as uuidv4 } from 'uuid';
+
 
 let loadingItem = Array(10).fill((
     <Grid item xs={2}>
         <Skeleton animation="wave" variant="rectangular" width={360} height={200} sx={{borderRadius: 1}} />
     </Grid>
 ));
-
-const buttonStyle = {
-    position: "absolute",
-    top: "50px",
-    right: "35px",
-    color: "#f1f1f1",
-    fontSize: "40px",
-    fontWeight: "bold",
-    transition: "0.3s",
-    textDecoration: "none",
-};
-
-const style = {
-    display: "flex",
-    flexDirection: "column",
-    top: '0',
-    left: '0',
-    height: "100%",
-    padding: "30px",
-    backgroundColor: 'rgba(0,0,0,0.9)',
-    boxShadow: 24,
-    zIndex: 1,
-    overflow: "scroll",
-};
 
 const Videos = () => {
     const [open, setOpen] = useState(false);
@@ -55,13 +31,15 @@ const Videos = () => {
     let videos = movieVideos.results;
     let isLoading = movieVideos.isLoading;
 
+    const theme = useTheme();
+    const videosStyle = getVideosStyle(theme);
+
     useEffect(() => {
         dispatch(getMovieVideos(id))
     }, [dispatch, id])
 
     // set new current index
     const handleOpen = (i) => {
-        console.log(i)
         setCurrentIndex(i);
         setOpen(true)
     };
@@ -73,13 +51,18 @@ const Videos = () => {
     };
 
     const handleBackForwardButton = (index) => {
-        currentIndex > 0 ? setCurrentIndex(currentIndex - 1) : setCurrentIndex(videos.length - 1)
-        currentIndex > videos.length - 2 ? setCurrentIndex(0) : setCurrentIndex(currentIndex + 1)
+        if(index < 0) {
+            index = videos.length - 1;
+        }
+        if (index > videos.length - 1) {
+            index = 0;
+        }
+        setCurrentIndex(index)
     };
 
-    const modalBody = (
-        <Box sx={style} className="MODAL2">
-            <IconButton onClick={handleClose} sx={buttonStyle}>
+/*     const modalBody = (
+        <Box sx={modalStyle.container}>
+            <IconButton onClick={handleClose} sx={modalStyle.closeButton}>
                 <CloseIcon />
             </IconButton>
             <Box sx={{
@@ -129,41 +112,46 @@ const Videos = () => {
             </Box>
         </Box>
 
-    )
+    ) */
+
+    const mediaContent = 
+        <>
+            {videos[currentIndex] && ( 
+                <iframe
+                    src={`https://www.youtube.com/embed/${videos[currentIndex].key}`}
+                    title={`https://www.youtube.com/embed/${videos[currentIndex].name}`}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowFullScreen
+                    style={videosStyle.videoModal}
+                    id="ytplayer" 
+                    type="text/html"
+                    frameborder="0"
+                >
+                </iframe>
+            )}
+        </>;
 
     return (
-        <Box sx={{padding: "30px 0", display: "block"}}>
+        <Box sx={videosStyle.container}>
             <MovieHeader />
-            <Container sx={{pt: "30px"}}>
+            <Container sx={videosStyle.innerContainer}>
                 <Typography variant="h5">Videos</Typography>
-                    <Box sx={{ margin: "30px 0", flexGrow: 1}}>
-                        <Grid container spacing={1} sx={{}} >
+                    <Box sx={videosStyle.videosWrapper}>
+                        <Grid container spacing={1} columns={{xs: 1, sm: 2, md: 3}}>
                             {isLoading && loadingItem}
                             {videos.map((video, index) => {
                                 const { id, key, name, site } = video;
                                 const videoImgUrl = `https://img.youtube.com/vi/${key}/sddefault.jpg`
 
                                 return (
-                                    <Grid item xs={4} key={id}>
-                                        <Card sx={{ position: "relative", cursor: "pointer"}} onClick={() => handleOpen(index)}> 
+                                    <Grid item xs={1} key={id}>
+                                        <Card sx={videosStyle.videoWrapper} onClick={() => handleOpen(index)}> 
                                             <CardMedia
                                                 component="img"
                                                 image={videoImgUrl}
                                             />
-                                           
-                                            <Box aria-label="play/pause"
-                                                sx={{
-                                                    padding: "0 7px", background: 'rgba(0, 0, 0, 0.5)',
-                                                    position: "absolute",
-                                                    color: "primary",
-                                                    textDecoration: "none",
-                                                    bottom: 0,
-                                                    left: 0,
-                                                    right: 0,
-                                                    paddingBottom: 1
-                                                }}
-                                                >
-                                                <PlayArrowIcon sx={{ height: 38, width: 38, color: "#F7F7F8" }} />
+                                            <Box aria-label="play/pause" sx={videosStyle.video}>
+                                                <PlayArrowIcon sx={videosStyle.playIcon} />
                                             </Box>
                                         </Card> 
                                     </Grid>
@@ -171,10 +159,18 @@ const Videos = () => {
                             })}
                         </Grid>
                     </Box>
-            </Container>
-            <Modal open={open}>   
-                {modalBody }
-            </Modal>
+            </Container>      
+
+            <ModalSlider 
+                isOpen={open}
+                currentIndex={currentIndex}
+                handleClose={handleClose}
+                handleBackForwardButton={handleBackForwardButton}
+                isMovie={true}
+            >
+                    {mediaContent}
+            </ModalSlider>    
+
         </Box> 
     )
 }

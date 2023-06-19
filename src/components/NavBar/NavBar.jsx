@@ -34,7 +34,7 @@ const NavBar = (props) => {
             <List sx={{display: "flex", flexDirection: "column"}}>
                 {menuItems.map((menuItem) => {
                     return (
-                        <NestedList menuItem={menuItem} />
+                        <NestedList menuItem={menuItem} key={menuItem.t} />
                     )
                 })}
             </List>
@@ -95,3 +95,4 @@ const NavBar = (props) => {
 }
 
 export default NavBar
+

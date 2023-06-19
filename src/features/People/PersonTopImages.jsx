@@ -50,7 +50,7 @@ const PersonTopImages = ({personId, name}) => {
                             const imageUrl = `https://image.tmdb.org/t/p/original${file_path}`;
 
                             return (
-                                <Image imageUrl={imageUrl}/>
+                                <Image imageUrl={imageUrl} key={file_path}/>
                             )
                         })}
                     </>
@@ -60,7 +60,7 @@ const PersonTopImages = ({personId, name}) => {
                             const imageUrl = `https://image.tmdb.org/t/p/original${file_path}`;
 
                             return (
-                                <Image imageUrl={imageUrl}/>
+                                <Image imageUrl={imageUrl} key={file_path}/>
                             )
                         })}
                     </>

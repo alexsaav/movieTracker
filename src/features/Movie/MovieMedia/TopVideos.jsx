@@ -8,6 +8,7 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import ViewMore from "../../../components/Button/ViewMore"
 import { topMediaContainersStyles, topVideosStyles } from "../../styles/styles"
 import LoadingMediaItem from "../../../components/Loading/LoadingMediaItem"
+import { scrollTopWin } from "../../util/helperFunctions"
 
 const TopVideos = ({movieId, title}) => {
     const dispatch = useDispatch();
@@ -19,10 +20,6 @@ const TopVideos = ({movieId, title}) => {
     useEffect(() => {
         dispatch(getMovieVideos(movieId))
     }, [dispatch, movieId])
-
-    const scrollTopWin = () => {
-        window.scrollTo(200, 0);
-    }
 
     return (
         <Box component="section" sx={topMediaContainersStyles.sectionStyle}>

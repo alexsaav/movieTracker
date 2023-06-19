@@ -1,6 +1,7 @@
 import React from 'react'
 import Box from '@mui/material/Box';
 import Skeleton from '@mui/material/Skeleton';
+import { v4 as uuidv4 } from 'uuid';
 
 const loadingBoxStyles = {
     outerContainer: {
@@ -40,8 +41,8 @@ const loadingBoxStyles = {
 
 }
 
-const LoadingBox = () => {
-    const loadingItem = Array(3).fill(
+const LoadingBox = (items) => {
+    const loadingItem = Array(items).fill(
         <Box sx={loadingBoxStyles.textContainer}>
             <Skeleton animation="wave" variant="h2" sx={loadingBoxStyles.skeletonSubtitle}/>
             <Skeleton animation="wave" variant="rectangle" sx={loadingBoxStyles.skeletonText}/>

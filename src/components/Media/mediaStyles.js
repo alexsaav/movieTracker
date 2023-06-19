@@ -1,4 +1,4 @@
-export const getModalStyleImages = (theme) => {
+export const getModalStyle = (theme) => {
     return {
         container: {
             position: 'fixed',
@@ -14,7 +14,7 @@ export const getModalStyleImages = (theme) => {
             zIndex: 1,
             overflow: "scroll",
         },
-        imagesContainer: {
+        itemContainer: {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
@@ -24,7 +24,7 @@ export const getModalStyleImages = (theme) => {
                 padding: "1px",
             },
         },
-        imagesInnerContainer: {
+        itemInnerContainer: {
             display: "flex", 
             justifyContent: "center", 
             height: "100%",
@@ -32,7 +32,16 @@ export const getModalStyleImages = (theme) => {
                 height: 'auto'
             },
         },
-        image: {
+        wideInnerContainer: {
+            display: "flex", 
+            justifyContent: "center", 
+            height: "100%",
+            width: '100%',
+            [theme.breakpoints.down('sm')]: {
+                height: 'auto'
+            },
+        },
+        item: {
             width: "100%", 
             height: "100%",
             [theme.breakpoints.down('sm')]: {
@@ -60,7 +69,7 @@ export const getModalStyleImages = (theme) => {
 export const getImagesStyle = (theme) => {
     return {
         container: {
-            pt: "30px"
+            pt: "30px",
         },
         title: {
             cursor: "pointer", 
@@ -86,6 +95,58 @@ export const getImagesStyle = (theme) => {
         imageInnerContainer: {
             height: "100%", 
             width: "100%"
+        }
+    }
+};
+
+
+//VIDEOS
+
+export const getVideosStyle = (theme) => {
+    return {
+        container: {
+            padding: "30px 0", 
+            display: "block"
+        },
+        innerContainer: {
+            pt: "30px"
+        },
+        videosWrapper: {
+            margin: "30px 0", 
+            flexGrow: 1
+        },
+        videoWrapper: {
+            position: "relative", 
+            cursor: "pointer"
+        },
+        video: {
+            padding: "0 7px", 
+            background: 'rgba(0, 0, 0, 0.5)',
+            position: "absolute",
+            color: "primary",
+            textDecoration: "none",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            paddingBottom: 1
+        },
+        playIcon: {
+            height: 38, 
+            width: 38, 
+            color: "#F7F7F8",
+        },
+        videoModal: {
+            width: "80%", 
+            height: "80%", 
+            border: 0, 
+            top: 0, 
+            left: 0, 
+            alignSelf: "center", 
+            overflow: "hidden",
+            [theme.breakpoints.down('sm')]: {
+                height: 'auto',
+                width: 'auto'
+            }
         }
     }
 };

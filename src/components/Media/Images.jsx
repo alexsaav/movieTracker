@@ -15,7 +15,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import LoadingGridItem from "../Loading/LoadingGridItem";
 import MovieHeader from "../../features/Movie/MovieHeader";
 import { useTheme } from "@mui/material";
-import { getImagesStyle, getModalStyleImages } from "../../features/People/peopleStyles";
+import { getModalStyle, getImagesStyle } from "./mediaStyles";
 
 const Images = ({movie, images, isLoading, name, id}) => {
     const [open, setOpen] = useState(false);
@@ -24,7 +24,7 @@ const Images = ({movie, images, isLoading, name, id}) => {
     const navigate = useNavigate();
     
     const theme = useTheme();
-    const modalStyle = getModalStyleImages(theme); 
+    const modalStyle = getModalStyle(theme); 
     const imagesStyle = getImagesStyle(theme);
 
     // set new current index
@@ -49,16 +49,16 @@ const Images = ({movie, images, isLoading, name, id}) => {
             <Button onClick={handleClose} sx={modalStyle.closeButton}>
                 <CloseIcon />
             </Button>
-            <Box sx={modalStyle.imagesContainer}
+            <Box sx={modalStyle.itemContainer}
             >
                 <Button onClick={() => handleBackForwardButton(currentIndex)} sx={modalStyle.arrowButton}>
                     <ArrowBackIosIcon />
                 </Button>
-                <Box sx={modalStyle.imagesInnerContainer}>
+                <Box sx={modalStyle.itemInnerContainer}>
                     {images[currentIndex] && (
                         <img src={`https://image.tmdb.org/t/p/original${images[currentIndex].file_path}`} 
                             alt={images[currentIndex].file_path} 
-                            style={modalStyle.image}
+                            style={modalStyle.item}
                         />
                     )}
                 </Box>
