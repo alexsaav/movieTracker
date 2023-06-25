@@ -1,9 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import config from '../../config.json'
 
-//TMDB API
-const tmdbKey = process.env.REACT_APP_TMDB_API_KEY;
-
 //SEARCH MULTI (multi search lets you search for movies, TV shows and people in a single request.)
 export const searchMulti = createAsyncThunk(
     'search/searchMulti',
@@ -17,7 +14,6 @@ export const searchMulti = createAsyncThunk(
         if (name !== "") {
             urlToFetch.searchParams.append("query", name)
         }
-        urlToFetch.searchParams.append("api_key", tmdbKey)
         urlToFetch.searchParams.append("include_adult", "false")
         urlToFetch.searchParams.append("language", "en-US")
         urlToFetch.searchParams.append("page", page)

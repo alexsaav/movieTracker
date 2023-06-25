@@ -2,10 +2,6 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { format, add } from "date-fns";
 import config from '../../config.json'
 
-
-//TMDB API
-const tmdbKey = process.env.REACT_APP_TMDB_API_KEY;
-
 //GET POPULAR MOVIES
 export const getPopularMovies = createAsyncThunk(
     "movies/getPopularMovies",
@@ -16,7 +12,6 @@ export const getPopularMovies = createAsyncThunk(
         const urlToFetch = new URL(`${config.tmdbBaseUrl}${popularMoviesEndpoint}`);
 
         //query params
-        urlToFetch.searchParams.append("api_key", tmdbKey)
         urlToFetch.searchParams.append("language", "en")
         urlToFetch.searchParams.append("region", "GB");
         urlToFetch.searchParams.append("sort_by", "popularity.desc");
@@ -42,7 +37,6 @@ export const getTopRatedMovies2 = createAsyncThunk(
         const urlToFetch = new URL(`${config.tmdbBaseUrl}${topRatedMoviesEndpoint}`);
 
         //query params
-        urlToFetch.searchParams.append("api_key", tmdbKey)
         urlToFetch.searchParams.append("language", "en-US")
         urlToFetch.searchParams.append("page", page);
 
@@ -65,7 +59,6 @@ export const getTopRatedMovies = createAsyncThunk(
         const urlToFetch = new URL(`${config.tmdbBaseUrl}${getTopRatedMoviesEndpoint}`);
 
         //query params
-        urlToFetch.searchParams.append("api_key", tmdbKey)
         urlToFetch.searchParams.append("language", "en")
         urlToFetch.searchParams.append("region", "GB");
         urlToFetch.searchParams.append("sort_by", "vote_count.desc");
@@ -95,7 +88,6 @@ export const getUpcomingMovies = createAsyncThunk(
         const nextDate = format(addDate,'yyyy-MM-dd'); 
 
         //query params
-        urlToFetch.searchParams.append("api_key", tmdbKey)
         urlToFetch.searchParams.append("language", "en")
         urlToFetch.searchParams.append("region", "GB");
         urlToFetch.searchParams.append("sort_by", "release_date.asc");
@@ -124,7 +116,6 @@ export const getTrendingMovies = createAsyncThunk(
         const urlToFetch = new URL(`${config.tmdbBaseUrl}${trendingMoviesEndpoint}`);
 
         //query params
-        urlToFetch.searchParams.append("api_key", tmdbKey)
 
         const response = await fetch(urlToFetch);
 
@@ -150,7 +141,6 @@ export const getMoviesInTheatres = createAsyncThunk(
         const nextDate = format(addDate,'yyyy-MM-dd'); 
 
         //query params
-        urlToFetch.searchParams.append("api_key", tmdbKey)
         urlToFetch.searchParams.append("language", "en")
         urlToFetch.searchParams.append("region", "GB");
         urlToFetch.searchParams.append("sort_by", "popularity.desc");

@@ -1,12 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import config from '../../config.json'
 
-//TMDB API
-const tmdbKey = process.env.REACT_APP_TMDB_API_KEY;
-// API’s base URL
-const tmdbBaseUrl = 'https://api.themoviedb.org/3';
-
-
 // GET MOVIE CREDITS
 export const getMovieCreditsAsync = createAsyncThunk(
     'movieCast/getMovieCreditsAsync',
@@ -17,7 +11,6 @@ export const getMovieCreditsAsync = createAsyncThunk(
         const urlToFetch = new URL(`${config.tmdbBaseUrl}${movieCreditsEndpoint}`);
 
         //query params
-        urlToFetch.searchParams.append("api_key", tmdbKey)
         urlToFetch.searchParams.append("language", "en-US");
 
         const response = await fetch(urlToFetch);

@@ -1,10 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import config from './../../config.json'
 
-
-//TMDB API
-const tmdbKey = process.env.REACT_APP_TMDB_API_KEY;
-
 // GET PERSON DETAILS
 export const getPersonDetailsAsync = createAsyncThunk(
     "person/getPersonDetailsAsync",
@@ -15,7 +11,6 @@ export const getPersonDetailsAsync = createAsyncThunk(
         const urlToFetch = new URL(`${config.tmdbBaseUrl}${personDetailsEndpoint}`);
 
         //query params
-        urlToFetch.searchParams.append("api_key", tmdbKey)
 
         const response = await fetch(urlToFetch);
 
@@ -37,7 +32,6 @@ export const getPersonImages = createAsyncThunk(
         const urlToFetch = new URL(`${config.tmdbBaseUrl}${getImagesEndpoint}`);
 
         //query params
-        urlToFetch.searchParams.append("api_key", tmdbKey)
 
         const response = await fetch(urlToFetch);
 
@@ -57,7 +51,6 @@ export const getPersonTaggedImages = createAsyncThunk(
         const urlToFetch = new URL(`${config.tmdbBaseUrl}${getTaggedImagesEndpoint}`);
 
         //query params
-        urlToFetch.searchParams.append("api_key", tmdbKey)
         urlToFetch.searchParams.append("language", "en-US")
         urlToFetch.searchParams.append("page", page)
 
@@ -80,7 +73,6 @@ export const getCombinedCredits = createAsyncThunk(
         const urlToFetch = new URL(`${config.tmdbBaseUrl}${getCombinedCreditsEndpoint}`);
 
         //query params
-        urlToFetch.searchParams.append("api_key", tmdbKey)
         urlToFetch.searchParams.append("language", "en-US")
 
         const response = await fetch(urlToFetch);
