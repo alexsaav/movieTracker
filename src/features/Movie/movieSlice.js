@@ -1,9 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import config from '../../config.json'
 
 //TMDB API
 const tmdbKey = process.env.REACT_APP_TMDB_API_KEY;
-// API’s base URL
-const tmdbBaseUrl = 'https://api.themoviedb.org/3';
 
 
 // GET MOVIE DETAILS
@@ -14,7 +13,7 @@ export const getMovieDetails = createAsyncThunk(
         //Get Movie Details Endpoint
         const movieDetailsEndpoint = `/movie/${id}`;
         
-        const urlToFetch = new URL(`${tmdbBaseUrl}${movieDetailsEndpoint}`);
+        const urlToFetch = new URL(`${config.tmdbBaseUrl}${movieDetailsEndpoint}`);
 
         //query params
         urlToFetch.searchParams.append("api_key", tmdbKey)
@@ -37,7 +36,7 @@ export const getMovieImages = createAsyncThunk(
         //Get Movie Images Endpoint
         const movieImagesEndpoint = `/movie/${idMovie}/images`;
 
-        const urlToFetch = new URL(`${tmdbBaseUrl}${movieImagesEndpoint}`);
+        const urlToFetch = new URL(`${config.tmdbBaseUrl}${movieImagesEndpoint}`);
 
         //query params
         urlToFetch.searchParams.append("api_key", tmdbKey);
@@ -60,7 +59,7 @@ export const getMovieVideos = createAsyncThunk(
         //Get Movie Videos Endpoint
         const movieVideosEndpoint = `/movie/${movieId}/videos`;
 
-        const urlToFetch = new URL(`${tmdbBaseUrl}${movieVideosEndpoint}`);
+        const urlToFetch = new URL(`${config.tmdbBaseUrl}${movieVideosEndpoint}`);
 
         //query params
         urlToFetch.searchParams.append("api_key", tmdbKey);
@@ -85,7 +84,7 @@ export const getRecommendations = createAsyncThunk(
         //Get Recommendations Endpoint
         const recommendationsEndpoint = `/movie/${movieId}/recommendations`;
 
-        const urlToFetch= new URL(`${tmdbBaseUrl}${recommendationsEndpoint}`);
+        const urlToFetch= new URL(`${config.tmdbBaseUrl}${recommendationsEndpoint}`);
 
         //query params
         urlToFetch.searchParams.append("api_key", tmdbKey);

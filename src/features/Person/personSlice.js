@@ -1,9 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import config from './../../config.json'
+
 
 //TMDB API
 const tmdbKey = process.env.REACT_APP_TMDB_API_KEY;
-// API’s base URL
-const tmdbBaseUrl = 'https://api.themoviedb.org/3';
 
 // GET PERSON DETAILS
 export const getPersonDetailsAsync = createAsyncThunk(
@@ -12,7 +12,7 @@ export const getPersonDetailsAsync = createAsyncThunk(
     async(id) => {
         const personDetailsEndpoint = `/person/${id}`;
         
-        const urlToFetch = new URL(`${tmdbBaseUrl}${personDetailsEndpoint}`);
+        const urlToFetch = new URL(`${config.tmdbBaseUrl}${personDetailsEndpoint}`);
 
         //query params
         urlToFetch.searchParams.append("api_key", tmdbKey)
@@ -34,7 +34,7 @@ export const getPersonImages = createAsyncThunk(
     async(personId) => {
         const getImagesEndpoint = `/person/${personId}/images`;
 
-        const urlToFetch = new URL(`${tmdbBaseUrl}${getImagesEndpoint}`);
+        const urlToFetch = new URL(`${config.tmdbBaseUrl}${getImagesEndpoint}`);
 
         //query params
         urlToFetch.searchParams.append("api_key", tmdbKey)
@@ -54,7 +54,7 @@ export const getPersonTaggedImages = createAsyncThunk(
     async({personId, page = 1}) => {
         const getTaggedImagesEndpoint = `/person/${personId}/tagged_images`;
 
-        const urlToFetch = new URL(`${tmdbBaseUrl}${getTaggedImagesEndpoint}`);
+        const urlToFetch = new URL(`${config.tmdbBaseUrl}${getTaggedImagesEndpoint}`);
 
         //query params
         urlToFetch.searchParams.append("api_key", tmdbKey)
@@ -77,7 +77,7 @@ export const getCombinedCredits = createAsyncThunk(
     async(personId) => {
         const getCombinedCreditsEndpoint = `/person/${personId}/combined_credits`;
 
-        const urlToFetch = new URL(`${tmdbBaseUrl}${getCombinedCreditsEndpoint}`);
+        const urlToFetch = new URL(`${config.tmdbBaseUrl}${getCombinedCreditsEndpoint}`);
 
         //query params
         urlToFetch.searchParams.append("api_key", tmdbKey)

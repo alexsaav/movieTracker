@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getMoviesInTheatres, selectMoviesInTheatres } from "../moviesSlice"
-import MovieCardStyle2 from "../../Cards/MovieCardStyle2"
+import CardStyle1 from "../../Cards/CardStyle1"
 import Box from "@mui/material/Box"
 import { Typography } from "@mui/material"
 import LoadingItem from "../../../components/Loading/LoadingCardItem"
@@ -25,7 +25,7 @@ const TopMoviesInTheatres = () => {
             <Box sx={topMediaContainersStyles.innerContainer}>
                 {isLoading && <LoadingItem items={8} />}
                 {moviesInTheatresResults.map(movie => {
-                    return <MovieCardStyle2 movie={movie} key={movie.id} isLoading={moviesInTheatres.isLoading}/>
+                    return <CardStyle1 movie={movie} key={movie.id} isLoading={moviesInTheatres.isLoading}/>
                 })}
             </Box>
         </Box>

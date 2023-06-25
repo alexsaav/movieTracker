@@ -1,13 +1,9 @@
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { format } from "date-fns";
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
-import Box from '@mui/material/Box';
-import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
+import { Box, Card, CardContent, CardActionArea, Typography } from '@mui/material';
+import { searchResultCard } from './cardStyles';
+import CardImage from './CardImage';
 
 
 const overviewTextStyle = {
@@ -42,22 +38,8 @@ const overviewTextStyle = {
     let formattedDate = format(new Date(date), 'PPP');
 
     const knownForList = known_for?.map(work => work.title);
-    const knowForWork = knownForList?.map((work) => <span key={work}>{work}</span>)
-
-    let image;
-    if (poster_path || backdrop_path || profile_path) {
-        const moviePosterUrl = `https://image.tmdb.org/t/p/original${poster_path ?? backdrop_path ?? profile_path}`;
-        image = <CardMedia
-                    component="img"
-                    image={moviePosterUrl}
-                    alt={title}
-                    sx={{height: "150px"}}
-                /> 
-    } else {
-        image = <Box sx={{textAlign: "center", pt: "35px"}}>
-                    <ImageNotSupportedIcon color="disabled" sx={{ fontSize: 60}}/>
-                </Box> 
-    }
+    const knowForWork = knownForList?.map(
+        (work) => <Typography variant='caption' key={work} sx={searchResultCard.knownFor}>{work} |</Typography>);
 
     const onClick = () => {
         if (media_type === 'tv') navigate(`/page-not-found`)
@@ -65,33 +47,38 @@ const overviewTextStyle = {
     };
                         
     return (
-        <Card 
-            sx={{ display: "flex", mt: "10px", width: "100%", height: "150px"}} 
-            onClick={onClick}
-        >
-            <CardActionArea sx={{ display: "flex", justifyContent: "flex-start", alignItems: "flex-start"}}>
-                <CardContent 
-                    sx={{ 
-                        minWidth: "94px", 
-                        width: "94px", 
-                        height: "100%",  
-                        p: 0, 
-                        borderRight: "1px solid #EAEBEB", 
-                        background: "#EAEBEB"
-                    }}
-                >
-                    { image }
+        <Card sx={searchResultCard.card} onClick={onClick}>
+            <CardActionArea sx={searchResultCard.cardActionArea}>
+                <CardContent sx={searchResultCard.cardContentImage} >
+
+                    <CardImage 
+                        poster={poster_path}
+                        backdrop={backdrop_path}
+                        profilePicture={profile_path}
+                        onClick={onClick}
+                        classes={searchResultCard.cardMedia}
+                        classesNotFound={searchResultCard.notFound}
+                        title={title}
+                    />
                 </CardContent>
 
-                <CardContent sx={{ display: "flex", flexDirection: "column",  p: "10px 15px", width: "950px"}}>
+                <CardContent sx={searchResultCard.cardContentInfo}>
                     <Box>
-                        <Typography variant="h2" sx={{fontSize: "1rem", fontWeight: "bold"}} onClick={onClick}>{title ?? name}</Typography>
+                        <Typography variant="h2" sx={searchResultCard.title} onClick={onClick}>{title ?? name}</Typography>
                         <Typography variant="body2" color="text.secondary">{formattedDate}</Typography>
-                        {media_type === ('movie' || 'tv') && <Typography variant="body2" color="text.secondary">{media_type}</Typography>}
+                        {media_type === ('movie' || 'tv') && 
+                            <Typography 
+                                variant="body2" 
+                                color="text.secondary"
+                                sx={searchResultCard.mediaType}
+                            >
+                                {media_type}
+                            </Typography>
+                        }
                         {known_for_department && <Typography>{known_for_department}</Typography>}
                         {known_for && knowForWork}
                     </Box>
-                    <Box sx={{mt: "10px" }}>
+                    <Box sx={searchResultCard.overview}>
                         <Typography variant="body2" color="text.secondary" sx={overviewTextStyle} >{overview}</Typography>
                     </Box>
                 </CardContent>

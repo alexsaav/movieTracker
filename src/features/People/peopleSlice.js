@@ -1,9 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import config from '../../config.json'
 
 //TMDB API
 const tmdbKey = process.env.REACT_APP_TMDB_API_KEY;
-// API’s base URL
-const tmdbBaseUrl = 'https://api.themoviedb.org/3';
 
 // GET POPULAR PEOPLE (ALSO GETS WHAT THAT PEOPLE IS KNOWN FOR)
 export const getPopularPeople = createAsyncThunk(
@@ -12,7 +11,7 @@ export const getPopularPeople = createAsyncThunk(
     async(page) => {
         const getPopularPeopleEndpoint = "/person/popular";
 
-        const urlToFetch = new URL(`${tmdbBaseUrl}${getPopularPeopleEndpoint}`);
+        const urlToFetch = new URL(`${config.tmdbBaseUrl}${getPopularPeopleEndpoint}`);
 
         //query params
         urlToFetch.searchParams.append("api_key", tmdbKey)

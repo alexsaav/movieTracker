@@ -1,12 +1,14 @@
-import MovieCardStyle3 from "../Cards/MovieCardStyle3";
+import CardStyle2 from "../Cards/CardStyle2";
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from "@mui/material/Typography";
 import Box from '@mui/material/Box';
 import Skeleton from '@mui/material/Skeleton';
+import { v4 as uuidv4 } from 'uuid';
 
-let loadingItem = Array(20).fill(
-    (<Grid item xs={1}>
+
+let loadingItem = Array(20).map(() =>
+    (<Grid item xs={1} key={uuidv4()}>
         <Skeleton animation="wave" variant="rectangular" height={225} sx={{mr: 1, borderRadius: 2}} />
         <Box>
             <Skeleton animation="wave" height={20} width="70%" sx={{borderRadius: 1}} />
@@ -28,7 +30,7 @@ const MovieCardList = ({movieList, title, isLoading}) => {
                 <Grid container spacing={2} columns={{ xs: 3, sm: 4, md: 6 }} sx={{ flexWrap: "wrap", justifyContent: 'center'}}>
                     {isLoading && loadingItem}
                     {movieList.map(movie => {
-                        return <MovieCardStyle3 movie={movie} key={movie.id}/>
+                        return <CardStyle2 movie={movie} key={movie.id}/>
                     })}
                 </Grid>
             </section>

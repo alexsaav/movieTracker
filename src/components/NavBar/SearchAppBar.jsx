@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-//import { searchMovies } from '../../features/Movies/moviesSlice';
 import { searchMulti } from '../../components/SearchBar/searchSlice'
 import Box from '@mui/material/Box';
 import { styled, alpha } from '@mui/material/styles';
@@ -57,11 +56,6 @@ const SearchAppBar = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-/*     useEffect(() => {
-        if(searchText === '') return;
-        dispatch(searchMovies({title: searchText, page}))
-    }, [dispatch, page, searchText]) */
-
     useEffect(() => {
         if(searchText === '') return;
         dispatch(searchMulti({name: searchText, page}))
@@ -92,6 +86,7 @@ const SearchAppBar = () => {
                     inputProps={{ 'aria-label': 'search' }}
                     defaultValue={searchText}
                     onChange={(e) => {search(e.target.value)}}
+                    sx={{width: '100%'}}
                 />
             </Search>
         </Box>

@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCombinedCredits, selectCombinedCredits } from '../personSlice'
 import LoadingCardItem from '../../../components/Loading/LoadingCardItem'
-import MovieCardStyle2 from '../../Cards/MovieCardStyle2'
+import CardStyle1 from '../../Cards/CardStyle1'
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
@@ -43,7 +43,7 @@ const KnownFor = () => {
                 {isLoading && <LoadingCardItem items={8} />}
                 {filmsSorted.map(movie => {
                     return (
-                        <MovieCardStyle2 movie={movie} key={movie.id}/>
+                        <CardStyle1 movie={movie} key={movie.id}/>
                     )
                 })}
             </Box>

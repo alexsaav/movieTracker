@@ -1,15 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { useSearchParams } from 'react-router-dom';
-//import { selectSearchMovies, searchMovies } from './moviesSlice';
 import { searchMulti, selectMovies, selectPeople, selectSearchResults } from '../../components/SearchBar/searchSlice';
 import SearchBar from '../../components/SearchBar/SearchBar';
-import MovieSearchResultCard from '../Cards/SearchResultMovieCard';
 import PaginationComponent from '../../components/Pagination/Pagination';
 import { Container, Box, Typography, Skeleton } from '@mui/material';
 import { scrollTopWin } from '../util/helperFunctions';
-import MovieCardStyle2 from '../Cards/MovieCardStyle2';
-import PersonCard from '../Cards/PersonCard';
 import SearchResultCard from '../Cards/SearchResultCard';
 
 const loadingItem = Array(20).fill((

@@ -6,7 +6,7 @@ const LoadingGridItem = ({items}) => {
     return (
         <>
             {Array(items).fill((
-                <Grid item xs={1}>
+                <Grid item xs={1} key={uuidv4()}>
                     <Skeleton animation="wave" variant="rectangular" width="100%" height={150} sx={{borderRadius: 1}} />
                 </Grid>
             ))}

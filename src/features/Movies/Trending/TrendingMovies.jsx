@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getTrendingMovies, selectTrendingMovies } from "../moviesSlice"
-import MovieCard2 from "../../Cards/MovieCardStyle2";
+import CardStyle1 from "../../Cards/CardStyle1";
 import Box from "@mui/material/Box"
 import Typography from "@mui/material/Typography"
 import LoadingItem from "../../../components/Loading/LoadingCardItem";
@@ -25,7 +25,7 @@ const TrendingMovies = () => {
             >
                 {isLoading && <LoadingItem items={10} />}
                 {trendingMoviesResult.map(movie => {
-                    return <MovieCard2 movie={movie} key={movie.id} isLoading={trendingMovies.isLoading}/>
+                    return <CardStyle1 movie={movie} key={movie.id} isLoading={trendingMovies.isLoading}/>
                 })}
             </Box>
         </Box>
