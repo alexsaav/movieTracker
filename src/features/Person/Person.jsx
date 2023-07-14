@@ -56,7 +56,9 @@ const Person = () =>  {
                             </Typography>
                             
                             <Box sx={styles.biographyText}>
-                                {biography ? <ReadMore text={biography} limit={500}/> :
+                                {biography ? 
+                                    <ReadMore text={biography} limit={500}/> 
+                                    :
                                     <Typography>There is no biography available.</Typography>
                                 }
                             </Box>

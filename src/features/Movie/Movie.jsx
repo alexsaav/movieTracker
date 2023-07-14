@@ -34,7 +34,7 @@ const Movie = () => {
         tagline,
         vote_average,
         isLoading
-         } = movieDetailsResult;
+    } = movieDetailsResult;
 
     useEffect(() => {
         dispatch(getMovieDetails(id))

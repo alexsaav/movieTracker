@@ -7,16 +7,19 @@ import PaginationComponent from '../../components/Pagination/Pagination';
 import { Container, Box, Typography, Skeleton } from '@mui/material';
 import { scrollTopWin } from '../util/helperFunctions';
 import SearchResultCard from '../Cards/SearchResultCard';
+import { v4 as uuidv4 } from 'uuid';
 
-const loadingItem = Array(20).fill((
-    <Box sx={{mb: 2, display: "flex" }}>
+
+const loadingItem = Array(20).fill(
+    <Box sx={{mb: 2, display: "flex" }} key={uuidv4()}>
         <Skeleton animation="wave" variant="rectangular" width={94} height={150} sx={{borderRadius: 2}} />
         <Box sx={{display: "flex", flexDirection: "column", width:"100%", ml: 1}}>
             <Skeleton animation="wave" variant="rectangular" width="100%" height="100%"  sx={{borderRadius: 2}} />
         </Box>
     </Box>
-));
+);
 
+ 
 const SearchResults = () => {
     let [searchParams, setSearchParams] = useSearchParams();
     const [searchText, setSearchText] = useState(searchParams.get("query"));

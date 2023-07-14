@@ -13,13 +13,16 @@ import { useTheme } from "@mui/material";
 import { getVideosStyle } from "../../../components/Media/mediaStyles"
 import ModalSlider from "../../../components/Modal/Modal"
 import { v4 as uuidv4 } from 'uuid';
+import LoadingBox from "../../../components/Loading/LoadingBox"
 
+/* let item = new Array(10)
+console.log(item)
 
-let loadingItem = Array(10).fill((
-    <Grid item xs={2}>
+let loadingItem = item.map((
+    <Grid item xs={2} key={uuidv4()}>
         <Skeleton animation="wave" variant="rectangular" width={360} height={200} sx={{borderRadius: 1}} />
     </Grid>
-));
+)); */
 
 const Videos = () => {
     const [open, setOpen] = useState(false);
@@ -138,7 +141,7 @@ const Videos = () => {
                 <Typography variant="h5">Videos</Typography>
                     <Box sx={videosStyle.videosWrapper}>
                         <Grid container spacing={1} columns={{xs: 1, sm: 2, md: 3}}>
-                            {isLoading && loadingItem}
+                            {isLoading && <LoadingBox items={10} />}
                             {videos.map((video, index) => {
                                 const { id, key, name, site } = video;
                                 const videoImgUrl = `https://img.youtube.com/vi/${key}/sddefault.jpg`

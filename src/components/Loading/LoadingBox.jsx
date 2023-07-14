@@ -42,7 +42,7 @@ const loadingBoxStyles = {
 }
 
 const LoadingBox = (items) => {
-    const loadingItem = Array(items).fill(
+    const loadingItem = Array(items).map(
         <Box sx={loadingBoxStyles.textContainer}>
             <Skeleton animation="wave" variant="h2" sx={loadingBoxStyles.skeletonSubtitle}/>
             <Skeleton animation="wave" variant="rectangle" sx={loadingBoxStyles.skeletonText}/>

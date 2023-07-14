@@ -41,7 +41,7 @@ const Footer = () => {
                 }}
             >
                 <Container maxWidth="sm" sx={{textAlign: 'center'}}>
-                    <Copyright />
+                    {/* <Copyright /> */}
                 </Container>
             </Box>
         </ThemeProvider>

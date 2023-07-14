@@ -22,7 +22,7 @@ const theme = createTheme({
             lg: 1200,
         },
     },
-  });
+});
 
 root.render(
     <React.StrictMode>
