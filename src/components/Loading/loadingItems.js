@@ -19,18 +19,22 @@ export const loadingBoxStyles = {
         ml: 1, 
         mt: "7px"
     },
-    pictureSkeletonContainer: {
+    pictureContainer: {
         display: "flex",
         width: "35%"
     },
-    skeletonSubtitle: {
+    subtitle: {
         width: "100%",
         height: 20,
         mb: "10px"
     },
-    skeletonText: {
+    text: {
         width: "100%",
         height: 70,
         mb: "10px"
+    },
+    title: {
+        ml: 1, 
+        mb: 2
     }
 };
