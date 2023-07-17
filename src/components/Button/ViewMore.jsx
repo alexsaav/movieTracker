@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { scrollTopWin } from '../../features/util/helperFunctions'
+import { scrollTopWin } from '../../util/helperFunctions'
 import { 
     Box, 
     Typography 

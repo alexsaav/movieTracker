@@ -8,7 +8,7 @@ import LoadingBox from "../../components/Loading/LoadingBox";
 import PersonTopImages from "./Images/PersonTopImages";
 import ReadMore from "./ReadMore";
 import { Box, Divider, Typography } from "@mui/material";
-import { getPersonComponentStyles, detailsComponentStyles } from "../styles/styles";
+import { getPersonComponentStyles, detailsComponentStyles } from "../../styles/styles";
 import { useTheme } from '@mui/material/styles';
 
 const Person = () =>  {

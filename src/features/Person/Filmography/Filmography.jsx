@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getCombinedCredits, selectCombinedCredits } from '../personSlice'
 import CreditsListItem from './FilmographyListItem'
 import { useTheme } from '@mui/material/styles';
-import { getFilmographyStyles } from '../../styles/styles'
+import { getFilmographyStyles } from '../../../styles/styles'
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Divider from "@mui/material/Divider";

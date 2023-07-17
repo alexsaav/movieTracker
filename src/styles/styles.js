@@ -1,4 +1,4 @@
-import bgHome from '../../assets/images/background-2.jpg'
+import bgHome from '../assets/images/background-2.jpg'
 
 //CONTAINERS
 export const topMediaContainersStyles = {

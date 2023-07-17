@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { getRecommendations, selectRecommendations } from './movieSlice';
-import { scrollTopWin } from '../util/helperFunctions';
+import { scrollTopWin } from '../../util/helperFunctions';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/system';
 import { Card } from '@mui/material';
 import {CardMedia} from '@mui/material';
 import { Link } from 'react-router-dom';
 import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
-import { recommendationsStyles, topMediaContainersStyles } from '../styles/styles';
+import { recommendationsStyles, topMediaContainersStyles } from '../../styles/styles';
 import { LoadingRecommendationCard } from '../../components/Loading/LoadingRecommendationsCard';
 
 const Recommendations = ({movieId}) => {

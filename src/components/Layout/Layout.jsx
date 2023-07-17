@@ -5,7 +5,7 @@ import Footer from '../Footer/Footer'
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import { ThemeProvider } from '@mui/material/styles';
-import { darkTheme } from '../../features/util/theme';
+import { darkTheme } from '../../util/theme';
 
 const Layout = () => {
     return (

@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import LoadingList from '../../components/Loading/LoadingList';
-import { getMovieHeaderStyles } from '../styles/styles';
+import { getMovieHeaderStyles } from '../../styles/styles';
 import { useTheme } from "@mui/material";
 import Link from '@mui/material/Link';
 

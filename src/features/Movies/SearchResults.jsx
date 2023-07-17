@@ -5,7 +5,7 @@ import { searchMulti, selectMovies, selectPeople, selectSearchResults } from '..
 import SearchBar from '../../components/SearchBar/SearchBar';
 import PaginationComponent from '../../components/Pagination/Pagination';
 import { Container, Box, Typography, Skeleton } from '@mui/material';
-import { scrollTopWin } from '../util/helperFunctions';
+import { scrollTopWin } from '../../util/helperFunctions';
 import SearchResultCard from '../Cards/SearchResultCard';
 import { v4 as uuidv4 } from 'uuid';
 

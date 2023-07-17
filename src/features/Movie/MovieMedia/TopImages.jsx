@@ -6,9 +6,8 @@ import { Box } from "@mui/system"
 import { Card } from '@mui/material';
 import {CardMedia} from "@mui/material"
 import LoadingMediaItem from "../../../components/Loading/LoadingMediaItem"
-import { topImagesStyles } from "../../styles/styles"
+import { topImagesStyles, topMediaContainersStyles } from "../../../styles/styles"
 import ViewMore from "../../../components/Button/ViewMore"
-import { topMediaContainersStyles } from "../../styles/styles"
 
 const TopImages = ({movieId, title}) => {
     const dispatch = useDispatch();

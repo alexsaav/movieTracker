@@ -1,9 +1,7 @@
 import React from 'react'
 import { ThemeProvider } from '@mui/material/styles';
-import { 
-    Box,
-} from '@mui/material';
-import { darkTheme } from '../../features/util/theme';
+import { Box } from '@mui/material';
+import { darkTheme } from '../../util/theme';
 
 const Footer = () => {
     return (

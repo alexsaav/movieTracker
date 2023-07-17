@@ -10,7 +10,7 @@ import {Container, Card, CardMedia} from "@mui/material"
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import Skeleton from '@mui/material/Skeleton';
 import { useTheme } from "@mui/material";
-import { getVideosStyle } from "../../../components/Media/mediaStyles"
+import { getVideosStyle } from "../../../styles/mediaStyles"
 import ModalSlider from "../../../components/Modal/Modal"
 import { v4 as uuidv4 } from 'uuid';
 import LoadingBox from "../../../components/Loading/LoadingBox"

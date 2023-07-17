@@ -7,7 +7,7 @@ import {
     Typography 
 } from "@mui/material"
 import LoadingItem from "../../../components/Loading/LoadingCardItem"
-import { topMediaContainersStyles } from "../../styles/styles"
+import { topMediaContainersStyles } from "../../../styles/styles"
 
 const TopMoviesInTheatres = () => {
     const [page, setPage] = useState(1);

@@ -1,6 +1,6 @@
 import SearchBar from "../SearchBar/SearchBar"
 import { Box } from "@mui/material"
-import { homeBannerStyle } from '../../features/styles/styles'
+import { homeBannerStyle } from '../../styles/styles'
 
 
 const HomeBanner = ({onSubmit, setSearchText}) => {

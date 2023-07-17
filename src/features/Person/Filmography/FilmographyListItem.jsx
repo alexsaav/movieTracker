@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
-import { scrollTopWin } from '../../util/helperFunctions'
+import { scrollTopWin } from '../../../util/helperFunctions';
 import Box from '@mui/material/Box';
 import Divider from "@mui/material/Divider";
 import ListItem from '@mui/material/ListItem';

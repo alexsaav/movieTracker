@@ -4,7 +4,7 @@ import {
     IconButton 
 } from "@mui/material"
 import SearchIcon from '@mui/icons-material/Search';
-import { getHomeSearchBarStyles } from "../../features/styles/styles";
+import { getHomeSearchBarStyles } from "../../styles/styles";
 
 const SearchBar = ({searchText, setSearchText, onSubmit}) => {
     

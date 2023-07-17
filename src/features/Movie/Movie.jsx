@@ -13,7 +13,7 @@ import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import ButtonsList from './ButtonsList';
 import { Paper } from '@mui/material';
-import { detailsComponentStyles, getMovieComponentStyles } from '../styles/styles';
+import { getMovieComponentStyles, detailsComponentStyles } from '../../styles/styles';
 import { useTheme } from '@mui/material/styles';
 import { v4 as uuidv4 } from 'uuid';
 

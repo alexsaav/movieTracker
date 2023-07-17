@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, Link } from 'react-router-dom';
 import { getMovieCreditsAsync, selectMovieCredits } from '../movieCreditsSlice';
-import { scrollTopWin } from '../../util/helperFunctions';
+import { scrollTopWin } from '../../../util/helperFunctions';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography'
 import Card from '@mui/material/Card';
@@ -13,7 +13,7 @@ import CardActionArea from '@mui/material/CardActionArea';
 import PersonIcon from '@mui/icons-material/Person';
 import ViewMore from '../../../components/Button/ViewMore';
 import LoadingCardItem from '../../../components/Loading/LoadingCardItem';
-import { topMediaContainersStyles } from '../../styles/styles';
+import { topMediaContainersStyles } from '../../../styles/styles';
 
 const TopCast = ({id}) => {
     const dispatch = useDispatch();

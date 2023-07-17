@@ -3,7 +3,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { useTheme } from '@mui/material/styles';
-import { getModalStyle } from '../Media/mediaStyles';
+import { getModalStyle } from '../../styles/mediaStyles';
 
 const ModalSlider = ({isMovie, handleClose, handleBackForwardButton, isOpen, currentIndex, children}) => {
     const theme = useTheme();

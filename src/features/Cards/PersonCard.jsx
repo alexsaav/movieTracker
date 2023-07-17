@@ -5,7 +5,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardActionArea from '@mui/material/CardActionArea';
 import { CardMedia } from '@mui/material';
-import { scrollTopWin } from '../util/helperFunctions';
+import { scrollTopWin } from '../../util/helperFunctions';
 import { useNavigate } from 'react-router-dom';
 import PersonIcon from '@mui/icons-material/Person';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { scrollTopWin } from '../../util/helperFunctions';
+import { scrollTopWin } from '../../../util/helperFunctions';
 import LoadingList from '../../../components/Loading/LoadingList';
 import Container from '@mui/material/Container';
 import List from '@mui/material/List';

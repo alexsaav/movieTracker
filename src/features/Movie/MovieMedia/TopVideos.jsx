@@ -6,9 +6,9 @@ import { Box } from "@mui/system"
 import { Card, CardMedia, Typography } from "@mui/material"
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import ViewMore from "../../../components/Button/ViewMore"
-import { topMediaContainersStyles, topVideosStyles } from "../../styles/styles"
+import { topMediaContainersStyles, topVideosStyles } from "../../../styles/styles"
 import LoadingMediaItem from "../../../components/Loading/LoadingMediaItem"
-import { scrollTopWin } from "../../util/helperFunctions"
+import { scrollTopWin } from "../../../util/helperFunctions"
 
 const TopVideos = ({movieId, title}) => {
     const dispatch = useDispatch();
