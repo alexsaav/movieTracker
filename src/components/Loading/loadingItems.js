@@ -38,3 +38,17 @@ export const loadingBoxStyles = {
         mb: 2
     }
 };
+
+export const loadingCardItem = {
+    container: {
+        width: 150, 
+        position: "relative"
+    },
+    firstItem: {
+        mr: 1, 
+        borderRadius: 2
+    },
+    secondItemInner: {
+        borderRadius: 2
+    }
+};
