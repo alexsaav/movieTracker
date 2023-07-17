@@ -1,25 +1,27 @@
 import { useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { v4 as uuidv4 } from 'uuid';
+import LoadingGridItem from "../Loading/LoadingGridItem";
+import MovieHeader from "../../features/Movie/MovieHeader";
 import Grid from "@mui/material/Unstable_Grid2/Grid2"
-import Typography from "@mui/material/Typography"
-import Box from "@mui/system/Box"
-import Card from '@mui/material/Card';
-import CardMedia from "@mui/material/CardMedia"
 import Container from "@mui/system/Container"
-import Modal from '@mui/material/Modal';
-import Button from '@mui/material/Button';
+import { 
+    Box,
+    Modal,
+    Card,
+    CardMedia,
+    Typography,
+    Button,
+
+} from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import LoadingGridItem from "../Loading/LoadingGridItem";
-import MovieHeader from "../../features/Movie/MovieHeader";
 import { useTheme } from "@mui/material";
-import { getModalStyle, getImagesStyle } from "./mediaStyles";
+import { getModalStyle, getImagesStyle } from "../../styles/mediaStyles";
 
 const Images = ({movie, images, isLoading, name, id}) => {
     const [open, setOpen] = useState(false);
-    //const [page, setPage] = useState(1);
     const [currentIndex, setCurrentIndex] = useState(null);
     const navigate = useNavigate();
     
@@ -27,13 +29,11 @@ const Images = ({movie, images, isLoading, name, id}) => {
     const modalStyle = getModalStyle(theme); 
     const imagesStyle = getImagesStyle(theme);
 
-    // set new current index
     const handleOpen = (i) => {
         setCurrentIndex(i);
         setOpen(true)
     };
 
-    // reset current index
     const handleClose = () => {
         setCurrentIndex(null);
         setOpen(false)
@@ -49,8 +49,7 @@ const Images = ({movie, images, isLoading, name, id}) => {
             <Button onClick={handleClose} sx={modalStyle.closeButton}>
                 <CloseIcon />
             </Button>
-            <Box sx={modalStyle.itemContainer}
-            >
+            <Box sx={modalStyle.itemContainer}>
                 <Button onClick={() => handleBackForwardButton(currentIndex)} sx={modalStyle.arrowButton}>
                     <ArrowBackIosIcon />
                 </Button>
@@ -82,9 +81,10 @@ const Images = ({movie, images, isLoading, name, id}) => {
                 >
                     {!movie && name}
                 </Typography>
+
                 <Typography variant="h2" sx={imagesStyle.subtitle}>Photo Gallery</Typography>
+
                 <Box sx={imagesStyle.imagesContainer}>
-                    
                     <Grid container spacing={1} sx={imagesStyle.imagesInnerContainer} columns={columns} >
                         {isLoading  && <LoadingGridItem items={30} />}
                         <>
@@ -109,11 +109,11 @@ const Images = ({movie, images, isLoading, name, id}) => {
                     </Grid>
                 </Box>
             </Container>
-            <div>
+            <Box>
                 <Modal open={open}>   
                     {modalBody}
                 </Modal>
-            </div>
+            </Box>
         </>
     )
 }
