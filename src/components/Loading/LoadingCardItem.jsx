@@ -7,7 +7,7 @@ const LoadingCardItem = ({items}) => {
     return (
         <>
             {Array(items).fill().map(() =>
-                <Box sx={{width: 150, position: "relative"}}>
+                <Box sx={{width: 150, position: "relative"}} key={uuidv4()}>
                     <Skeleton animation="wave" variant="rectangular" height={225} sx={{mr: 1, borderRadius: 2}} />
                     <Box>
                         <Skeleton animation="wave" height={20} width="70%" sx={{borderRadius: 2}}/>
