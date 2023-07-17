@@ -1,5 +1,6 @@
 import Skeleton from "@mui/material/Skeleton";
 import { v4 as uuidv4 } from 'uuid';
+import { loadingMediaItem } from "./loadingItems";
 
 const LoadingMediaItem = ({items}) => {
     return (
@@ -10,7 +11,7 @@ const LoadingMediaItem = ({items}) => {
                     variant="rectangular" 
                     width="100%" 
                     height={250} 
-                    sx={{mr: 1, borderRadius: 1}} 
+                    sx={loadingMediaItem.container} 
                     key={uuidv4()}
                 />
             )}
