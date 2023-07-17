@@ -7,7 +7,13 @@ const LoadingGridItem = ({items}) => {
         <>
             {Array(items).fill().map(() =>
                 <Grid item xs={1} key={uuidv4()}>
-                    <Skeleton animation="wave" variant="rectangular" width="100%" height={150} sx={{borderRadius: 1}} />
+                    <Skeleton 
+                        animation="wave" 
+                        variant="rectangular" 
+                        width="100%" 
+                        height={150} 
+                        sx={{borderRadius: 1}} 
+                    />
                 </Grid>
             )}
         </>
