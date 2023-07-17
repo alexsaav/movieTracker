@@ -15,14 +15,11 @@ import ModalSlider from "../../../components/Modal/Modal"
 import { v4 as uuidv4 } from 'uuid';
 import LoadingBox from "../../../components/Loading/LoadingBox"
 
-/* let item = new Array(10)
-console.log(item)
-
-let loadingItem = item.map((
+let loadingItem = Array(10).fill().map(() =>
     <Grid item xs={2} key={uuidv4()}>
         <Skeleton animation="wave" variant="rectangular" width={360} height={200} sx={{borderRadius: 1}} />
     </Grid>
-)); */
+);
 
 const Videos = () => {
     const [open, setOpen] = useState(false);

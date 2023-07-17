@@ -7,7 +7,7 @@ import Skeleton from '@mui/material/Skeleton';
 import { v4 as uuidv4 } from 'uuid';
 
 
-let loadingItem = Array(20).map(() =>
+let loadingItem = Array(20).fill().map(() =>
     (<Grid item xs={1} key={uuidv4()}>
         <Skeleton animation="wave" variant="rectangular" height={225} sx={{mr: 1, borderRadius: 2}} />
         <Box>

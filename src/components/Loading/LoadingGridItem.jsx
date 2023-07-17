@@ -5,11 +5,11 @@ import { v4 as uuidv4 } from 'uuid';
 const LoadingGridItem = ({items}) => {
     return (
         <>
-            {Array(items).fill((
+            {Array(items).fill().map(() =>
                 <Grid item xs={1} key={uuidv4()}>
                     <Skeleton animation="wave" variant="rectangular" width="100%" height={150} sx={{borderRadius: 1}} />
                 </Grid>
-            ))}
+            )}
         </>
     )
 }

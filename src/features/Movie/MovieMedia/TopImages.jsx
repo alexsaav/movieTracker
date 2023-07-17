@@ -33,7 +33,7 @@ const TopImages = ({movieId, title}) => {
                     const imageUrl = `https://image.tmdb.org/t/p/original${file_path}`;
 
                     return (
-                        <Box sx={topImagesStyles.imageContainer}>
+                        <Box sx={topImagesStyles.imageContainer} key={file_path}>
                             <Card key={file_path}>
                                 <CardMedia 
                                     component="img"

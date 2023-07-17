@@ -31,7 +31,7 @@ const TopVideos = ({movieId, title}) => {
                     const videoImgUrl = `https://img.youtube.com/vi/${key}/sddefault.jpg`;
 
                     return (
-                        <Box sx={topVideosStyles.videoContainer}>
+                        <Box sx={topVideosStyles.videoContainer} key={key}>
                             <Link to={`/movie/${title}/${movieId}/videos`} onClick={scrollTopWin} style={topVideosStyles.videoLink}>
                                 <Card sx={topVideosStyles.card}> 
                                     <CardMedia component="img" image={videoImgUrl}/>

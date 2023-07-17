@@ -27,24 +27,24 @@ const Crew = ({ movieCrew, isLoading, loadingItem }) => {
         departments[departmentGroup].push(crewMember);
    });
 
-   const totalCrew = isLoading ?? <>({movieCrew.length-1})</>;
+   const totalCrew = isLoading ? '-' : movieCrew.length;
 
     return (
         <Container>
             <Typography variant='h5'>
-                Crew {totalCrew}
+                Crew ({totalCrew})
             </Typography>
             <Box>
                 {isLoading && <LoadingList items={40} />}
                 {Object.keys(departments).map(department => {
                     return (
-                        <List dense sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', display: 'flex', flexDirection: 'column'}}>
+                        <List dense sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', display: 'flex', flexDirection: 'column'}} key={department}>
                             <Typography variant='h6'>{department}</Typography>
                             {departments[department].map(crewMember => {
                                 const { name, id, profile_path, credit_id, job, isLoading } = crewMember;
                                 return (
                                     <ListItem alignItems="flex-start" key={credit_id} onClick={scrollTopWin} >
-                                    {isLoading ? (loadingItem) : (
+                                        {isLoading ? (loadingItem) : (
                                         <ListItemButton onClick={() => navigate(`/person/${id}/${name}`)} sx={{pl: 0}} key={id}>
                                             <ListItemAvatar>
                                                 <Avatar 
@@ -63,7 +63,7 @@ const Crew = ({ movieCrew, isLoading, loadingItem }) => {
                                                 sx={{pl: "25px"}}
                                             />
                                         </ListItemButton>
-                                )}
+                                        )}
                                     </ListItem>
                                 )}
                             )}

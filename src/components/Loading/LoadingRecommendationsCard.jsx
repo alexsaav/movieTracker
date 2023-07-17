@@ -6,7 +6,7 @@ export const LoadingRecommendationCard = () => {
     return (
         <>
             {
-                Array(6).map(
+                Array(6).fill().map(() =>
                     <Box>
                         <Skeleton 
                             animation="wave" 

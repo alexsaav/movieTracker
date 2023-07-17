@@ -10,7 +10,7 @@ import SearchResultCard from '../Cards/SearchResultCard';
 import { v4 as uuidv4 } from 'uuid';
 
 
-const loadingItem = Array(20).fill(
+const loadingItem = Array(20).fill().map(() =>
     <Box sx={{mb: 2, display: "flex" }} key={uuidv4()}>
         <Skeleton animation="wave" variant="rectangular" width={94} height={150} sx={{borderRadius: 2}} />
         <Box sx={{display: "flex", flexDirection: "column", width:"100%", ml: 1}}>

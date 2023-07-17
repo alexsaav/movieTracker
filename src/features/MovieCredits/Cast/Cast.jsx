@@ -18,7 +18,7 @@ import { Button } from '@mui/material'
 const Cast = ({ movieCast, isLoading, loadingItem }) => {
     const [showMore, setShowMore] = useState(false);
     const navigate = useNavigate();
-    const totalCast = isLoading ?? <>({movieCast.length-1})</>;
+    const totalCast = isLoading ? "-" : movieCast.length;
 
     const toggleButton = () => {
         setShowMore(!showMore)
@@ -52,7 +52,7 @@ const Cast = ({ movieCast, isLoading, loadingItem }) => {
 
     return (
         <Container>
-            <Typography variant='h5'>Cast {totalCast}</Typography>
+            <Typography variant='h5'>Cast ({totalCast})</Typography>
             <Box>
                 {isLoading && <LoadingList items={40} />}
                 <List dense sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', display: 'flex', flexDirection: 'column' }}>

@@ -6,7 +6,7 @@ const LoadingCardItem = ({items}) => {
 
     return (
         <>
-            {Array(items).fill(
+            {Array(items).fill().map(() =>
                 <Box sx={{width: 150, position: "relative"}}>
                     <Skeleton animation="wave" variant="rectangular" height={225} sx={{mr: 1, borderRadius: 2}} />
                     <Box>

@@ -13,14 +13,13 @@ import { useTheme } from "@mui/material";
 import { v4 as uuidv4 } from 'uuid';
 import { getCreditsStyle } from "./movieCreditsStyles";
 
-let loadingItem = Array(10).fill(
-    <Box sx={{display: "flex", flexDirection: "row", mb: 2}} key={uuidv4()}>
-        <Skeleton animation="wave" variant="circular" width={56} height={56} />
-        <Box sx={{display: "flex", flexDirection: "column", justifyContent: "center", ml: 1}}>
-            <Skeleton animation="wave" variant="h1" height={15} width={200} sx={{ marginBottom: 1 }} />
-            <Skeleton animation="wave" variant="h2" height={15} width={200} /> 
-        </Box>
-    </Box>
+let loadingItem = Array(10).fill().map(() => (<Box sx={{display: "flex", flexDirection: "row", mb: 2}} key={uuidv4()}>
+<Skeleton animation="wave" variant="circular" width={56} height={56} />
+<Box sx={{display: "flex", flexDirection: "column", justifyContent: "center", ml: 1}}>
+    <Skeleton animation="wave" variant="h1" height={15} width={200} sx={{ marginBottom: 1 }} />
+    <Skeleton animation="wave" variant="h2" height={15} width={200} /> 
+</Box>
+</Box>)
 );
 
 const MovieCredits = () => {

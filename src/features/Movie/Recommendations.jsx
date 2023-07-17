@@ -45,7 +45,7 @@ const Recommendations = ({movieId}) => {
                     }
 
                     return (
-                        <Box sx={{p: "0 5px"}}>
+                        <Box sx={{p: "0 5px"}} key={id}>
                             <Link to={`/movie/${id}`} onClick={scrollTopWin}>
                                 <Card sx={recommendationsStyles.card}>
                                     {image}

@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 const LoadingMediaItem = ({items}) => {
     return (
         <>
-            {Array(items).map(
+            {Array(items).fill().map(() =>
                 <Skeleton 
                     animation="wave" 
                     variant="rectangular" 
