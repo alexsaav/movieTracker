@@ -1,4 +1,8 @@
-import { Box, Button, Modal } from '@mui/material'
+import { 
+    Box, 
+    Button, 
+    Modal 
+} from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
