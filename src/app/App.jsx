@@ -11,11 +11,9 @@ import PersonImages from '../features/Person/Images/PersonImages';
 import PopularMovies from '../features/Movies/Popular/PopularMovies';
 import UpcomingMovies from '../features/Movies/Upcoming/UpcomingMovies';
 import TopRatedMovies from '../features/Movies/TopRated/TopRatedMovies';
-
-import Register from '../features/User/Register';
-import './App.css';
 import PageNotFound from '../components/PageNotFound/PageNotFound';
 import PopularPeople from '../features/People/PopularPeople';
+import './App.css';
 
 function App() {
     return (
@@ -34,9 +32,6 @@ function App() {
                     <Route path='/movies/upcoming' element={ <UpcomingMovies /> } />
                     <Route path='/movies/top-rated' element={ <TopRatedMovies /> }/> 
                     <Route path='/popular-people' element={ <PopularPeople /> } />
-                    {/* <Route path='user/login' element={<LoginScreen />} /> */}
-                    {/* <Route path='user/register' element={ <Register />} /> */}
-                    {/* <Route path='user/user-profile' element={<ProfileScreen />} /> */}
                     <Route path='/page-not-found' element={ <PageNotFound />} />
                 </Route>
             </Routes>
