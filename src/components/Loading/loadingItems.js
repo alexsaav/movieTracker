@@ -39,7 +39,7 @@ export const loadingBoxStyles = {
     }
 };
 
-export const loadingCardItem = {
+export const loadingCardItemStyles = {
     container: {
         width: 150, 
         position: "relative"
@@ -53,7 +53,7 @@ export const loadingCardItem = {
     }
 };
 
-export const loadingList = {
+export const loadingListStyles = {
     container: {
         display: "flex", 
         flexDirection: "row", 
@@ -70,9 +70,19 @@ export const loadingList = {
     }
 };
 
-export const loadingMediaItem = {
+export const loadingMediaItemStyles = {
     container: {
         mr: 1, 
         borderRadius: 1
     }
 };
+
+export const loadingRecommendationCardStyles = {
+    firstItem: {
+        mr: 1, 
+        borderRadius: 2
+    },
+    secondItem: {
+        borderRadius: 1
+    }
+}
