@@ -1,9 +1,11 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getTrendingMovies, selectTrendingMovies } from "../moviesSlice"
-import CardStyle1 from "../../Cards/CardStyle1";
-import Box from "@mui/material/Box"
-import Typography from "@mui/material/Typography"
+import CardStyleOne from "../../Cards/CardStyleOne";
+import { 
+    Box,
+    Typography
+} from "@mui/material"
 import LoadingItem from "../../../components/Loading/LoadingCardItem";
 import { topMediaContainersStyles } from "../../styles/styles";
 
@@ -25,7 +27,11 @@ const TrendingMovies = () => {
             >
                 {isLoading && <LoadingItem items={10} />}
                 {trendingMoviesResult.map(movie => {
-                    return <CardStyle1 movie={movie} key={movie.id} isLoading={trendingMovies.isLoading}/>
+                    return <CardStyleOne 
+                                movie={movie} 
+                                key={movie.id} 
+                                isLoading={trendingMovies.isLoading}
+                            />
                 })}
             </Box>
         </Box>

@@ -1,16 +1,19 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { scrollTopWin } from '../../features/util/helperFunctions'
-import { Box } from '@mui/material'
-import Typography from '@mui/material/Typography'
+import { 
+    Box, 
+    Typography 
+} from '@mui/material'
+import { viewMore } from './buttons'
 
 const ViewMore = ({route, title}) => {
     return (
-        <Box sx={{pt: '20px'}}>
+        <Box sx={viewMore.container}>
             <Link 
                 to={route} 
                 onClick={scrollTopWin} 
-                style={{textDecoration: 'none', color: '#1D1F20'}}
+                style={viewMore.link}
             >
                 <Typography variant="button">{title}</Typography>
             </Link>

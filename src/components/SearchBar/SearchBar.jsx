@@ -1,6 +1,8 @@
-import { Box } from "@mui/material"
-import TextField from "@mui/material/TextField"
-import IconButton from "@mui/material/IconButton"
+import { 
+    Box, 
+    TextField, 
+    IconButton 
+} from "@mui/material"
 import SearchIcon from '@mui/icons-material/Search';
 import { getHomeSearchBarStyles } from "../../features/styles/styles";
 

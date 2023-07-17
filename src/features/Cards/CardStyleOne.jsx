@@ -2,11 +2,11 @@ import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
 import { Box, Card, CardContent, CardActionArea, Typography, Avatar } from '@mui/material';
 import CardImage from "./CardImage";
-import { cardStyle1 } from "./cardStyles";
+import { cardStyleOne } from "./cardStyles";
 
 //Movie Card with score
 
-const CardStyle1 = ({movie}) => {
+const CardStyleOne = ({movie}) => {
     const navigate = useNavigate();
     const { id, title, poster_path, backdrop_path, vote_average, release_date, first_air_date } = movie;
     //const posterUrl = `https://image.tmdb.org/t/p/original${poster_path}`;
@@ -16,20 +16,20 @@ const CardStyle1 = ({movie}) => {
     
     return (
         <Box key={id}>
-            <Card sx={cardStyle1.card}>
+            <Card sx={cardStyleOne.card}>
                 <CardActionArea>
                     <CardImage  
                         poster={poster_path} 
                         backdrop={backdrop_path} 
                         title={title} 
-                        classes={cardStyle1.cardMedia}
-                        classesNotFound={cardStyle1.notFound}
+                        classes={cardStyleOne.cardMedia}
+                        classesNotFound={cardStyleOne.notFound}
                         onClick={() => navigate(`/movie/${id}`)}
                     />
 
-                    <CardContent sx={cardStyle1.cardContent}>
-                        <Avatar sx={cardStyle1.avatar}>
-                            <Typography sx={cardStyle1.votes}>{averageVotes}</Typography>
+                    <CardContent sx={cardStyleOne.cardContent}>
+                        <Avatar sx={cardStyleOne.avatar}>
+                            <Typography sx={cardStyleOne.votes}>{averageVotes}</Typography>
                         </Avatar>
                         <Typography 
                             variant="h2" 
@@ -37,7 +37,7 @@ const CardStyle1 = ({movie}) => {
                             component="div"
                             onClick={() => navigate(`/movie/${id}`)}
                             gutterBottom
-                            sx={cardStyle1.title}
+                            sx={cardStyleOne.title}
                         >
                             {title}
                         </Typography>
@@ -51,4 +51,4 @@ const CardStyle1 = ({movie}) => {
     );
 };
 
-export default CardStyle1;
+export default CardStyleOne;

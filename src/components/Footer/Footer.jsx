@@ -1,26 +1,10 @@
 import React from 'react'
-import CssBaseline from '@mui/material/CssBaseline';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import Link from '@mui/material/Link';
-import { dark } from '@mui/material/styles/createPalette';
+import { ThemeProvider } from '@mui/material/styles';
+import { 
+    Container,
+    Box,
+} from '@mui/material';
 import { darkTheme } from '../../features/util/theme';
-
-const Copyright = () => {
-    return (
-        <Typography variant="body2" color="text.secondary">
-            {'Copyright © '}
-            <Link color="inherit" href="https://mui.com/">
-                MovieTracker
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-};
-
 
 const Footer = () => {
     return (
@@ -40,9 +24,6 @@ const Footer = () => {
 
                 }}
             >
-                <Container maxWidth="sm" sx={{textAlign: 'center'}}>
-                    {/* <Copyright /> */}
-                </Container>
             </Box>
         </ThemeProvider>
     )

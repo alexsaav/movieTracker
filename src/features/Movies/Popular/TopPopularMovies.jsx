@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getPopularMovies, selectPopularMovies } from "../moviesSlice"
-import CardStyle1 from "../../Cards/CardStyle1";
+import CardStyleOne from "../../Cards/CardStyleOne";
 import Box from "@mui/material/Box"
 import Typography from "@mui/material/Typography";
 import LoadingItem from "../LoadingItem";
@@ -24,7 +24,10 @@ const TopPopularMovies = () => {
             <Box sx={topMediaContainersStyles.innerContainer}>
                 {isLoading && <LoadingItem />}
                 {popularMoviesResults.map(movie => {
-                    return <CardStyle1 movie={movie} key={movie.id}/>
+                    return <CardStyleOne 
+                                movie={movie} 
+                                key={movie.id}
+                            />
                 })}
             </Box>
         </Box>

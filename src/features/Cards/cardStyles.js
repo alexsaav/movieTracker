@@ -14,7 +14,7 @@ export const imageNotFound = {
     }
 }
 
-export const cardStyle1 = {
+export const cardStyleOne = {
     card: {
         width: 150, 
         minWidth: 150, 
