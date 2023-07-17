@@ -69,3 +69,10 @@ export const loadingList = {
         marginBottom: 1
     }
 };
+
+export const loadingMediaItem = {
+    container: {
+        mr: 1, 
+        borderRadius: 1
+    }
+};
