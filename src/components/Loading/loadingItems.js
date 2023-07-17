@@ -52,3 +52,20 @@ export const loadingCardItem = {
         borderRadius: 2
     }
 };
+
+export const loadingList = {
+    container: {
+        display: "flex", 
+        flexDirection: "row", 
+        mb: 2
+    },
+    innerBox: {
+        display: "flex", 
+        flexDirection: "column", 
+        justifyContent: "center", 
+        ml: 1
+    },
+    innerBoxItem: {
+        marginBottom: 1
+    }
+};
